@@ -661,6 +661,29 @@
     <Setter Property="BorderBrush" Value="{DynamicResource RibbonOfficeAccentBrush}" />
   </Style>
 
+  <Style Selector="StackPanel.office-ribbon-popup-section">
+    <Setter Property="Spacing" Value="4" />
+  </Style>
+
+  <Style Selector="Separator.office-ribbon-popup-section-separator">
+    <Setter Property="Margin" Value="4,4,4,2" />
+  </Style>
+
+  <Style Selector="TextBlock.office-ribbon-popup-section-header">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource RibbonOfficeMutedTextBrush}" />
+    <Setter Property="Margin" Value="6,0,6,2" />
+  </Style>
+
+  <Style Selector="ItemsControl.office-ribbon-popup-section-gallery-items">
+    <Setter Property="Margin" Value="0,0,0,2" />
+  </Style>
+
+  <Style Selector="ItemsControl.office-ribbon-popup-section-command-items">
+    <Setter Property="Margin" Value="0,0,0,2" />
+  </Style>
+
   <Style Selector="Grid.office-ribbon-menu-item-layout">
     <Setter Property="ColumnSpacing" Value="6" />
   </Style>

@@ -331,6 +331,31 @@
       </ToggleButton>
     </DataTemplate>
 
+    <DataTemplate x:Key="OfficeRibbonPopupMenuSectionTemplate" DataType="models:RibbonPopupMenuSection">
+      <StackPanel Classes="office-ribbon-popup-section"
+                  Spacing="4">
+        <Separator Classes="office-ribbon-separator office-ribbon-popup-section-separator"
+                   IsVisible="{CompiledBinding ShowSeparator}" />
+        <TextBlock Classes="office-ribbon-popup-section-header"
+                   Text="{CompiledBinding Header}"
+                   IsVisible="{CompiledBinding HasHeader}" />
+        <ItemsControl Classes="office-ribbon-popup-section-gallery-items"
+                      ItemsSource="{CompiledBinding Items}"
+                      ItemTemplate="{StaticResource OfficeRibbonGalleryItemTemplate}"
+                      IsVisible="{CompiledBinding IsGalleryLayout}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <ItemsControl Classes="office-ribbon-popup-section-command-items"
+                      ItemsSource="{CompiledBinding Items}"
+                      ItemTemplate="{StaticResource OfficeRibbonMenuItemTemplate}"
+                      IsVisible="{CompiledBinding IsCommandListLayout}" />
+      </StackPanel>
+    </DataTemplate>
+
     <DataTemplate x:Key="OfficeRibbonToggleGroupOptionLargeTemplate" DataType="models:RibbonMenuItem">
       <ToggleButton Classes="office-ribbon-command office-ribbon-toggle-group-option office-ribbon-toggle-group-option-large ribbon-command"
                     MinWidth="114"
@@ -1026,9 +1051,9 @@
                                   IsVisible="{CompiledBinding HasPopupContent}" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               MaxHeight="{CompiledBinding PopupMaxHeight}"
-                              IsVisible="{CompiledBinding HasPopupMenuItems}">
-                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuItems}"
-                                ItemTemplate="{StaticResource OfficeRibbonMenuItemTemplate}" />
+                              IsVisible="{CompiledBinding HasPopupMenuSections}">
+                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                                ItemTemplate="{StaticResource OfficeRibbonPopupMenuSectionTemplate}" />
                 </ScrollViewer>
                 <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
                                   IsVisible="{CompiledBinding HasPopupFooterContent}" />
@@ -1187,9 +1212,9 @@
                                   IsVisible="{CompiledBinding HasPopupContent}" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               MaxHeight="{CompiledBinding PopupMaxHeight}"
-                              IsVisible="{CompiledBinding HasPopupMenuItems}">
-                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuItems}"
-                                ItemTemplate="{StaticResource OfficeRibbonMenuItemTemplate}" />
+                              IsVisible="{CompiledBinding HasPopupMenuSections}">
+                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                                ItemTemplate="{StaticResource OfficeRibbonPopupMenuSectionTemplate}" />
                 </ScrollViewer>
                 <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
                                   IsVisible="{CompiledBinding HasPopupFooterContent}" />
@@ -1270,9 +1295,9 @@
                                   IsVisible="{CompiledBinding HasPopupContent}" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               MaxHeight="{CompiledBinding PopupMaxHeight}"
-                              IsVisible="{CompiledBinding HasPopupMenuItems}">
-                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuItems}"
-                                ItemTemplate="{StaticResource OfficeRibbonMenuItemTemplate}" />
+                              IsVisible="{CompiledBinding HasPopupMenuSections}">
+                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                                ItemTemplate="{StaticResource OfficeRibbonPopupMenuSectionTemplate}" />
                 </ScrollViewer>
                 <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
                                   IsVisible="{CompiledBinding HasPopupFooterContent}" />
@@ -1334,6 +1359,12 @@
                              IsVisible="{CompiledBinding HasDescription}" />
                   <ContentPresenter Content="{CompiledBinding PopupContent}"
                                     IsVisible="{CompiledBinding HasPopupContent}" />
+                  <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                MaxHeight="{CompiledBinding PopupMaxHeight}"
+                                IsVisible="{CompiledBinding ShowStructuredPopupMenuSections}">
+                    <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                                  ItemTemplate="{StaticResource OfficeRibbonPopupMenuSectionTemplate}" />
+                  </ScrollViewer>
                   <ScrollViewer VerticalScrollBarVisibility="Auto"
                                 MaxHeight="{CompiledBinding PopupMaxHeight}"
                                 IsVisible="{CompiledBinding ShowPopupMenuCategories}">

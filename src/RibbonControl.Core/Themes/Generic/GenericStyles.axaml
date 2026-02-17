@@ -57,6 +57,29 @@
     <Setter Property="BorderBrush" Value="#4F7CCB" />
   </Style>
 
+  <Style Selector="StackPanel.ribbon-popup-section">
+    <Setter Property="Spacing" Value="4" />
+  </Style>
+
+  <Style Selector="Separator.ribbon-popup-section-separator">
+    <Setter Property="Margin" Value="2,4,2,2" />
+  </Style>
+
+  <Style Selector="TextBlock.ribbon-popup-section-header">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Opacity" Value="0.78" />
+    <Setter Property="Margin" Value="2,0,2,1" />
+  </Style>
+
+  <Style Selector="ItemsControl.ribbon-popup-section-gallery-items">
+    <Setter Property="Margin" Value="0,0,0,2" />
+  </Style>
+
+  <Style Selector="ItemsControl.ribbon-popup-section-command-items">
+    <Setter Property="Margin" Value="0,0,0,2" />
+  </Style>
+
   <Style Selector="Grid.ribbon-menu-item-layout">
     <Setter Property="ColumnSpacing" Value="6" />
   </Style>
