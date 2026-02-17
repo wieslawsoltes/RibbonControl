@@ -1,0 +1,16 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StyleInclude Source="avares://RibbonControl.Core/Themes/Generic.axaml" />
+
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="avares://RibbonControl.Themes.Office/Themes/Office/OfficeTokens.axaml" />
+        <MergeResourceInclude Source="avares://RibbonControl.Themes.Office/Themes/Office/OfficeTemplates.axaml" />
+        <MergeResourceInclude Source="avares://RibbonControl.Themes.Office/Themes/Office/OfficeTemplateSlots.axaml" />
+        <MergeResourceInclude Source="avares://RibbonControl.Themes.Office/Themes/Office/OfficeControlThemes.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+  <StyleInclude Source="avares://RibbonControl.Themes.Office/Themes/Office/OfficeStyles.axaml" />
+</Styles>

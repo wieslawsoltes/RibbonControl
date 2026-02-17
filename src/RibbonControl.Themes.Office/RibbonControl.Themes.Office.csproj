@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
+    <RootNamespace>RibbonControl.Themes.Office</RootNamespace>
+    <AssemblyName>RibbonControl.Themes.Office</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>RibbonControl.Themes.Office</PackageId>
+    <Description>Office-inspired theme resources for RibbonControl.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../RibbonControl.Core/RibbonControl.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Include="Themes/**/*.axaml" />
+  </ItemGroup>
+</Project>
