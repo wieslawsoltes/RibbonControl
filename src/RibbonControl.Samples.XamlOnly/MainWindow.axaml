@@ -1185,15 +1185,42 @@
       </ribbon:RibbonTab>
 
       <ribbon:RibbonTab Id="references" Header="References" Order="3">
-        <ribbon:RibbonGroup Id="table-of-contents" Header="Table of Contents" Order="0">
-          <ribbon:RibbonItem Id="table-contents" Label="Table of Contents" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="table-contents" KeyTip="TC" ScreenTip="Insert table of contents" />
+        <ribbon:RibbonGroup Id="table-of-contents"
+                            Header="Table of Contents"
+                            Order="0"
+                            ItemsLayoutMode="Docked"
+                            DockedCenterLayoutMode="Vertical"
+                            StackedRows="2">
+          <ribbon:RibbonItem Id="table-contents"
+                             Label="Insert Table of Contents"
+                             IconPathData="{x:Static ribbon:FluentIconData.AppsList20Regular}"
+                             CommandId="table-contents"
+                             KeyTip="TC"
+                             ScreenTip="Insert table of contents"
+                             LayoutDock="Left" />
+          <ribbon:RibbonItem Id="update-table-contents"
+                             Label="Update Table of Contents"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                             CommandId="update-table-contents"
+                             KeyTip="UT"
+                             ScreenTip="Refresh the generated table"
+                             LayoutDock="Center" />
+          <ribbon:RibbonItem Id="remove-table-contents"
+                             Label="Remove Table of Contents"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowUndo20Regular}"
+                             CommandId="remove-table-contents"
+                             KeyTip="RT"
+                             ScreenTip="Remove the generated table"
+                             LayoutDock="Center" />
         </ribbon:RibbonGroup>
         <ribbon:RibbonGroup Id="footnotes"
                             Header="Footnotes"
                             Order="1"
                             ItemsLayoutMode="Docked"
-                            DockedCenterLayoutMode="Stacked"
-                            StackedRows="2">
+                            DockedCenterLayoutMode="Vertical"
+                            StackedRows="3">
           <ribbon:RibbonItem Id="insert-footnote"
                              Label="Insert Footnote"
                              IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
@@ -1226,11 +1253,42 @@
                              Size="Small"
                              LayoutDock="Center" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="captions" Header="Captions" Order="2">
-          <ribbon:RibbonItem Id="insert-caption" Label="Insert Caption" IconPathData="{x:Static ribbon:FluentIconData.Image20Regular}" CommandId="insert-caption" KeyTip="IC" ScreenTip="Insert caption" />
+        <ribbon:RibbonGroup Id="insights" Header="Insights" Order="2">
+          <ribbon:RibbonItem Id="references-search"
+                             Label="Search"
+                             IconPathData="{x:Static ribbon:FluentIconData.Search20Regular}"
+                             CommandId="find"
+                             KeyTip="RS"
+                             ScreenTip="Search references and related topics" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="index" Header="Index" Order="3">
-          <ribbon:RibbonItem Id="mark-entry" Label="Mark Entry" IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}" CommandId="mark-entry" KeyTip="ME" ScreenTip="Mark index entry" />
+        <ribbon:RibbonGroup Id="citation-bibliography"
+                            Header="Citation &amp; Bibliography"
+                            Order="3">
+          <ribbon:RibbonItem Id="citations"
+                             Label="Citations"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                             CommandId="citations"
+                             KeyTip="CN"
+                             ScreenTip="Insert and manage citations">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="citations-insert"
+                                     Label="Insert Citation"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="citations-insert"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="citations-manage-sources"
+                                     Label="Manage Sources"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                                     CommandId="citations-manage-sources"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="citations-style-apa"
+                                     Label="Style: APA"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                                     CommandId="citations-style-apa"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
         </ribbon:RibbonGroup>
       </ribbon:RibbonTab>
 
