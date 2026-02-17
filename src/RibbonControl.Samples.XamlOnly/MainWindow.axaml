@@ -712,21 +712,22 @@
                 </ribbon:RibbonMenuItem.Content>
               </ribbon:RibbonMenuItem>
 
-              <ribbon:RibbonMenuItem Id="style-popup-normal" Label="Normal" Category="Quick Styles" IsSelected="True" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="style-normal" Order="20" />
-              <ribbon:RibbonMenuItem Id="style-popup-no-spacing" Label="No Spacing" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="21" />
-              <ribbon:RibbonMenuItem Id="style-popup-heading1" Label="Heading 1" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="style-heading1" Order="22" />
-              <ribbon:RibbonMenuItem Id="style-popup-heading2" Label="Heading 2" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="23" />
-              <ribbon:RibbonMenuItem Id="style-popup-title" Label="Title" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="24" />
-              <ribbon:RibbonMenuItem Id="style-popup-subtitle" Label="Subtitle" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="25" />
-              <ribbon:RibbonMenuItem Id="style-popup-separator" IsSeparator="True" ShowInRibbonPreview="False" ShowInPopup="True" Order="26" />
-              <ribbon:RibbonMenuItem Id="style-popup-more" Label="See More Styles" IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="styles-more" Order="27" />
-              <ribbon:RibbonMenuItem Id="style-popup-create" Label="Create New Style from Selection" IconPathData="{x:Static ribbon:FluentIconData.CheckmarkCircle20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="style-create-new" Order="28" />
-              <ribbon:RibbonMenuItem Id="style-popup-clear" Label="Clear Formatting of Selection" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="style-clear-formatting" Order="29" />
+              <ribbon:RibbonMenuItem Id="style-popup-normal" Label="Normal" IsSelected="True" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="style-normal" PopupSectionId="style-presets" PopupSectionHeader="Quick Styles" PopupSectionOrder="0" PopupSectionLayout="GalleryWrap" Order="20" />
+              <ribbon:RibbonMenuItem Id="style-popup-no-spacing" Label="No Spacing" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" PopupSectionId="style-presets" PopupSectionOrder="0" PopupSectionLayout="GalleryWrap" Order="21" />
+              <ribbon:RibbonMenuItem Id="style-popup-heading1" Label="Heading 1" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="style-heading1" PopupSectionId="style-presets" PopupSectionOrder="0" PopupSectionLayout="GalleryWrap" Order="22" />
+              <ribbon:RibbonMenuItem Id="style-popup-heading2" Label="Heading 2" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" PopupSectionId="style-presets" PopupSectionOrder="0" PopupSectionLayout="GalleryWrap" Order="23" />
+              <ribbon:RibbonMenuItem Id="style-popup-title" Label="Title" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" PopupSectionId="style-presets" PopupSectionOrder="0" PopupSectionLayout="GalleryWrap" Order="24" />
+              <ribbon:RibbonMenuItem Id="style-popup-subtitle" Label="Subtitle" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" PopupSectionId="style-presets" PopupSectionOrder="0" PopupSectionLayout="GalleryWrap" Order="25" />
+              <ribbon:RibbonMenuItem Id="style-popup-more" Label="See More Styles" IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="styles-more" PopupSectionId="style-actions" PopupSectionOrder="1" Order="27" />
+              <ribbon:RibbonMenuItem Id="style-popup-create" Label="Create New Style from Selection" IconPathData="{x:Static ribbon:FluentIconData.CheckmarkCircle20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="style-create-new" PopupSectionId="style-actions" PopupSectionOrder="1" Order="28" />
+              <ribbon:RibbonMenuItem Id="style-popup-clear" Label="Clear Formatting of Selection" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="style-clear-formatting" PopupSectionId="style-actions" PopupSectionOrder="1" Order="29" />
               <ribbon:RibbonMenuItem Id="style-popup-manage"
                                      Label="Manage Default Styles"
                                      IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
                                      ShowInRibbonPreview="False"
                                      ShowInPopup="True"
+                                     PopupSectionId="style-actions"
+                                     PopupSectionOrder="1"
                                      ShowChevron="True"
                                      Order="30">
                 <ribbon:RibbonMenuItem.SubMenuItems>

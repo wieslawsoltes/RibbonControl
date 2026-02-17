@@ -752,17 +752,16 @@ public class MainWindowViewModel : RibbonObservableObject
                     MenuEntryDetailed("style-preview-normal", "Normal", 0, "style-normal", content: "Normal\nAptos, 12", showInPopup: false, isSelected: true),
                     MenuEntryDetailed("style-preview-no-spacing", "No Spacing", 1, "styles-more", content: "No Spacing\nAptos, 12", showInPopup: false),
                     MenuEntryDetailed("style-preview-heading1", "Heading 1", 2, "style-heading1", content: "Heading 1\nAptos Display, 20", showInPopup: false),
-                    MenuEntryDetailed("style-popup-normal", "Normal", 20, "style-normal", showChevron: true, showInRibbonPreview: false, category: "Quick Styles", isSelected: true),
-                    MenuEntryDetailed("style-popup-no-spacing", "No Spacing", 21, "styles-more", showChevron: true, showInRibbonPreview: false, category: "Quick Styles"),
-                    MenuEntryDetailed("style-popup-heading1", "Heading 1", 22, "style-heading1", showChevron: true, showInRibbonPreview: false, category: "Quick Styles"),
-                    MenuEntryDetailed("style-popup-heading2", "Heading 2", 23, "styles-more", showChevron: true, showInRibbonPreview: false, category: "Quick Styles"),
-                    MenuEntryDetailed("style-popup-title", "Title", 24, "styles-more", showChevron: true, showInRibbonPreview: false, category: "Quick Styles"),
-                    MenuEntryDetailed("style-popup-subtitle", "Subtitle", 25, "styles-more", showChevron: true, showInRibbonPreview: false, category: "Quick Styles"),
-                    MenuSeparator("style-popup-separator", 26),
-                    MenuEntryDetailed("style-popup-more", "See More Styles", 27, "styles-more", FluentIconData.ArrowSync20Regular, showInRibbonPreview: false),
-                    MenuEntryDetailed("style-popup-create", "Create New Style from Selection", 28, "style-create-new", FluentIconData.CheckmarkCircle20Regular, showInRibbonPreview: false),
-                    MenuEntryDetailed("style-popup-clear", "Clear Formatting of Selection", 29, "style-clear-formatting", FluentIconData.Settings20Regular, showInRibbonPreview: false),
-                    MenuEntryWithSubMenu("style-popup-manage", "Manage Default Styles", FluentIconData.Wrench20Regular, 30,
+                    MenuEntryDetailed("style-popup-normal", "Normal", 20, "style-normal", showChevron: true, showInRibbonPreview: false, isSelected: true, popupSectionId: "style-presets", popupSectionHeader: "Quick Styles", popupSectionOrder: 0, popupSectionLayout: RibbonPopupSectionLayout.GalleryWrap),
+                    MenuEntryDetailed("style-popup-no-spacing", "No Spacing", 21, "styles-more", showChevron: true, showInRibbonPreview: false, popupSectionId: "style-presets", popupSectionOrder: 0, popupSectionLayout: RibbonPopupSectionLayout.GalleryWrap),
+                    MenuEntryDetailed("style-popup-heading1", "Heading 1", 22, "style-heading1", showChevron: true, showInRibbonPreview: false, popupSectionId: "style-presets", popupSectionOrder: 0, popupSectionLayout: RibbonPopupSectionLayout.GalleryWrap),
+                    MenuEntryDetailed("style-popup-heading2", "Heading 2", 23, "styles-more", showChevron: true, showInRibbonPreview: false, popupSectionId: "style-presets", popupSectionOrder: 0, popupSectionLayout: RibbonPopupSectionLayout.GalleryWrap),
+                    MenuEntryDetailed("style-popup-title", "Title", 24, "styles-more", showChevron: true, showInRibbonPreview: false, popupSectionId: "style-presets", popupSectionOrder: 0, popupSectionLayout: RibbonPopupSectionLayout.GalleryWrap),
+                    MenuEntryDetailed("style-popup-subtitle", "Subtitle", 25, "styles-more", showChevron: true, showInRibbonPreview: false, popupSectionId: "style-presets", popupSectionOrder: 0, popupSectionLayout: RibbonPopupSectionLayout.GalleryWrap),
+                    MenuEntryDetailed("style-popup-more", "See More Styles", 27, "styles-more", FluentIconData.ArrowSync20Regular, showInRibbonPreview: false, popupSectionId: "style-actions", popupSectionOrder: 1),
+                    MenuEntryDetailed("style-popup-create", "Create New Style from Selection", 28, "style-create-new", FluentIconData.CheckmarkCircle20Regular, showInRibbonPreview: false, popupSectionId: "style-actions", popupSectionOrder: 1),
+                    MenuEntryDetailed("style-popup-clear", "Clear Formatting of Selection", 29, "style-clear-formatting", FluentIconData.Settings20Regular, showInRibbonPreview: false, popupSectionId: "style-actions", popupSectionOrder: 1),
+                    MenuEntryWithSubMenu("style-popup-manage", "Manage Default Styles", FluentIconData.Wrench20Regular, 30, "style-actions", 1,
                         MenuEntryDetailed("style-popup-manage-document", "Set as Default in this Document", 0, "style-manage-default-document"),
                         MenuEntryDetailed("style-popup-manage-all", "Set as Default for All Documents", 1, "style-manage-default-all")))),
             Group("editing", "Editing", 4, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Stacked, 3,
@@ -1656,7 +1655,11 @@ public class MainWindowViewModel : RibbonObservableObject
         bool showInPopup = true,
         object? content = null,
         string? category = null,
-        bool isSelected = false)
+        bool isSelected = false,
+        string? popupSectionId = null,
+        string? popupSectionHeader = null,
+        int popupSectionOrder = 0,
+        RibbonPopupSectionLayout popupSectionLayout = RibbonPopupSectionLayout.CommandList)
         => new()
         {
             Id = id,
@@ -1672,6 +1675,10 @@ public class MainWindowViewModel : RibbonObservableObject
             Content = content,
             Category = category,
             IsSelected = isSelected,
+            PopupSectionId = popupSectionId,
+            PopupSectionHeader = popupSectionHeader,
+            PopupSectionOrder = popupSectionOrder,
+            PopupSectionLayout = popupSectionLayout,
         };
 
     private static RibbonMenuItemViewModel MenuEntryWithSubMenu(
@@ -1694,6 +1701,21 @@ public class MainWindowViewModel : RibbonObservableObject
             item.SubMenuItemsViewModel.Add(subMenuItem);
         }
 
+        return item;
+    }
+
+    private static RibbonMenuItemViewModel MenuEntryWithSubMenu(
+        string id,
+        string label,
+        string? iconPathData,
+        int order,
+        string? popupSectionId,
+        int popupSectionOrder,
+        params RibbonMenuItemViewModel[] subMenuItems)
+    {
+        var item = MenuEntryWithSubMenu(id, label, iconPathData, order, subMenuItems);
+        item.PopupSectionId = popupSectionId;
+        item.PopupSectionOrder = popupSectionOrder;
         return item;
     }
 
