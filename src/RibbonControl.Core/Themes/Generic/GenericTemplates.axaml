@@ -958,7 +958,7 @@
               </ToggleButton>
             </Grid>
           </Border>
-          <Popup IsOpen="{CompiledBinding IsSplitDropDownOpen, Mode=TwoWay}"
+          <Popup IsOpen="{CompiledBinding IsSideBySideSplitDropDownOpen, Mode=TwoWay}"
                  IsLightDismissEnabled="True"
                  Placement="Bottom"
                  PlacementTarget="{Binding #PART_SplitHost}">
@@ -1110,7 +1110,7 @@
               </DockPanel>
             </ToggleButton>
           </Grid>
-          <Popup IsOpen="{CompiledBinding IsSplitDropDownOpen, Mode=TwoWay}"
+          <Popup IsOpen="{CompiledBinding IsStackedSplitDropDownOpen, Mode=TwoWay}"
                  IsLightDismissEnabled="True"
                  Placement="Bottom"
                  PlacementTarget="{Binding #PART_StackedSplitHost}">

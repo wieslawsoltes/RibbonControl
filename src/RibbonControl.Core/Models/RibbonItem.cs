@@ -735,6 +735,30 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         }
     }
 
+    public bool IsSideBySideSplitDropDownOpen
+    {
+        get => IsSideBySideSplitButtonPrimitive && IsSplitDropDownOpen;
+        set
+        {
+            if (IsSideBySideSplitButtonPrimitive && IsSplitDropDownOpen != value)
+            {
+                IsSplitDropDownOpen = value;
+            }
+        }
+    }
+
+    public bool IsStackedSplitDropDownOpen
+    {
+        get => IsStackedSplitButtonPrimitive && IsSplitDropDownOpen;
+        set
+        {
+            if (IsStackedSplitButtonPrimitive && IsSplitDropDownOpen != value)
+            {
+                IsSplitDropDownOpen = value;
+            }
+        }
+    }
+
     public bool IsMenuDropDownOpen
     {
         get => IsMenuButtonPrimitive && IsDropDownOpen;
@@ -1320,6 +1344,8 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         RaisePropertyChanged(nameof(IsSideBySideLargeIconOnlySplitButtonPrimitive));
         RaisePropertyChanged(nameof(IsSideBySideSmallIconOnlySplitButtonPrimitive));
         RaisePropertyChanged(nameof(IsStackedSplitButtonPrimitive));
+        RaisePropertyChanged(nameof(IsSideBySideSplitDropDownOpen));
+        RaisePropertyChanged(nameof(IsStackedSplitDropDownOpen));
         RaisePropertyChanged(nameof(IsSplitDropDownToggleVisible));
         RaisePropertyChanged(nameof(IsSplitSecondaryCommandVisible));
         RaisePropertyChanged(nameof(IsSplitFallbackToggleVisible));
@@ -1396,6 +1422,8 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
     private void RaiseDropDownFlagsChanged()
     {
         RaisePropertyChanged(nameof(IsSplitDropDownOpen));
+        RaisePropertyChanged(nameof(IsSideBySideSplitDropDownOpen));
+        RaisePropertyChanged(nameof(IsStackedSplitDropDownOpen));
         RaisePropertyChanged(nameof(IsMenuDropDownOpen));
         RaisePropertyChanged(nameof(IsGalleryDropDownOpen));
     }

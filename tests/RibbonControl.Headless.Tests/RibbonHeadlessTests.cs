@@ -977,6 +977,79 @@ public class RibbonHeadlessTests
         Assert.True(splitMainSmallProbe.MinHeight < ribbon.EffectiveSynchronizedLargeCommandHeight - 10);
     }
 
+    [AvaloniaFact]
+    public void SplitButtonDropdown_ModeSpecificOpenFlags_AreMutuallyExclusive()
+    {
+        EnsureCoreThemeLoaded();
+
+        var ribbon = new Ribbon
+        {
+            SelectedTabId = "home",
+            EnableAdaptiveLayout = false,
+        };
+
+        ribbon.Tabs.Add(new RibbonTab
+        {
+            Id = "home",
+            Header = "Home",
+            Groups =
+            {
+                new RibbonGroup
+                {
+                    Id = "paragraph",
+                    Header = "Paragraph",
+                    Items =
+                    {
+                        new RibbonItem
+                        {
+                            Id = "select",
+                            Label = "Select",
+                            Primitive = RibbonItemPrimitive.SplitButton,
+                            SplitButtonMode = RibbonSplitButtonMode.SideBySide,
+                            Size = RibbonItemSize.Small,
+                            DisplayMode = RibbonItemDisplayMode.IconOnly,
+                            CommandId = "select",
+                            SecondaryCommandId = "select",
+                            PopupTitle = "Select",
+                            MenuItems =
+                            {
+                                new RibbonMenuItem
+                                {
+                                    Id = "select-all",
+                                    Label = "Select All",
+                                    CommandId = "select-all",
+                                    Order = 0,
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+        var window = new Window
+        {
+            Width = 1200,
+            Height = 700,
+            Content = ribbon,
+        };
+
+        window.Show();
+        window.UpdateLayout();
+
+        var mergedSplitItem = ribbon.MergedTabs.Single()
+            .MergedGroups.Single()
+            .MergedItems.Single(item => item.Id == "select");
+
+        mergedSplitItem.IsSplitDropDownOpen = true;
+        Assert.True(mergedSplitItem.IsSideBySideSplitDropDownOpen);
+        Assert.False(mergedSplitItem.IsStackedSplitDropDownOpen);
+
+        mergedSplitItem.SplitButtonMode = RibbonSplitButtonMode.Stacked;
+        Assert.False(mergedSplitItem.IsSideBySideSplitDropDownOpen);
+        Assert.True(mergedSplitItem.IsStackedSplitDropDownOpen);
+    }
+
     private static void EnsureCoreThemeLoaded()
     {
         if (Application.Current is null)
