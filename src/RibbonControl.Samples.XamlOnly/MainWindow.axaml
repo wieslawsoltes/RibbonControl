@@ -1,0 +1,1458 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RibbonControl.Samples.XamlOnly.ViewModels"
+        xmlns:ribbon="https://github.com/wieslawsoltes/ribboncontrol"
+        x:Class="RibbonControl.Samples.XamlOnly.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Width="1360"
+        Height="820"
+        Title="RibbonControl - XAML Word-Like Sample">
+  <Window.Resources>
+    <ResourceDictionary>
+    <x:String x:Key="Ribbon.Sample.Icon.Paste">M4.5 4h1.59c.2.58.76 1 1.41 1h3c.65 0 1.2-.42 1.41-1h1.59c.28 0 .5.22.5.5v1a.5.5 0 0 0 1 0v-1c0-.83-.67-1.5-1.5-1.5h-1.59c-.2-.58-.76-1-1.41-1h-3c-.65 0-1.2.42-1.41 1H4.5C3.67 3 3 3.67 3 4.5v12c0 .83.67 1.5 1.5 1.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 1-.5-.5v-12c0-.28.22-.5.5-.5Zm3 0a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3Zm3 3C9.67 7 9 7.67 9 8.5v8c0 .83.67 1.5 1.5 1.5h5c.83 0 1.5-.67 1.5-1.5v-8c0-.83-.67-1.5-1.5-1.5h-5ZM10 8.5c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5v8a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-8Z</x:String>
+    <x:String x:Key="Ribbon.Sample.Icon.Cut">M1.91 7.38A8.5 8.5 0 0 1 3.7 4.3a.5.5 0 0 1 .54-.13l1.92.68a1 1 0 0 0 1.32-.76l.36-2a.5.5 0 0 1 .4-.4 8.53 8.53 0 0 1 3.55 0c.2.04.35.2.38.4l.37 2a1 1 0 0 0 1.32.76l1.92-.68a.5.5 0 0 1 .54.13 8.5 8.5 0 0 1 1.78 3.08c.06.2 0 .4-.15.54l-1.56 1.32a1 1 0 0 0 0 1.52l1.56 1.32a.5.5 0 0 1 .15.54 8.5 8.5 0 0 1-1.78 3.08.5.5 0 0 1-.54.13l-1.92-.68a1 1 0 0 0-1.32.76l-.37 2a.5.5 0 0 1-.38.4 8.53 8.53 0 0 1-3.56 0 .5.5 0 0 1-.39-.4l-.36-2a1 1 0 0 0-1.32-.76l-1.92.68a.5.5 0 0 1-.54-.13 8.5 8.5 0 0 1-1.78-3.08.5.5 0 0 1 .15-.54l1.56-1.32a1 1 0 0 0 0-1.52L2.06 7.92a.5.5 0 0 1-.15-.54Zm1.06 0 1.3 1.1a2 2 0 0 1 0 3.04l-1.3 1.1c.3.79.72 1.51 1.25 2.16l1.6-.58a2 2 0 0 1 2.63 1.53l.3 1.67a7.56 7.56 0 0 0 2.5 0l.3-1.67a2 2 0 0 1 2.64-1.53l1.6.58a7.5 7.5 0 0 0 1.24-2.16l-1.3-1.1a2 2 0 0 1 0-3.04l1.3-1.1a7.5 7.5 0 0 0-1.25-2.16l-1.6.58a2 2 0 0 1-2.63-1.53l-.3-1.67a7.55 7.55 0 0 0-2.5 0l-.3 1.67A2 2 0 0 1 5.81 5.8l-1.6-.58a7.5 7.5 0 0 0-1.24 2.16ZM7.5 10a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Zm1 0a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Z</x:String>
+    <x:String x:Key="Ribbon.Sample.Icon.QuickTemplates">M16.52 9c.26 0 .48-.2.48-.46V8.5A6.5 6.5 0 0 0 10.5 2h-.04a.47.47 0 0 0-.46.48V8.5c0 .28.22.5.5.5h6.02ZM11 3.02A5.5 5.5 0 0 1 15.98 8H11V3.02ZM8 9V5.1A5 5 0 0 0 9 15v1a6 6 0 0 1-.5-11.98c.28-.02.5.2.5.48V9a1 1 0 0 0 1 1h4.5c.28 0 .5.22.48.5a6 6 0 0 1-.06.5H10a2 2 0 0 1-2-2Zm9 1a1 1 0 0 0-1 1v7a1 1 0 1 0 2 0v-7a1 1 0 0 0-1-1Zm-3 2a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0v-5a1 1 0 0 0-1-1Zm-4 3a1 1 0 1 1 2 0v3a1 1 0 1 1-2 0v-3Z</x:String>
+    <x:String x:Key="Ribbon.Sample.Icon.Emoji">🙂</x:String>
+    <ResourceDictionary.ThemeDictionaries>
+      <ResourceDictionary x:Key="Dark">
+        <x:String x:Key="Ribbon.Sample.Icon.Emoji">🌙</x:String>
+      </ResourceDictionary>
+      <ResourceDictionary x:Key="Light">
+        <x:String x:Key="Ribbon.Sample.Icon.Emoji">🙂</x:String>
+      </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    <ControlTheme x:Key="Ribbon.Sample.IconPresenterTheme"
+                  TargetType="ribbon:RibbonIconPresenter"
+                  BasedOn="{StaticResource {x:Type ribbon:RibbonIconPresenter}}">
+      <Setter Property="OverlayWidth" Value="9" />
+      <Setter Property="OverlayHeight" Value="9" />
+      <Setter Property="OverlayMargin" Value="0" />
+      <Setter Property="OverlayCountMargin" Value="0" />
+    </ControlTheme>
+    </ResourceDictionary>
+  </Window.Resources>
+  <Window.Styles>
+    <Style Selector="ribbon|RibbonIconPresenter">
+      <Setter Property="Theme" Value="{StaticResource Ribbon.Sample.IconPresenterTheme}" />
+    </Style>
+  </Window.Styles>
+  <DockPanel>
+    <ribbon:Ribbon x:Name="MainRibbon"
+                   DockPanel.Dock="Top"
+                   CommandCatalog="{CompiledBinding CommandCatalog}"
+                   StateStore="{CompiledBinding StateStore}"
+                   StateOwnershipMode="{CompiledBinding StateOwnershipMode, Mode=TwoWay}"
+                   QuickAccessItems="{CompiledBinding QuickAccessItems}"
+                   QuickAccessPlacement="{CompiledBinding QuickAccessPlacement, Mode=TwoWay}"
+                   ActiveContextGroupIds="{CompiledBinding ActiveContextGroupIds}"
+                   SelectedTabId="{CompiledBinding SelectedTabId, Mode=TwoWay}"
+                   IsMinimized="{CompiledBinding IsMinimized, Mode=TwoWay}"
+                   IsKeyTipMode="{CompiledBinding IsKeyTipMode, Mode=TwoWay}"
+                   EnableAdaptiveLayout="True"
+                   AdaptiveLayoutHorizontalPadding="24">
+      <ribbon:Ribbon.TopBarStartContent>
+        <StackPanel Classes="ribbon-topbar-shell">
+          <Button Classes="ribbon-topbar-launcher"
+                  ToolTip.Tip="App launcher">
+            <PathIcon Data="{x:Static ribbon:FluentIconData.AppsList20Regular}"
+                      Width="16"
+                      Height="16" />
+          </Button>
+          <Border Classes="ribbon-topbar-app-badge">
+            <TextBlock Classes="ribbon-topbar-app-badge-text" Text="W" />
+          </Border>
+          <TextBlock Classes="ribbon-topbar-title" Text="Document 6" />
+          <PathIcon Classes="ribbon-topbar-status"
+                    Data="{x:Static ribbon:FluentIconData.CheckmarkCircle20Regular}" />
+        </StackPanel>
+      </ribbon:Ribbon.TopBarStartContent>
+
+      <ribbon:Ribbon.TopBarCenterContent>
+        <TextBox Classes="ribbon-topbar-search" />
+      </ribbon:Ribbon.TopBarCenterContent>
+
+      <ribbon:Ribbon.HeaderEndContent>
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <Button Classes="ribbon-header-action">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <PathIcon Data="{x:Static ribbon:FluentIconData.Comment20Regular}" Width="14" Height="14" />
+              <TextBlock Text="Comments" />
+            </StackPanel>
+          </Button>
+          <Button Classes="ribbon-header-action">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <PathIcon Data="{x:Static ribbon:FluentIconData.Pulse20Regular}" Width="14" Height="14" />
+              <TextBlock Text="Catch up" />
+            </StackPanel>
+          </Button>
+          <ComboBox Classes="ribbon-header-mode" Width="120" SelectedIndex="0">
+            <ComboBoxItem>Editing</ComboBoxItem>
+            <ComboBoxItem>Reviewing</ComboBoxItem>
+            <ComboBoxItem>Viewing</ComboBoxItem>
+          </ComboBox>
+          <Button Classes="ribbon-header-share">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <PathIcon Data="{x:Static ribbon:FluentIconData.Share20Regular}" Width="14" Height="14" />
+              <TextBlock Text="Share" />
+            </StackPanel>
+          </Button>
+        </StackPanel>
+      </ribbon:Ribbon.HeaderEndContent>
+
+      <ribbon:Ribbon.Backstage>
+        <ribbon:RibbonBackstage IsOpen="{CompiledBinding IsBackstageOpen, Mode=TwoWay}"
+                                NavigationPaneWidth="360"
+                                Content="XAML-defined backstage shell. Select a command to preview its details.">
+          <ribbon:RibbonBackstage.HeaderContent>
+            <Border Background="#E8F3EB"
+                    CornerRadius="6"
+                    Padding="10,8">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <PathIcon Data="{x:Static ribbon:FluentIconData.CheckmarkCircle20Regular}"
+                          Width="18"
+                          Height="18"
+                          Foreground="#0F8B4C" />
+                <TextBlock Text="Autosaved online to Documents"
+                           FontWeight="SemiBold" />
+              </StackPanel>
+            </Border>
+          </ribbon:RibbonBackstage.HeaderContent>
+          <ribbon:RibbonBackstage.ItemsSource>
+            <ribbon:RibbonBackstageItemCollection>
+              <ribbon:RibbonBackstageItem Id="backstage-new"
+                                          Label="New"
+                                          IconPathData="{x:Static ribbon:FluentIconData.DocumentSave20Regular}"
+                                          ShowChevron="True"
+                                          Order="0"
+                                          Content="Create a new document from templates." />
+              <ribbon:RibbonBackstageItem Id="backstage-open"
+                                          Label="Open"
+                                          IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}"
+                                          ShowChevron="True"
+                                          Order="1"
+                                          Content="Open recent files, OneDrive files, or local documents." />
+              <ribbon:RibbonBackstageItem Id="backstage-share"
+                                          Label="Share"
+                                          IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}"
+                                          ShowChevron="True"
+                                          Order="2"
+                                          Content="Invite people and manage sharing permissions." />
+              <ribbon:RibbonBackstageItem Id="backstage-copy"
+                                          Label="Create a Copy"
+                                          IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                                          ShowChevron="True"
+                                          Order="3"
+                                          Content="Create a copy in another location or cloud account." />
+              <ribbon:RibbonBackstageItem Id="backstage-export"
+                                          Label="Export"
+                                          IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                                          ShowChevron="True"
+                                          Order="4"
+                                          Content="Export to PDF, web page, or other formats." />
+              <ribbon:RibbonBackstageItem Id="backstage-print"
+                                          Label="Print"
+                                          IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                                          Order="5"
+                                          Content="Open print preview and printer settings." />
+              <ribbon:RibbonBackstageItem Id="backstage-separator-main"
+                                          IsSeparator="True"
+                                          Order="6" />
+              <ribbon:RibbonBackstageItem Id="backstage-rename"
+                                          Label="Rename"
+                                          IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                                          Order="7"
+                                          Content="Rename this file and update cloud references." />
+              <ribbon:RibbonBackstageItem Id="backstage-move"
+                                          Label="Move File"
+                                          IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}"
+                                          IsEnabled="False"
+                                          Order="8"
+                                          Content="File movement is unavailable in this sample." />
+              <ribbon:RibbonBackstageItem Id="backstage-history"
+                                          Label="Version History"
+                                          IconPathData="{x:Static ribbon:FluentIconData.ArrowUndo20Regular}"
+                                          Order="9"
+                                          Content="Review and restore previous document versions." />
+              <ribbon:RibbonBackstageItem Id="backstage-delete"
+                                          Label="Delete"
+                                          IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                          Order="10"
+                                          Content="Move this file to the recycle bin." />
+              <ribbon:RibbonBackstageItem Id="backstage-info"
+                                          Label="Info"
+                                          IconPathData="{x:Static ribbon:FluentIconData.Comment20Regular}"
+                                          ShowChevron="True"
+                                          Order="11"
+                                          Content="Inspect document metadata, protection, and permissions." />
+            </ribbon:RibbonBackstageItemCollection>
+          </ribbon:RibbonBackstage.ItemsSource>
+          <ribbon:RibbonBackstage.FooterContent>
+            <StackPanel Spacing="8">
+              <Button HorizontalAlignment="Stretch"
+                      Content="Close Backstage"
+                      Command="{CompiledBinding CloseBackstageCommand}" />
+              <TextBlock Text="Backstage structure in this sample is authored directly in XAML."
+                         FontSize="11"
+                         Opacity="0.72" />
+            </StackPanel>
+          </ribbon:RibbonBackstage.FooterContent>
+        </ribbon:RibbonBackstage>
+      </ribbon:Ribbon.Backstage>
+
+      <ribbon:RibbonTab Id="home" Header="Home" Order="0">
+        <ribbon:RibbonGroup Id="history"
+                            Header="Undo"
+                            Order="-1"
+                            ItemsLayoutMode="Stacked"
+                            StackedRows="2">
+          <ribbon:RibbonItem Id="undo"
+                             Label="Undo"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowUndo20Regular}"
+                             CommandId="undo"
+                             KeyTip="Z"
+                             ScreenTip="Undo last action" />
+          <ribbon:RibbonItem Id="redo"
+                             Label="Redo"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                             CommandId="redo"
+                             KeyTip="Y"
+                             ScreenTip="Redo last action" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="clipboard" Header="Clipboard" Order="0">
+          <ribbon:RibbonItem Id="paste"
+                             Label="Paste"
+                             Primitive="PasteSplitButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.ClipboardPaste20Regular}"
+                             IconMinWidth="20"
+                             IconMinHeight="20"
+                             IconMaxWidth="28"
+                             IconMaxHeight="28"
+                             IconStretch="Uniform"
+                             IconStretchDirection="Both"
+                             CommandId="paste"
+                             KeyTip="V"
+                             ScreenTip="Paste from clipboard">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="paste-default"
+                                     Label="Paste"
+                                     Description="Keep source formatting"
+                                     IconPathData="{x:Static ribbon:FluentIconData.ClipboardPaste20Regular}"
+                                     CommandId="paste"
+                                     InputGestureText="Cmd+V"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="paste-text-only"
+                                     Label="Paste Text Only"
+                                     Description="Keep text and discard formatting"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                                     CommandId="paste-text-only"
+                                     InputGestureText="Cmd+Shift+V"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="paste-merge"
+                                     Label="Paste With Merge Formatting"
+                                     Description="Match destination formatting"
+                                     IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                                     CommandId="paste-merge-formatting"
+                                     InputGestureText="Option+V"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="cut"
+                             Label="Cut"
+                             Size="Small"
+                             IconResourceKey="Ribbon.Sample.Icon.Cut"
+                             IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                             IconWidth="16"
+                             IconHeight="16"
+                             IconStretch="Uniform"
+                             IconStretchDirection="DownOnly"
+                             CommandId="cut"
+                             KeyTip="X"
+                             ScreenTip="Cut selection" />
+          <ribbon:RibbonItem Id="copy"
+                             Label="Copy"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                             IconMinWidth="16"
+                             IconMinHeight="16"
+                             CommandId="copy"
+                             KeyTip="C"
+                             ScreenTip="Copy selection">
+            <ribbon:RibbonItem.Icon>
+              <TextBlock Text="📄" FontSize="14" />
+            </ribbon:RibbonItem.Icon>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="format-painter" Label="Format Painter" Size="Small" IconEmoji="🖌️" CommandId="format-painter" KeyTip="FP" ScreenTip="Copy formatting" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="font" Header="Font" HeaderPlacement="Top" Order="1">
+          <ribbon:RibbonItem Id="font-family"
+                             Label="Font"
+                             Primitive="ComboBox"
+                             Size="Large"
+                             Order="0"
+                             SelectedMenuItemId="font-family-aptos"
+                             KeyTip="FF"
+                             ScreenTip="Choose font family">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="font-family-aptos"
+                                     Label="Aptos (Body)"
+                                     CommandId="font-family-aptos"
+                                     IsSelected="True"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="font-family-calibri"
+                                     Label="Calibri"
+                                     CommandId="font-family-calibri"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="font-family-segoe"
+                                     Label="Segoe UI"
+                                     CommandId="font-family-segoe"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="font-size"
+                             Label="Size"
+                             Primitive="ComboBox"
+                             Size="Small"
+                             Order="1"
+                             SelectedMenuItemId="font-size-12"
+                             KeyTip="FS"
+                             ScreenTip="Choose font size">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="font-size-10" Label="10" CommandId="font-size-10" Order="0" />
+              <ribbon:RibbonMenuItem Id="font-size-11" Label="11" CommandId="font-size-11" Order="1" />
+              <ribbon:RibbonMenuItem Id="font-size-12" Label="12" CommandId="font-size-12" IsSelected="True" Order="2" />
+              <ribbon:RibbonMenuItem Id="font-size-14" Label="14" CommandId="font-size-14" Order="3" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="bold" Label="B" Primitive="ToggleButton" Size="Small" IsChecked="True" CommandId="bold" Order="2" KeyTip="B" ScreenTip="Apply bold formatting" />
+          <ribbon:RibbonItem Id="italic" Label="I" Primitive="ToggleButton" Size="Small" CommandId="italic" Order="3" KeyTip="I" ScreenTip="Apply italic formatting" />
+          <ribbon:RibbonItem Id="underline" Label="U" Primitive="ToggleButton" Size="Small" CommandId="underline" Order="4" KeyTip="U" ScreenTip="Underline text" />
+          <ribbon:RibbonItem Id="strikethrough" Label="ab" Primitive="ToggleButton" Size="Small" CommandId="strikethrough" Order="5" KeyTip="ST" ScreenTip="Apply strikethrough" />
+          <ribbon:RibbonItem Id="superscript" Label="x²" Primitive="ToggleButton" Size="Small" CommandId="superscript" Order="6" KeyTip="SP" ScreenTip="Superscript text" />
+          <ribbon:RibbonItem Id="font-grow" Label="A+" Primitive="ToggleButton" Size="Small" CommandId="font-grow" Order="7" KeyTip="FG" ScreenTip="Grow font size" />
+          <ribbon:RibbonItem Id="font-shrink" Label="A-" Primitive="ToggleButton" Size="Small" CommandId="font-shrink" Order="8" KeyTip="FK" ScreenTip="Shrink font size" />
+          <ribbon:RibbonItem Id="font-color"
+                             Label="Font Color"
+                             Size="Small"
+                             Order="9"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                             CommandId="font-color"
+                             KeyTip="FC"
+                             ScreenTip="Choose font color">
+            <ribbon:RibbonItem.PopupContent>
+              <StackPanel Spacing="6">
+                <TextBlock Text="Font Color"
+                           FontWeight="SemiBold"
+                           FontSize="18" />
+                <UniformGrid Columns="10"
+                             Rows="6">
+                  <Border Background="#1F1F1F" Width="20" Height="20" Margin="2" />
+                  <Border Background="#8B8C8F" Width="20" Height="20" Margin="2" />
+                  <Border Background="#B0B5BD" Width="20" Height="20" Margin="2" />
+                  <Border Background="#BDD7EE" Width="20" Height="20" Margin="2" />
+                  <Border Background="#9DC3E6" Width="20" Height="20" Margin="2" />
+                  <Border Background="#E2F0D9" Width="20" Height="20" Margin="2" />
+                  <Border Background="#00B0F0" Width="20" Height="20" Margin="2" />
+                  <Border Background="#0070C0" Width="20" Height="20" Margin="2" />
+                  <Border Background="#7030A0" Width="20" Height="20" Margin="2" />
+                  <Border Background="#1B5E20" Width="20" Height="20" Margin="2" />
+                  <Border Background="#000000" Width="20" Height="20" Margin="2" />
+                  <Border Background="#44546A" Width="20" Height="20" Margin="2" />
+                  <Border Background="#5B9BD5" Width="20" Height="20" Margin="2" />
+                  <Border Background="#ED7D31" Width="20" Height="20" Margin="2" />
+                  <Border Background="#A5A5A5" Width="20" Height="20" Margin="2" />
+                  <Border Background="#FFC000" Width="20" Height="20" Margin="2" />
+                  <Border Background="#4472C4" Width="20" Height="20" Margin="2" />
+                  <Border Background="#70AD47" Width="20" Height="20" Margin="2" />
+                  <Border Background="#255E91" Width="20" Height="20" Margin="2" />
+                  <Border Background="#9E480E" Width="20" Height="20" Margin="2" />
+                  <Border Background="#C00000" Width="20" Height="20" Margin="2" />
+                  <Border Background="#FF0000" Width="20" Height="20" Margin="2" />
+                  <Border Background="#FF9900" Width="20" Height="20" Margin="2" />
+                  <Border Background="#FFFF00" Width="20" Height="20" Margin="2" />
+                  <Border Background="#92D050" Width="20" Height="20" Margin="2" />
+                  <Border Background="#00B050" Width="20" Height="20" Margin="2" />
+                  <Border Background="#00B0F0" Width="20" Height="20" Margin="2" />
+                  <Border Background="#0070C0" Width="20" Height="20" Margin="2" />
+                  <Border Background="#002060" Width="20" Height="20" Margin="2" />
+                  <Border Background="#7030A0" Width="20" Height="20" Margin="2" />
+                </UniformGrid>
+              </StackPanel>
+            </ribbon:RibbonItem.PopupContent>
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="font-color-more"
+                                     Label="More Colors"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="font-color-more"
+                                     Order="0" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="paragraph"
+                            Header="Paragraph"
+                            HeaderPlacement="Bottom"
+                            ItemsLayoutMode="Stacked"
+                            StackedRows="2"
+                            Order="2">
+          <ribbon:RibbonItem Id="para-bullets"
+                             Label="Bullets"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextBulletList20Regular}"
+                             CommandId="para-bullets"
+                             SecondaryCommandId="para-bullets"
+                             PopupTitle="Bullet Library"
+                             PopupMinWidth="320"
+                             PopupMaxHeight="360"
+                             KeyTip="BU"
+                             ScreenTip="Apply bullet list"
+                             Order="0">
+            <ribbon:RibbonItem.PopupContent>
+              <UniformGrid Columns="6" Rows="3" Margin="2,2,2,6">
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="•" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="◦" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="■" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="□" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="★" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="➤" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="+" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="−" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="◆" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="◇" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="❖" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Text="➢" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="☺" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="☹" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="✔" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="✖" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="◼" /></Border>
+                <Border Width="36" Height="36" Margin="4" BorderBrush="#C8C8C8" BorderThickness="1"><TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Text="◻" /></Border>
+              </UniformGrid>
+            </ribbon:RibbonItem.PopupContent>
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-bullets-separator" IsSeparator="True" ShowInRibbonPreview="False" ShowInPopup="True" Order="80" />
+              <ribbon:RibbonMenuItem Id="para-bullets-define" Label="Define New Bullet" CommandId="para-bullets" ShowInRibbonPreview="False" ShowInPopup="True" Order="81" />
+              <ribbon:RibbonMenuItem Id="para-bullets-none" Label="None" CommandId="para-bullets" ShowInRibbonPreview="False" ShowInPopup="True" Order="82" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-align-left"
+                             Label="Align Left"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                             IsToggle="True"
+                             CommandId="para-align-left"
+                             KeyTip="AL"
+                             ScreenTip="Align paragraph left"
+                             Order="1" />
+          <ribbon:RibbonItem Id="para-numbering"
+                             Label="Numbering"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
+                             CommandId="spacing"
+                             SecondaryCommandId="spacing"
+                             PopupTitle="Numbering Library"
+                             KeyTip="NU"
+                             ScreenTip="Apply numbering"
+                             Order="2">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-numbering-decimal" Label="1. 2. 3." CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+              <ribbon:RibbonMenuItem Id="para-numbering-alpha" Label="a. b. c." CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="1" />
+              <ribbon:RibbonMenuItem Id="para-numbering-roman" Label="i. ii. iii." CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-align-center"
+                             Label="Align Center"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextBold20Regular}"
+                             IsToggle="True"
+                             CommandId="spacing"
+                             KeyTip="AC"
+                             ScreenTip="Center align paragraph"
+                             Order="3" />
+          <ribbon:RibbonItem Id="para-multilevel"
+                             Label="Multilevel List"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
+                             CommandId="spacing"
+                             SecondaryCommandId="spacing"
+                             PopupTitle="Multilevel List"
+                             KeyTip="ML"
+                             ScreenTip="Apply multilevel list"
+                             Order="4">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-multilevel-1" Label="1. 1.1. 1.1.1" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+              <ribbon:RibbonMenuItem Id="para-multilevel-a" Label="A. I. a." CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="1" />
+              <ribbon:RibbonMenuItem Id="para-multilevel-custom" Label="Define New Multilevel List" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-align-right"
+                             Label="Align Right"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextItalic20Regular}"
+                             IsToggle="True"
+                             CommandId="spacing"
+                             KeyTip="AR"
+                             ScreenTip="Right align paragraph"
+                             Order="5" />
+          <ribbon:RibbonItem Id="para-indent-decrease"
+                             Label="Decrease Indent"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextIndentDecrease20Regular}"
+                             CommandId="indent-left"
+                             SecondaryCommandId="indent-left"
+                             KeyTip="DI"
+                             ScreenTip="Decrease indent"
+                             Order="6">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-indent-decrease-options" Label="Indent Options" CommandId="indent-left" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-align-justify"
+                             Label="Justify"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}"
+                             IsToggle="True"
+                             CommandId="spacing"
+                             KeyTip="AJ"
+                             ScreenTip="Justify paragraph"
+                             Order="7" />
+          <ribbon:RibbonItem Id="para-indent-increase"
+                             Label="Increase Indent"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextIndentIncrease20Regular}"
+                             CommandId="spacing"
+                             SecondaryCommandId="spacing"
+                             KeyTip="II"
+                             ScreenTip="Increase indent"
+                             Order="8">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-indent-increase-options" Label="Indent Options" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-line-spacing"
+                             Label="Line Spacing"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                             CommandId="spacing"
+                             SecondaryCommandId="spacing"
+                             PopupTitle="Line Spacing"
+                             KeyTip="LS"
+                             ScreenTip="Set line and paragraph spacing"
+                             Order="9">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-line-spacing-100" Label="1.0" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+              <ribbon:RibbonMenuItem Id="para-line-spacing-115" Label="1.15" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="1" />
+              <ribbon:RibbonMenuItem Id="para-line-spacing-150" Label="1.5" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="2" />
+              <ribbon:RibbonMenuItem Id="para-line-spacing-200" Label="2.0" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="3" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-show-marks"
+                             Label="Show Marks"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextItalic20Regular}"
+                             IsToggle="True"
+                             CommandId="spacing"
+                             KeyTip="PM"
+                             ScreenTip="Show or hide paragraph marks"
+                             Order="10" />
+          <ribbon:RibbonItem Id="para-shading"
+                             Label="Shading"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                             CommandId="spacing"
+                             SecondaryCommandId="spacing"
+                             PopupTitle="Shading"
+                             PopupMinWidth="260"
+                             PopupMaxHeight="320"
+                             KeyTip="SD"
+                             ScreenTip="Apply paragraph shading"
+                             Order="11">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-shading-none" Label="No Color" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+              <ribbon:RibbonMenuItem Id="para-shading-theme" Label="Theme Colors" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="1" />
+              <ribbon:RibbonMenuItem Id="para-shading-more" Label="More Colors" CommandId="spacing" ShowInRibbonPreview="False" ShowInPopup="True" Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="para-line-numbers"
+                             Label="Line Numbers"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
+                             IsToggle="True"
+                             CommandId="spacing"
+                             KeyTip="LN"
+                             ScreenTip="Adjust line numbering"
+                             Order="12" />
+          <ribbon:RibbonItem Id="para-borders"
+                             Label="Borders"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             DisplayMode="IconOnly"
+                             IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                             CommandId="page-borders"
+                             SecondaryCommandId="page-borders"
+                             PopupTitle="Borders"
+                             KeyTip="BR"
+                             ScreenTip="Configure borders"
+                             Order="13">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="para-borders-all" Label="All Borders" CommandId="border-all" ShowInRibbonPreview="False" ShowInPopup="True" Order="0" />
+              <ribbon:RibbonMenuItem Id="para-borders-top" Label="Top Border" CommandId="border-top" ShowInRibbonPreview="False" ShowInPopup="True" Order="1" />
+              <ribbon:RibbonMenuItem Id="para-borders-bottom" Label="Bottom Border" CommandId="border-bottom" ShowInRibbonPreview="False" ShowInPopup="True" Order="2" />
+              <ribbon:RibbonMenuItem Id="para-borders-left" Label="Left Border" CommandId="border-left" ShowInRibbonPreview="False" ShowInPopup="True" Order="3" />
+              <ribbon:RibbonMenuItem Id="para-borders-right" Label="Right Border" CommandId="border-right" ShowInRibbonPreview="False" ShowInPopup="True" Order="4" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="styles" Header="Styles" HeaderPlacement="Right" Order="3">
+          <ribbon:RibbonItem Id="style-gallery"
+                             Label="Styles"
+                             Primitive="Gallery"
+                             GalleryPreviewMaxItems="3"
+                             GalleryShowCategoryHeaders="True"
+                             Description="Quick style presets"
+                             IconPathData="{x:Static ribbon:FluentIconData.DocumentSave20Regular}"
+                             KeyTip="SG"
+                             ScreenTip="Pick a style preset">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="style-preview-normal"
+                                     Label="Normal"
+                                     CommandId="style-normal"
+                                     IsSelected="True"
+                                     ShowInRibbonPreview="True"
+                                     ShowInPopup="False"
+                                     Order="0">
+                <ribbon:RibbonMenuItem.Content>
+                  <StackPanel Spacing="3"
+                              MinWidth="120">
+                    <TextBlock Text="Normal"
+                               FontSize="17"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="Aptos, 12"
+                               FontSize="11"
+                               Opacity="0.75" />
+                  </StackPanel>
+                </ribbon:RibbonMenuItem.Content>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="style-preview-no-spacing"
+                                     Label="No Spacing"
+                                     CommandId="styles-more"
+                                     ShowInRibbonPreview="True"
+                                     ShowInPopup="False"
+                                     Order="1">
+                <ribbon:RibbonMenuItem.Content>
+                  <StackPanel Spacing="3"
+                              MinWidth="120">
+                    <TextBlock Text="No Spacing"
+                               FontSize="17"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="Aptos, 12"
+                               FontSize="11"
+                               Opacity="0.75" />
+                  </StackPanel>
+                </ribbon:RibbonMenuItem.Content>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="style-preview-heading1"
+                                     Label="Heading 1"
+                                     CommandId="style-heading1"
+                                     ShowInRibbonPreview="True"
+                                     ShowInPopup="False"
+                                     Order="2">
+                <ribbon:RibbonMenuItem.Content>
+                  <StackPanel Spacing="3"
+                              MinWidth="120">
+                    <TextBlock Text="Heading 1"
+                               FontSize="17"
+                               Foreground="#0F577B"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="Aptos Display, 20"
+                               FontSize="11"
+                               Opacity="0.75" />
+                  </StackPanel>
+                </ribbon:RibbonMenuItem.Content>
+              </ribbon:RibbonMenuItem>
+
+              <ribbon:RibbonMenuItem Id="style-popup-normal" Label="Normal" Category="Quick Styles" IsSelected="True" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="style-normal" Order="20" />
+              <ribbon:RibbonMenuItem Id="style-popup-no-spacing" Label="No Spacing" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="21" />
+              <ribbon:RibbonMenuItem Id="style-popup-heading1" Label="Heading 1" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="style-heading1" Order="22" />
+              <ribbon:RibbonMenuItem Id="style-popup-heading2" Label="Heading 2" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="23" />
+              <ribbon:RibbonMenuItem Id="style-popup-title" Label="Title" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="24" />
+              <ribbon:RibbonMenuItem Id="style-popup-subtitle" Label="Subtitle" Category="Quick Styles" ShowInRibbonPreview="False" ShowInPopup="True" ShowChevron="True" CommandId="styles-more" Order="25" />
+              <ribbon:RibbonMenuItem Id="style-popup-separator" IsSeparator="True" ShowInRibbonPreview="False" ShowInPopup="True" Order="26" />
+              <ribbon:RibbonMenuItem Id="style-popup-more" Label="See More Styles" IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="styles-more" Order="27" />
+              <ribbon:RibbonMenuItem Id="style-popup-create" Label="Create New Style from Selection" IconPathData="{x:Static ribbon:FluentIconData.CheckmarkCircle20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="style-create-new" Order="28" />
+              <ribbon:RibbonMenuItem Id="style-popup-clear" Label="Clear Formatting of Selection" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" ShowInRibbonPreview="False" ShowInPopup="True" CommandId="style-clear-formatting" Order="29" />
+              <ribbon:RibbonMenuItem Id="style-popup-manage"
+                                     Label="Manage Default Styles"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                                     ShowInRibbonPreview="False"
+                                     ShowInPopup="True"
+                                     ShowChevron="True"
+                                     Order="30">
+                <ribbon:RibbonMenuItem.SubMenuItems>
+                  <ribbon:RibbonMenuItem Id="style-popup-manage-document"
+                                         Label="Set as Default in this Document"
+                                         CommandId="style-manage-default-document"
+                                         Order="0" />
+                  <ribbon:RibbonMenuItem Id="style-popup-manage-all"
+                                         Label="Set as Default for All Documents"
+                                         CommandId="style-manage-default-all"
+                                         Order="1" />
+                </ribbon:RibbonMenuItem.SubMenuItems>
+              </ribbon:RibbonMenuItem>
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="editing"
+                            Header="Editing"
+                            HeaderPlacement="Bottom"
+                            ItemsLayoutMode="Stacked"
+                            StackedRows="3"
+                            Order="4">
+          <ribbon:RibbonItem Id="find"
+                             Label="Find"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.Search20Regular}"
+                             CommandId="find"
+                             KeyTip="FD"
+                             ScreenTip="Find text"
+                             Order="0" />
+          <ribbon:RibbonItem Id="replace"
+                             Label="Replace"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                             CommandId="replace"
+                             KeyTip="RP"
+                             ScreenTip="Find and replace"
+                             Order="1" />
+          <ribbon:RibbonItem Id="select"
+                             Label="Select"
+                             Primitive="SplitButton"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.Person20Regular}"
+                             CommandId="select"
+                             SecondaryCommandId="select"
+                             KeyTip="SL"
+                             ScreenTip="Select content"
+                             Order="2">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="select-all"
+                                     Label="Select All"
+                                     CommandId="select"
+                                     ShowInRibbonPreview="False"
+                                     ShowInPopup="True"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="select-objects"
+                                     Label="Select Objects"
+                                     CommandId="select"
+                                     ShowInRibbonPreview="False"
+                                     ShowInPopup="True"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="select-selection-pane"
+                                     Label="Selection Pane"
+                                     CommandId="select"
+                                     ShowInRibbonPreview="False"
+                                     ShowInPopup="True"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="insert" Header="Insert" Order="1">
+        <ribbon:RibbonGroup Id="pages" Header="Pages" Order="0">
+          <ribbon:RibbonItem Id="cover-page" Label="Cover Page" IconPathData="{x:Static ribbon:FluentIconData.DocumentSave20Regular}" CommandId="cover-page" KeyTip="CV" ScreenTip="Insert a cover page" />
+          <ribbon:RibbonItem Id="blank-page" Label="Blank Page" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="blank-page" KeyTip="BP" ScreenTip="Insert a blank page" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="tables" Header="Tables" Order="1">
+          <ribbon:RibbonItem Id="table"
+                             Label="Table"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                             CommandId="table"
+                             KeyTip="TB"
+                             ScreenTip="Insert table">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="table-grid-2x2"
+                                     Label="2 x 2 Table"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="table"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="table-grid-3x3"
+                                     Label="3 x 3 Table"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="quick-tables"
+                                     Order="1" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="quick-tables"
+                             Label="Quick Templates"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}"
+                             CommandId="quick-tables"
+                             PopupTitle="Quick Templates"
+                             PopupMinWidth="260"
+                             PopupMaxHeight="340"
+                             KeyTip="QT"
+                             ScreenTip="Insert a quick template">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="quick-template-todo"
+                                     Label="To-do List"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                                     CommandId="quick-template-todo"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="quick-template-notes"
+                                     Label="Notes"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                                     Order="1">
+                <ribbon:RibbonMenuItem.SubMenuItems>
+                  <ribbon:RibbonMenuItem Id="quick-template-meeting-notes"
+                                         Label="Meeting Notes"
+                                         IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                                         CommandId="quick-template-notes"
+                                         Order="0" />
+                  <ribbon:RibbonMenuItem Id="quick-template-project-notes"
+                                         Label="Project Notes"
+                                         IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                                         CommandId="quick-template-notes"
+                                         Order="1" />
+                </ribbon:RibbonMenuItem.SubMenuItems>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="quick-template-weekly"
+                                     Label="Weekly Plan"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="quick-template-weekly"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="illustrations" Header="Illustrations" Order="2">
+          <ribbon:RibbonItem Id="picture" Label="Picture" IconPathData="{x:Static ribbon:FluentIconData.Image20Regular}" CommandId="picture" KeyTip="P" ScreenTip="Insert a picture" />
+          <ribbon:RibbonItem Id="shapes" Label="Shapes" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" CommandId="shapes" KeyTip="SP" ScreenTip="Insert a shape" />
+          <ribbon:RibbonItem Id="chart" Label="Chart" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="chart" KeyTip="H" ScreenTip="Insert a chart" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="links" Header="Links" Order="3">
+          <ribbon:RibbonItem Id="hyperlink" Label="Link" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="hyperlink" KeyTip="LK" ScreenTip="Insert hyperlink" />
+          <ribbon:RibbonItem Id="bookmark" Label="Bookmark" IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}" CommandId="bookmark" KeyTip="BM" ScreenTip="Insert bookmark" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="header-footer" Header="Header &amp; Footer" Order="4">
+          <ribbon:RibbonItem Id="header" Label="Header" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="header" KeyTip="HD" ScreenTip="Insert header" />
+          <ribbon:RibbonItem Id="footer" Label="Footer" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="footer" KeyTip="FT" ScreenTip="Insert footer" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="symbols" Header="Symbols" Order="5">
+          <ribbon:RibbonItem Id="equation"
+                             Label="Equation"
+                             Primitive="SplitButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                             CommandId="symbol"
+                             SecondaryCommandId="symbol-more"
+                             KeyTip="EQ"
+                             ScreenTip="Insert equation">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="equation-insert"
+                                     Label="Insert New Equation"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                                     CommandId="symbol"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="equation-ink"
+                                     Label="Ink Equation"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                                     CommandId="symbol-more"
+                                     Order="1" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="symbol"
+                             Label="Symbol"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                             CommandId="symbol"
+                             KeyTip="SY"
+                             ScreenTip="Insert symbol">
+            <ribbon:RibbonItem.PopupContent>
+              <StackPanel Spacing="6">
+                <UniformGrid Columns="5"
+                             Rows="5">
+                  <Button Content="•" FontSize="30" />
+                  <Button Content="€" FontSize="30" />
+                  <Button Content="£" FontSize="30" />
+                  <Button Content="¥" FontSize="30" />
+                  <Button Content="©" FontSize="30" />
+                  <Button Content="®" FontSize="30" />
+                  <Button Content="™" FontSize="30" />
+                  <Button Content="±" FontSize="30" />
+                  <Button Content="≠" FontSize="30" />
+                  <Button Content="≤" FontSize="30" />
+                  <Button Content="≥" FontSize="30" />
+                  <Button Content="÷" FontSize="30" />
+                  <Button Content="×" FontSize="30" />
+                  <Button Content="∞" FontSize="30" />
+                  <Button Content="µ" FontSize="30" />
+                  <Button Content="α" FontSize="30" />
+                  <Button Content="β" FontSize="30" />
+                  <Button Content="π" FontSize="30" />
+                  <Button Content="Ω" FontSize="30" />
+                  <Button Content="Σ" FontSize="30" />
+                  <Button Content="°" FontSize="30" />
+                  <Button Content="Δ" FontSize="30" />
+                  <Button Content="☺" FontSize="30" />
+                  <Button Content="♥" FontSize="30" />
+                  <Button Content="₹" FontSize="30" />
+                </UniformGrid>
+              </StackPanel>
+            </ribbon:RibbonItem.PopupContent>
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="symbol-more"
+                                     Label="More Symbols"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="symbol-more"
+                                     Order="0" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="emoji"
+                             Label="Emoji"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Comment20Regular}"
+                             CommandId="emoji"
+                             KeyTip="EM"
+                             ScreenTip="Insert emoji">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="emoji-picker"
+                                     Label="Open Emoji Panel"
+                                     CommandId="emoji"
+                                     InputGestureText="Ctrl+Cmd+Space"
+                                     Order="0" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="layout" Header="Layout" Order="2">
+        <ribbon:RibbonGroup Id="page-setup" Header="Page Setup" Order="0">
+          <ribbon:RibbonItem Id="margins" Label="Margins" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" CommandId="margins" KeyTip="MG" ScreenTip="Set page margins" />
+          <ribbon:RibbonItem Id="orientation" Label="Orientation" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="orientation" KeyTip="OR" ScreenTip="Set page orientation" />
+          <ribbon:RibbonItem Id="size" Label="Size" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="size" KeyTip="SZ" ScreenTip="Set paper size" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="paragraph-layout" Header="Paragraph" Order="1">
+          <ribbon:RibbonItem Id="indent-left" Label="Indent Left" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="indent-left" KeyTip="IL" ScreenTip="Decrease left indent" />
+          <ribbon:RibbonItem Id="spacing" Label="Spacing" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" CommandId="spacing" KeyTip="SG" ScreenTip="Adjust paragraph spacing" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="arrange" Header="Arrange" Order="2">
+          <ribbon:RibbonItem Id="position" Label="Position" IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}" CommandId="position" KeyTip="PS" ScreenTip="Adjust object position" />
+          <ribbon:RibbonItem Id="wrap-text" Label="Wrap Text" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="wrap-text" KeyTip="WT" ScreenTip="Change text wrapping" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="page-background" Header="Page Background" Order="3">
+          <ribbon:RibbonItem Id="page-borders"
+                             Label="Page Borders"
+                             Primitive="MenuButton"
+                             IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                             CommandId="page-borders"
+                             PopupTitle="Border Options"
+                             PopupMinWidth="320"
+                             PopupMaxHeight="380"
+                             KeyTip="PB"
+                             ScreenTip="Configure border options">
+            <ribbon:RibbonItem.PopupContent>
+              <StackPanel Spacing="8">
+                <UniformGrid Columns="5"
+                             Rows="1">
+                  <Button Content="All" />
+                  <Button Content="Top" />
+                  <Button Content="Bottom" />
+                  <Button Content="Left" />
+                  <Button Content="Right" />
+                </UniformGrid>
+              </StackPanel>
+            </ribbon:RibbonItem.PopupContent>
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="page-border-weight"
+                                     Label="Weight"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     ShowChevron="True"
+                                     Order="0">
+                <ribbon:RibbonMenuItem.SubMenuItems>
+                  <ribbon:RibbonMenuItem Id="page-border-weight-050"
+                                         Label="0.5 pt"
+                                         CommandId="border-weight-050"
+                                         Order="0" />
+                  <ribbon:RibbonMenuItem Id="page-border-weight-100"
+                                         Label="1.0 pt"
+                                         CommandId="border-weight-100"
+                                         Order="1" />
+                </ribbon:RibbonMenuItem.SubMenuItems>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="page-border-style"
+                                     Label="Style"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                                     ShowChevron="True"
+                                     Order="1">
+                <ribbon:RibbonMenuItem.SubMenuItems>
+                  <ribbon:RibbonMenuItem Id="page-border-style-solid"
+                                         Label="Solid"
+                                         CommandId="border-style-solid"
+                                         Order="0" />
+                  <ribbon:RibbonMenuItem Id="page-border-style-dashed"
+                                         Label="Dashed"
+                                         CommandId="border-style-dashed"
+                                         Order="1" />
+                </ribbon:RibbonMenuItem.SubMenuItems>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="page-border-color"
+                                     Label="Color"
+                                     IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}"
+                                     ShowChevron="True"
+                                     Order="2">
+                <ribbon:RibbonMenuItem.SubMenuItems>
+                  <ribbon:RibbonMenuItem Id="page-border-color-black"
+                                         Label="Black"
+                                         CommandId="border-color-black"
+                                         Order="0" />
+                  <ribbon:RibbonMenuItem Id="page-border-color-blue"
+                                         Label="Blue"
+                                         CommandId="border-color-blue"
+                                         Order="1" />
+                </ribbon:RibbonMenuItem.SubMenuItems>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="page-border-apply-to"
+                                     Label="Apply to"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                                     ShowChevron="True"
+                                     Order="3">
+                <ribbon:RibbonMenuItem.SubMenuItems>
+                  <ribbon:RibbonMenuItem Id="page-border-apply-document"
+                                         Label="Whole document"
+                                         CommandId="border-apply-document"
+                                         Order="0" />
+                  <ribbon:RibbonMenuItem Id="page-border-apply-section"
+                                         Label="This section"
+                                         CommandId="border-apply-section"
+                                         Order="1" />
+                </ribbon:RibbonMenuItem.SubMenuItems>
+              </ribbon:RibbonMenuItem>
+              <ribbon:RibbonMenuItem Id="page-border-separator"
+                                     IsSeparator="True"
+                                     ShowInRibbonPreview="False"
+                                     ShowInPopup="True"
+                                     Order="4" />
+              <ribbon:RibbonMenuItem Id="page-border-remove"
+                                     Label="Remove Page Border"
+                                     IconPathData="{x:Static ribbon:FluentIconData.ArrowUndo20Regular}"
+                                     CommandId="border-remove-page"
+                                     ShowInRibbonPreview="False"
+                                     Order="5" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="cell-shading"
+                             Label="Cell Shading"
+                             Primitive="SplitButton"
+                             SplitButtonMode="Stacked"
+                             IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}"
+                             CommandId="page-color"
+                             SecondaryCommandId="page-color"
+                             PopupTitle="Cell Shading"
+                             PopupMinWidth="320"
+                             PopupMaxHeight="420"
+                             KeyTip="CS"
+                             ScreenTip="Apply or pick a shading color">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="page-color-no-color"
+                                     Label="No Color"
+                                     CommandId="page-color"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="page-color-blue"
+                                     Label="Blue"
+                                     CommandId="border-color-blue"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="page-color-black"
+                                     Label="Black"
+                                     CommandId="border-color-black"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="table-style-options"
+                             Label="Table Style Options"
+                             Primitive="ToggleGroup"
+                             ToggleGroupSelectionMode="Multiple"
+                             ToggleGroupColumns="2"
+                             Order="2"
+                             Size="Large"
+                             KeyTip="TS"
+                             ScreenTip="Toggle table style options">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="table-style-option-header-row"
+                                     Label="Header Row"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="table-style-option-header-row"
+                                     IsSelected="True"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="table-style-option-first-column"
+                                     Label="First Column"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="table-style-option-first-column"
+                                     IsSelected="True"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="table-style-option-total-row"
+                                     Label="Total Row"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="table-style-option-total-row"
+                                     Order="2" />
+              <ribbon:RibbonMenuItem Id="table-style-option-last-column"
+                                     Label="Last Column"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="table-style-option-last-column"
+                                     Order="3" />
+              <ribbon:RibbonMenuItem Id="table-style-option-banded-rows"
+                                     Label="Banded Rows"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="table-style-option-banded-rows"
+                                     IsSelected="True"
+                                     Order="4" />
+              <ribbon:RibbonMenuItem Id="table-style-option-banded-columns"
+                                     Label="Banded Columns"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Grid20Regular}"
+                                     CommandId="table-style-option-banded-columns"
+                                     Order="5" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="table-border-scope"
+                             Label="Border Scope"
+                             Primitive="ToggleGroup"
+                             ToggleGroupSelectionMode="Single"
+                             ToggleGroupColumns="1"
+                             Order="3"
+                             Size="Small"
+                             KeyTip="TB"
+                             ScreenTip="Choose one border scope">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="table-border-scope-all"
+                                     Label="All Borders"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="table-border-scope-all"
+                                     IsSelected="True"
+                                     Order="0" />
+              <ribbon:RibbonMenuItem Id="table-border-scope-inside"
+                                     Label="Inside Borders"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="table-border-scope-inside"
+                                     Order="1" />
+              <ribbon:RibbonMenuItem Id="table-border-scope-outside"
+                                     Label="Outside Borders"
+                                     IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                                     CommandId="table-border-scope-outside"
+                                     Order="2" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="references" Header="References" Order="3">
+        <ribbon:RibbonGroup Id="table-of-contents" Header="Table of Contents" Order="0">
+          <ribbon:RibbonItem Id="table-contents" Label="Table of Contents" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="table-contents" KeyTip="TC" ScreenTip="Insert table of contents" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="footnotes"
+                            Header="Footnotes"
+                            Order="1"
+                            ItemsLayoutMode="Docked"
+                            DockedCenterLayoutMode="Stacked"
+                            StackedRows="2">
+          <ribbon:RibbonItem Id="insert-footnote"
+                             Label="Insert Footnote"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
+                             CommandId="insert-footnote"
+                             KeyTip="FN"
+                             ScreenTip="Insert footnote"
+                             LayoutDock="Left" />
+          <ribbon:RibbonItem Id="insert-endnote"
+                             Label="Insert Endnote"
+                             IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                             CommandId="insert-endnote"
+                             KeyTip="EN"
+                             ScreenTip="Insert endnote"
+                             Size="Small"
+                             LayoutDock="Center" />
+          <ribbon:RibbonItem Id="show-footnotes"
+                             Label="Show Footnotes"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                             CommandId="show-footnotes"
+                             KeyTip="SF"
+                             ScreenTip="Jump to footnote reference"
+                             Size="Small"
+                             LayoutDock="Center" />
+          <ribbon:RibbonItem Id="show-endnotes"
+                             Label="Show Endnotes"
+                             IconPathData="{x:Static ribbon:FluentIconData.ArrowSync20Regular}"
+                             CommandId="show-endnotes"
+                             KeyTip="SE"
+                             ScreenTip="Jump to endnote reference"
+                             Size="Small"
+                             LayoutDock="Center" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="captions" Header="Captions" Order="2">
+          <ribbon:RibbonItem Id="insert-caption" Label="Insert Caption" IconPathData="{x:Static ribbon:FluentIconData.Image20Regular}" CommandId="insert-caption" KeyTip="IC" ScreenTip="Insert caption" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="index" Header="Index" Order="3">
+          <ribbon:RibbonItem Id="mark-entry" Label="Mark Entry" IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}" CommandId="mark-entry" KeyTip="ME" ScreenTip="Mark index entry" />
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="mailings" Header="Mailings" Order="4">
+        <ribbon:RibbonGroup Id="create" Header="Create" Order="0">
+          <ribbon:RibbonItem Id="envelopes" Label="Envelopes" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="envelopes" KeyTip="EV" ScreenTip="Create envelopes" />
+          <ribbon:RibbonItem Id="labels" Label="Labels" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="labels" KeyTip="LB" ScreenTip="Create labels" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="start-mail-merge" Header="Start Mail Merge" Order="1">
+          <ribbon:RibbonItem Id="start-merge" Label="Start Merge" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="start-merge" KeyTip="SM" ScreenTip="Start mail merge" />
+          <ribbon:RibbonItem Id="select-recipients" Label="Recipients" IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}" CommandId="select-recipients" KeyTip="SR" ScreenTip="Select recipients" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="finish-mailings" Header="Finish" Order="2">
+          <ribbon:RibbonItem Id="finish-merge" Label="Finish Merge" IconPathData="{x:Static ribbon:FluentIconData.DocumentSave20Regular}" CommandId="finish-merge" KeyTip="FM" ScreenTip="Finish and merge" />
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="review" Header="Review" Order="5">
+        <ribbon:RibbonGroup Id="proofing" Header="Proofing" Order="0">
+          <ribbon:RibbonItem Id="spelling"
+                             Label="Spelling"
+                             IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                             OverlayPathData="{x:Static ribbon:FluentIconData.CheckmarkCircle20Regular}"
+                             OverlayCount="2"
+                             CommandId="spelling"
+                             KeyTip="SP"
+                             ScreenTip="Run spelling and grammar" />
+          <ribbon:RibbonItem Id="thesaurus" Label="Thesaurus" IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}" CommandId="thesaurus" KeyTip="TH" ScreenTip="Open thesaurus" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="language" Header="Language" Order="1">
+          <ribbon:RibbonItem Id="translate" Label="Translate" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="translate" KeyTip="TR" ScreenTip="Translate selection" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="comments" Header="Comments" Order="2">
+          <ribbon:RibbonItem Id="new-comment"
+                             Label="New Comment"
+                             IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                             OverlayCountText="4"
+                             CommandId="new-comment"
+                             KeyTip="NC"
+                             ScreenTip="Insert comment" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="tracking" Header="Tracking" Order="3">
+          <ribbon:RibbonItem Id="track-changes"
+                             Label="Track Changes"
+                             IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}"
+                             OverlayEmoji="✨"
+                             CommandId="track-changes"
+                             KeyTip="TC"
+                             ScreenTip="Track document changes" />
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="view" Header="View" Order="6">
+        <ribbon:RibbonGroup Id="views" Header="Views" Order="0">
+          <ribbon:RibbonItem Id="read-mode" Label="Read Mode" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="read-mode" KeyTip="RM" ScreenTip="Switch to read mode" />
+          <ribbon:RibbonItem Id="print-layout" Label="Print Layout" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="print-layout" KeyTip="PL" ScreenTip="Switch to print layout" />
+          <ribbon:RibbonItem Id="web-layout" Label="Web Layout" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="web-layout" KeyTip="WL" ScreenTip="Switch to web layout" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="show" Header="Show" Order="1">
+          <ribbon:RibbonItem Id="ruler" Label="Ruler" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" IsToggle="True" IsChecked="True" CommandId="ruler" KeyTip="RU" ScreenTip="Show or hide ruler" />
+          <ribbon:RibbonItem Id="navigation-pane" Label="Navigation Pane" IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}" IsToggle="True" CommandId="navigation-pane" KeyTip="NP" ScreenTip="Toggle navigation pane" />
+          <ribbon:RibbonItem Id="header-footer" Label="Header &amp; Footer" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" IsToggle="True" CommandId="header" KeyTip="HF" ScreenTip="Toggle header and footer markers" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="zoom" Header="Zoom" Order="2">
+          <ribbon:RibbonItem Id="zoom" Label="Zoom" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="zoom" KeyTip="ZM" ScreenTip="Adjust zoom" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="window" Header="Window" Order="3">
+          <ribbon:RibbonItem Id="new-window" Label="New Window" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="new-window" KeyTip="NW" ScreenTip="Open in new window" />
+          <ribbon:RibbonItem Id="side-by-side" Label="Side by Side" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="side-by-side" KeyTip="SB" ScreenTip="View side by side" />
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="help" Header="Help" Order="7">
+        <ribbon:RibbonGroup Id="help-group" Header="Help" Order="0">
+          <ribbon:RibbonItem Id="help" Label="Help" IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}" CommandId="help" KeyTip="HP" ScreenTip="Open help" />
+          <ribbon:RibbonItem Id="feedback" Label="Feedback" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="feedback" KeyTip="FB" ScreenTip="Send feedback" />
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+
+      <ribbon:RibbonTab Id="picture-format" Header="Picture Format" Order="20" IsContextual="True" ContextGroupId="picture-tools" ContextGroupHeader="Picture Tools" ContextGroupAccentColor="#0F6CBD" ContextGroupOrder="30">
+        <ribbon:RibbonGroup Id="picture-adjust" Header="Adjust" Order="0">
+          <ribbon:RibbonItem Id="remove-background" Label="Remove Background" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" CommandId="remove-background" KeyTip="RB" ScreenTip="Remove image background" />
+          <ribbon:RibbonItem Id="corrections" Label="Corrections" IconPathData="{x:Static ribbon:FluentIconData.Image20Regular}" CommandId="corrections" KeyTip="CR" ScreenTip="Adjust picture corrections" />
+          <ribbon:RibbonItem Id="color" Label="Color" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="color" KeyTip="CL" ScreenTip="Adjust picture color" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="picture-styles" Header="Picture Styles" Order="1">
+          <ribbon:RibbonItem Id="picture-border" Label="Picture Border" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="picture-border" KeyTip="PB" ScreenTip="Add a picture border" />
+          <ribbon:RibbonItem Id="picture-effects" Label="Picture Effects" IconPathData="{x:Static ribbon:FluentIconData.Wrench20Regular}" CommandId="picture-effects" KeyTip="PE" ScreenTip="Apply picture effects" />
+        </ribbon:RibbonGroup>
+        <ribbon:RibbonGroup Id="picture-arrange" Header="Arrange" Order="2">
+          <ribbon:RibbonItem Id="bring-forward" Label="Bring Forward" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="bring-forward" KeyTip="BF" ScreenTip="Bring picture forward" />
+          <ribbon:RibbonItem Id="send-backward" Label="Send Backward" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="send-backward" KeyTip="BA" ScreenTip="Send picture backward" />
+        </ribbon:RibbonGroup>
+      </ribbon:RibbonTab>
+    </ribbon:Ribbon>
+
+    <Grid RowDefinitions="*,Auto">
+      <Grid ColumnDefinitions="220,*,320">
+        <Border Grid.Column="0"
+                Background="#F2F4F8"
+                BorderBrush="#D5DBE6"
+                BorderThickness="0,1,1,0"
+                Padding="12">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Navigation"
+                       FontSize="13"
+                       FontWeight="SemiBold" />
+            <ListBox>
+              <ListBoxItem>Document 1</ListBoxItem>
+              <ListBoxItem>Outline</ListBoxItem>
+              <ListBoxItem>Headings</ListBoxItem>
+              <ListBoxItem>Pages</ListBoxItem>
+            </ListBox>
+          </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1"
+                Background="#ECEFF4"
+                BorderBrush="#D5DBE6"
+                BorderThickness="0,1,0,0"
+                Padding="24">
+          <Grid RowDefinitions="Auto,*">
+            <Border Background="#F8FAFD"
+                    BorderBrush="#D5DBE6"
+                    BorderThickness="1"
+                    CornerRadius="2"
+                    Padding="8,4">
+              <DockPanel>
+                <TextBlock DockPanel.Dock="Left"
+                           Text="Word-like Document Surface"
+                           FontSize="12"
+                           FontWeight="SemiBold" />
+                <TextBlock DockPanel.Dock="Right"
+                           Text="Page 1 of 1"
+                           FontSize="11"
+                           Opacity="0.7" />
+              </DockPanel>
+            </Border>
+
+            <Border Grid.Row="1"
+                    Margin="0,12,0,0"
+                    Background="White"
+                    BorderBrush="#C9D2E2"
+                    BorderThickness="1"
+                    CornerRadius="2"
+                    HorizontalAlignment="Center"
+                    Width="800"
+                    Padding="48">
+              <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="12">
+                  <TextBlock Text="RibbonControl Office Theme Preview"
+                             FontSize="26"
+                             FontWeight="SemiBold" />
+                  <TextBlock Text="This central surface mimics a Word page so ribbon layout and command density can be evaluated in context."
+                             TextWrapping="Wrap"
+                             FontSize="13" />
+                  <TextBlock Text="Use the ribbon controls and the panel on the right to toggle contextual tabs, minimized mode, key tips, and persistence behavior."
+                             TextWrapping="Wrap"
+                             FontSize="13" />
+                </StackPanel>
+              </ScrollViewer>
+            </Border>
+          </Grid>
+        </Border>
+
+        <Border Grid.Column="2"
+                Background="#F7F8FA"
+                BorderBrush="#D5DBE6"
+                BorderThickness="1,1,0,0"
+                Padding="14">
+          <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="12">
+              <TextBlock Text="Inspector / Actions"
+                         FontSize="13"
+                         FontWeight="SemiBold" />
+
+              <WrapPanel ItemHeight="32" ItemWidth="150">
+                <Button Content="Toggle Picture Tools" Command="{CompiledBinding TogglePictureToolsCommand}" />
+                <Button Content="Toggle Minimized" Command="{CompiledBinding ToggleMinimizedCommand}" />
+                <Button Content="Toggle KeyTip Mode" Command="{CompiledBinding ToggleKeyTipModeCommand}" />
+                <Button Content="Toggle QAT Placement" Command="{CompiledBinding ToggleQuickAccessPlacementCommand}" />
+              </WrapPanel>
+
+              <WrapPanel ItemHeight="32" ItemWidth="150">
+                <Button Content="Seed State Store" Command="{CompiledBinding SeedStateStoreCommand}" />
+                <Button Content="Load State" Command="{CompiledBinding #MainRibbon.LoadStateCommand}" />
+                <Button Content="Save State" Command="{CompiledBinding #MainRibbon.SaveStateCommand}" />
+                <Button Content="Reset State" Command="{CompiledBinding #MainRibbon.ResetStateCommand}" />
+                <Button Content="Reset Customization" Command="{CompiledBinding #MainRibbon.ResetCustomizationCommand}" />
+              </WrapPanel>
+
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="Ownership" VerticalAlignment="Center" />
+                <ComboBox Width="140"
+                          ItemsSource="{CompiledBinding StateOwnershipModes}"
+                          SelectedItem="{CompiledBinding StateOwnershipMode, Mode=TwoWay}" />
+              </StackPanel>
+
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="QAT Placement" VerticalAlignment="Center" />
+                <ComboBox Width="120"
+                          ItemsSource="{CompiledBinding QuickAccessPlacements}"
+                          SelectedItem="{CompiledBinding QuickAccessPlacement, Mode=TwoWay}" />
+              </StackPanel>
+
+              <TextBlock Text="{CompiledBinding Status}"
+                         FontSize="13"
+                         FontWeight="SemiBold" />
+              <TextBlock Text="{CompiledBinding SelectedTabId, StringFormat='Selected Tab: {0}'}" FontSize="12" Opacity="0.75" />
+              <TextBlock Text="{CompiledBinding IsBackstageOpen, StringFormat='Backstage Open: {0}'}" FontSize="12" Opacity="0.75" />
+              <TextBlock Text="{CompiledBinding IsMinimized, StringFormat='Is Minimized: {0}'}" FontSize="12" Opacity="0.75" />
+              <TextBlock Text="{CompiledBinding IsKeyTipMode, StringFormat='Is KeyTip Mode: {0}'}" FontSize="12" Opacity="0.75" />
+              <TextBlock Text="{CompiledBinding QuickAccessPlacement, StringFormat='QAT Placement: {0}'}" FontSize="12" Opacity="0.75" />
+              <TextBlock Text="{CompiledBinding StateOwnershipMode, StringFormat='Ownership Mode: {0}'}" FontSize="12" Opacity="0.75" />
+              <TextBlock Text="Press Alt to enter key-tip mode."
+                         FontSize="12"
+                         Opacity="0.65" />
+            </StackPanel>
+          </ScrollViewer>
+        </Border>
+      </Grid>
+
+      <Border Grid.Row="1"
+              Background="#EEF1F6"
+              BorderBrush="#D5DBE6"
+              BorderThickness="0,1,0,0"
+              Padding="10,4">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Left"
+                     Text="Page 1   Words: 315   English (United States)"
+                     FontSize="11"
+                     Opacity="0.8" />
+          <TextBlock DockPanel.Dock="Right"
+                     Text="Zoom 100%"
+                     FontSize="11"
+                     Opacity="0.8" />
+        </DockPanel>
+      </Border>
+    </Grid>
+  </DockPanel>
+</Window>
