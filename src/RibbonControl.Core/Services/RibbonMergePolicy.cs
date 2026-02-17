@@ -424,6 +424,14 @@ public sealed class RibbonMergePolicy : IRibbonMergePolicy
         merged.Description = dynamicItem.Description ?? staticItem.Description;
         merged.InputGestureText = dynamicItem.InputGestureText ?? staticItem.InputGestureText;
         merged.Category = dynamicItem.Category ?? staticItem.Category;
+        merged.PopupSectionId = dynamicItem.PopupSectionId ?? staticItem.PopupSectionId;
+        merged.PopupSectionHeader = dynamicItem.PopupSectionHeader ?? staticItem.PopupSectionHeader;
+        merged.PopupSectionOrder = dynamicItem.PopupSectionOrder != 0
+            ? dynamicItem.PopupSectionOrder
+            : staticItem.PopupSectionOrder;
+        merged.PopupSectionLayout = dynamicItem.PopupSectionLayout != RibbonPopupSectionLayout.CommandList
+            ? dynamicItem.PopupSectionLayout
+            : staticItem.PopupSectionLayout;
         merged.IsSeparator = dynamicItem.IsSeparator;
         merged.ShowChevron = dynamicItem.ShowChevron;
         merged.IsSelected = dynamicItem.IsSelected || staticItem.IsSelected;

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Layout;
 using Avalonia.Media;
+using RibbonControl.Core.Enums;
 
 namespace RibbonControl.Core.Contracts;
 
@@ -73,6 +74,14 @@ public interface IRibbonMenuItemNode : IRibbonNode
     string? InputGestureText { get; }
 
     string? Category { get; }
+
+    string? PopupSectionId { get; }
+
+    string? PopupSectionHeader { get; }
+
+    int PopupSectionOrder { get; }
+
+    RibbonPopupSectionLayout PopupSectionLayout { get; }
 
     bool IsSeparator { get; }
 

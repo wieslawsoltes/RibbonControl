@@ -6,6 +6,7 @@ using Avalonia;
 using Avalonia.Layout;
 using Avalonia.Media;
 using RibbonControl.Core.Contracts;
+using RibbonControl.Core.Enums;
 
 namespace RibbonControl.Core.Models;
 
@@ -78,6 +79,14 @@ public class RibbonMenuItemDefinition : IRibbonMenuItemNode
     public string? InputGestureText { get; set; }
 
     public string? Category { get; set; }
+
+    public string? PopupSectionId { get; set; }
+
+    public string? PopupSectionHeader { get; set; }
+
+    public int PopupSectionOrder { get; set; }
+
+    public RibbonPopupSectionLayout PopupSectionLayout { get; set; } = RibbonPopupSectionLayout.CommandList;
 
     public bool IsSeparator { get; set; }
 

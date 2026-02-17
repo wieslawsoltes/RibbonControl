@@ -807,6 +807,9 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
     public IReadOnlyList<RibbonMenuItem> PopupMenuItems
         => MenuItems.Where(menuItem => menuItem.ShowInPopup).ToList();
 
+    public IReadOnlyList<RibbonPopupMenuSection> PopupMenuSections
+        => BuildPopupMenuSections(PopupMenuItems);
+
     public IReadOnlyList<RibbonMenuItem> CategorizedPopupMenuItems
         => PopupMenuItems.Where(menuItem => !string.IsNullOrWhiteSpace(menuItem.Category)).ToList();
 
@@ -820,17 +823,25 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
 
     public bool HasPopupMenuItems => PopupMenuItems.Count > 0;
 
+    public bool HasPopupMenuSections => PopupMenuSections.Count > 0;
+
+    public bool HasExplicitPopupMenuSections => HasExplicitPopupMenuSectionsCore(PopupMenuItems);
+
     public bool HasPopupMenuCategories => PopupMenuCategories.Count > 0;
 
     public bool HasUncategorizedPopupMenuItems => UncategorizedPopupMenuItems.Count > 0;
 
-    public bool ShowPopupMenuCategories => GalleryShowCategoryHeaders && HasPopupMenuCategories;
+    public bool ShowStructuredPopupMenuSections => HasExplicitPopupMenuSections && HasPopupMenuSections;
 
-    public bool ShowFlatCategorizedPopupMenuItems => !GalleryShowCategoryHeaders && HasPopupMenuCategories;
+    public bool ShowPopupMenuCategories => !HasExplicitPopupMenuSections && GalleryShowCategoryHeaders && HasPopupMenuCategories;
 
-    public bool ShowUncategorizedPopupMenuItems => HasPopupMenuCategories && HasUncategorizedPopupMenuItems;
+    public bool ShowFlatCategorizedPopupMenuItems =>
+        !HasExplicitPopupMenuSections && !GalleryShowCategoryHeaders && HasPopupMenuCategories;
 
-    public bool ShowLegacyPopupMenuItems => !HasPopupMenuCategories && HasPopupMenuItems;
+    public bool ShowUncategorizedPopupMenuItems =>
+        !HasExplicitPopupMenuSections && HasPopupMenuCategories && HasUncategorizedPopupMenuItems;
+
+    public bool ShowLegacyPopupMenuItems => !HasExplicitPopupMenuSections && !HasPopupMenuCategories && HasPopupMenuItems;
 
     public RibbonMenuItem? SelectedGalleryMenuItem
         => IsGalleryPrimitive
@@ -1061,6 +1072,10 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         if (e.PropertyName is not nameof(RibbonMenuItem.ShowInRibbonPreview)
             and not nameof(RibbonMenuItem.ShowInPopup)
             and not nameof(RibbonMenuItem.Category)
+            and not nameof(RibbonMenuItem.PopupSectionId)
+            and not nameof(RibbonMenuItem.PopupSectionHeader)
+            and not nameof(RibbonMenuItem.PopupSectionOrder)
+            and not nameof(RibbonMenuItem.PopupSectionLayout)
             and not nameof(RibbonMenuItem.IsSelected))
         {
             return;
@@ -1198,13 +1213,17 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         RaisePropertyChanged(nameof(HasSelectedComboBoxMenuItem));
         RaisePropertyChanged(nameof(RibbonPreviewMenuItems));
         RaisePropertyChanged(nameof(PopupMenuItems));
+        RaisePropertyChanged(nameof(PopupMenuSections));
         RaisePropertyChanged(nameof(CategorizedPopupMenuItems));
         RaisePropertyChanged(nameof(UncategorizedPopupMenuItems));
         RaisePropertyChanged(nameof(PopupMenuCategories));
         RaisePropertyChanged(nameof(HasRibbonPreviewMenuItems));
         RaisePropertyChanged(nameof(HasPopupMenuItems));
+        RaisePropertyChanged(nameof(HasPopupMenuSections));
+        RaisePropertyChanged(nameof(HasExplicitPopupMenuSections));
         RaisePropertyChanged(nameof(HasPopupMenuCategories));
         RaisePropertyChanged(nameof(HasUncategorizedPopupMenuItems));
+        RaisePropertyChanged(nameof(ShowStructuredPopupMenuSections));
         RaisePropertyChanged(nameof(ShowPopupMenuCategories));
         RaisePropertyChanged(nameof(ShowFlatCategorizedPopupMenuItems));
         RaisePropertyChanged(nameof(ShowUncategorizedPopupMenuItems));
@@ -1258,6 +1277,9 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         RaisePropertyChanged(nameof(SelectedMenuItemId));
         RaisePropertyChanged(nameof(HasSelectedComboBoxMenuItem));
         RaisePropertyChanged(nameof(RibbonPreviewMenuItems));
+        RaisePropertyChanged(nameof(PopupMenuSections));
+        RaisePropertyChanged(nameof(HasPopupMenuSections));
+        RaisePropertyChanged(nameof(ShowStructuredPopupMenuSections));
         RaisePropertyChanged(nameof(HasRibbonPreviewMenuItems));
         if (UsesSingleMenuSelection)
         {
@@ -1387,6 +1409,92 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         return previewItems.Take(GalleryPreviewMaxItems).ToList();
     }
 
+    private IReadOnlyList<RibbonPopupMenuSection> BuildPopupMenuSections(IReadOnlyList<RibbonMenuItem> popupItems)
+    {
+        if (popupItems.Count == 0)
+        {
+            return [];
+        }
+
+        if (!HasExplicitPopupMenuSectionsCore(popupItems))
+        {
+            var defaultLayout = IsGalleryPrimitive
+                ? RibbonPopupSectionLayout.GalleryWrap
+                : RibbonPopupSectionLayout.CommandList;
+
+            return
+            [
+                new RibbonPopupMenuSection(
+                    "default",
+                    header: null,
+                    order: 0,
+                    layout: defaultLayout,
+                    showSeparator: false,
+                    items: popupItems),
+            ];
+        }
+
+        var sectionOrder = new List<string>();
+        var sections = new Dictionary<string, PopupSectionAccumulator>(StringComparer.Ordinal);
+
+        foreach (var menuItem in popupItems)
+        {
+            var sectionId = NormalizePopupSectionId(menuItem.PopupSectionId);
+            if (!sections.TryGetValue(sectionId, out var section))
+            {
+                section = new PopupSectionAccumulator(
+                    sectionId,
+                    menuItem.PopupSectionHeader,
+                    menuItem.PopupSectionOrder,
+                    menuItem.PopupSectionLayout,
+                    menuItem.Order);
+                sections[sectionId] = section;
+                sectionOrder.Add(sectionId);
+            }
+            else
+            {
+                section.TryApply(menuItem);
+            }
+
+            section.Items.Add(menuItem);
+        }
+
+        var ordered = sectionOrder
+            .Select(sectionId => sections[sectionId])
+            .OrderBy(section => section.Order)
+            .ThenBy(section => section.FirstItemOrder)
+            .ThenBy(section => section.Id, StringComparer.Ordinal)
+            .ToList();
+
+        var result = new List<RibbonPopupMenuSection>(ordered.Count);
+        for (var index = 0; index < ordered.Count; index++)
+        {
+            var section = ordered[index];
+            result.Add(new RibbonPopupMenuSection(
+                section.Id,
+                section.Header,
+                section.Order,
+                section.Layout,
+                showSeparator: index > 0,
+                items: section.Items));
+        }
+
+        return result;
+    }
+
+    private static bool HasExplicitPopupMenuSectionsCore(IReadOnlyList<RibbonMenuItem> popupItems)
+    {
+        foreach (var menuItem in popupItems)
+        {
+            if (menuItem.HasPopupSectionMetadata)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static IReadOnlyList<RibbonGalleryCategory> BuildPopupMenuCategories(IEnumerable<RibbonMenuItem> categorizedItems)
     {
         var grouped = new Dictionary<string, List<RibbonMenuItem>>(StringComparer.Ordinal);
@@ -1417,6 +1525,67 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         }
 
         return result;
+    }
+
+    private static string NormalizePopupSectionId(string? sectionId)
+    {
+        if (string.IsNullOrWhiteSpace(sectionId))
+        {
+            return "default";
+        }
+
+        return sectionId.Trim();
+    }
+
+    private sealed class PopupSectionAccumulator
+    {
+        public PopupSectionAccumulator(
+            string id,
+            string? header,
+            int order,
+            RibbonPopupSectionLayout layout,
+            int firstItemOrder)
+        {
+            Id = id;
+            Header = string.IsNullOrWhiteSpace(header)
+                ? null
+                : header.Trim();
+            Order = order;
+            Layout = layout;
+            FirstItemOrder = firstItemOrder;
+        }
+
+        public string Id { get; }
+
+        public string? Header { get; private set; }
+
+        public int Order { get; private set; }
+
+        public RibbonPopupSectionLayout Layout { get; private set; }
+
+        public int FirstItemOrder { get; }
+
+        public List<RibbonMenuItem> Items { get; } = [];
+
+        public void TryApply(RibbonMenuItem menuItem)
+        {
+            if (string.IsNullOrWhiteSpace(Header) &&
+                !string.IsNullOrWhiteSpace(menuItem.PopupSectionHeader))
+            {
+                Header = menuItem.PopupSectionHeader.Trim();
+            }
+
+            if (Order == 0 && menuItem.PopupSectionOrder != 0)
+            {
+                Order = menuItem.PopupSectionOrder;
+            }
+
+            if (Layout == RibbonPopupSectionLayout.CommandList &&
+                menuItem.PopupSectionLayout != RibbonPopupSectionLayout.CommandList)
+            {
+                Layout = menuItem.PopupSectionLayout;
+            }
+        }
     }
 
     private void RaiseDropDownFlagsChanged()

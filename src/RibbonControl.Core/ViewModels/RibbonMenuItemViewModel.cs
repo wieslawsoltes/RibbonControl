@@ -7,6 +7,7 @@ using Avalonia;
 using Avalonia.Layout;
 using Avalonia.Media;
 using RibbonControl.Core.Contracts;
+using RibbonControl.Core.Enums;
 using RibbonControl.Core.Models;
 
 namespace RibbonControl.Core.ViewModels;
@@ -49,6 +50,10 @@ public class RibbonMenuItemViewModel : RibbonObservableObject, IRibbonMenuItemNo
     private string? _description;
     private string? _inputGestureText;
     private string? _category;
+    private string? _popupSectionId;
+    private string? _popupSectionHeader;
+    private int _popupSectionOrder;
+    private RibbonPopupSectionLayout _popupSectionLayout = RibbonPopupSectionLayout.CommandList;
     private bool _isSeparator;
     private bool _showChevron;
     private bool _isSelected;
@@ -281,6 +286,30 @@ public class RibbonMenuItemViewModel : RibbonObservableObject, IRibbonMenuItemNo
     {
         get => _category;
         set => SetProperty(ref _category, value);
+    }
+
+    public string? PopupSectionId
+    {
+        get => _popupSectionId;
+        set => SetProperty(ref _popupSectionId, value);
+    }
+
+    public string? PopupSectionHeader
+    {
+        get => _popupSectionHeader;
+        set => SetProperty(ref _popupSectionHeader, value);
+    }
+
+    public int PopupSectionOrder
+    {
+        get => _popupSectionOrder;
+        set => SetProperty(ref _popupSectionOrder, value);
+    }
+
+    public RibbonPopupSectionLayout PopupSectionLayout
+    {
+        get => _popupSectionLayout;
+        set => SetProperty(ref _popupSectionLayout, value);
     }
 
     public bool IsSeparator

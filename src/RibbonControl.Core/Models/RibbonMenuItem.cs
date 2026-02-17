@@ -9,6 +9,7 @@ using Avalonia;
 using Avalonia.Layout;
 using Avalonia.Media;
 using RibbonControl.Core.Contracts;
+using RibbonControl.Core.Enums;
 
 namespace RibbonControl.Core.Models;
 
@@ -50,6 +51,10 @@ public class RibbonMenuItem : RibbonObservableObject, IRibbonMenuItemNode
     private string? _description;
     private string? _inputGestureText;
     private string? _category;
+    private string? _popupSectionId;
+    private string? _popupSectionHeader;
+    private int _popupSectionOrder;
+    private RibbonPopupSectionLayout _popupSectionLayout = RibbonPopupSectionLayout.CommandList;
     private bool _isSeparator;
     private bool _showChevron;
     private bool _isSelected;
@@ -349,6 +354,54 @@ public class RibbonMenuItem : RibbonObservableObject, IRibbonMenuItemNode
         set => SetProperty(ref _category, value);
     }
 
+    public string? PopupSectionId
+    {
+        get => _popupSectionId;
+        set
+        {
+            if (SetProperty(ref _popupSectionId, value))
+            {
+                RaisePropertyChanged(nameof(HasPopupSectionMetadata));
+            }
+        }
+    }
+
+    public string? PopupSectionHeader
+    {
+        get => _popupSectionHeader;
+        set
+        {
+            if (SetProperty(ref _popupSectionHeader, value))
+            {
+                RaisePropertyChanged(nameof(HasPopupSectionMetadata));
+            }
+        }
+    }
+
+    public int PopupSectionOrder
+    {
+        get => _popupSectionOrder;
+        set
+        {
+            if (SetProperty(ref _popupSectionOrder, value))
+            {
+                RaisePropertyChanged(nameof(HasPopupSectionMetadata));
+            }
+        }
+    }
+
+    public RibbonPopupSectionLayout PopupSectionLayout
+    {
+        get => _popupSectionLayout;
+        set
+        {
+            if (SetProperty(ref _popupSectionLayout, value))
+            {
+                RaisePropertyChanged(nameof(HasPopupSectionMetadata));
+            }
+        }
+    }
+
     public bool IsSeparator
     {
         get => _isSeparator;
@@ -456,6 +509,12 @@ public class RibbonMenuItem : RibbonObservableObject, IRibbonMenuItemNode
     public bool HasContent => Content is not null;
 
     public bool HasNoContent => Content is null;
+
+    public bool HasPopupSectionMetadata =>
+        !string.IsNullOrWhiteSpace(PopupSectionId) ||
+        !string.IsNullOrWhiteSpace(PopupSectionHeader) ||
+        PopupSectionOrder != 0 ||
+        PopupSectionLayout != RibbonPopupSectionLayout.CommandList;
 
     public bool HasSubMenuItems => SubMenuItems.Count > 0;
 
