@@ -647,6 +647,8 @@ public class MergePolicyTests
                     Id = "style-manage",
                     Label = "Manage Default Styles",
                     ShowChevron = true,
+                    PopupSectionId = "style-actions",
+                    PopupSectionOrder = 1,
                     Order = 0,
                     SubMenuItems =
                     {
@@ -673,6 +675,8 @@ public class MergePolicyTests
                     Id = "style-manage",
                     Label = "Manage Default Styles",
                     ShowChevron = true,
+                    PopupSectionHeader = "Actions",
+                    PopupSectionOrder = 1,
                     Order = 0,
                     SubMenuItems =
                     {
@@ -695,6 +699,9 @@ public class MergePolicyTests
 
         var manage = Assert.Single(mergedItem.MenuItems);
         Assert.Equal("style-manage", manage.Id);
+        Assert.Equal("style-actions", manage.PopupSectionId);
+        Assert.Equal("Actions", manage.PopupSectionHeader);
+        Assert.Equal(1, manage.PopupSectionOrder);
         Assert.Equal(3, manage.SubMenuItems.Count);
         Assert.Contains(manage.SubMenuItems, x => x.Id == "style-manage-document" && x.Label == "This Document");
         Assert.Contains(manage.SubMenuItems, x => x.Id == "style-manage-all" && x.Label == "All Documents");

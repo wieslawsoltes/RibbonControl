@@ -111,6 +111,121 @@ public class RibbonItemTests
     }
 
     [Fact]
+    public void StructuredPopupSections_GroupAndOrderMenuItems()
+    {
+        var item = new RibbonItem
+        {
+            Id = "styles",
+            Label = "Styles",
+            Primitive = RibbonItemPrimitive.Gallery,
+        };
+
+        item.MenuItems.Add(new RibbonMenuItem
+        {
+            Id = "style-normal",
+            Label = "Normal",
+            ShowInRibbonPreview = false,
+            ShowInPopup = true,
+            ShowChevron = true,
+            Order = 0,
+            PopupSectionId = "style-presets",
+            PopupSectionHeader = "Quick Styles",
+            PopupSectionOrder = 0,
+            PopupSectionLayout = RibbonPopupSectionLayout.GalleryWrap,
+        });
+        item.MenuItems.Add(new RibbonMenuItem
+        {
+            Id = "style-heading",
+            Label = "Heading 1",
+            ShowInRibbonPreview = false,
+            ShowInPopup = true,
+            ShowChevron = true,
+            Order = 1,
+            PopupSectionId = "style-presets",
+            PopupSectionOrder = 0,
+            PopupSectionLayout = RibbonPopupSectionLayout.GalleryWrap,
+        });
+        item.MenuItems.Add(new RibbonMenuItem
+        {
+            Id = "style-more",
+            Label = "See More Styles",
+            ShowInRibbonPreview = false,
+            ShowInPopup = true,
+            Order = 10,
+            PopupSectionId = "style-actions",
+            PopupSectionOrder = 1,
+        });
+        item.MenuItems.Add(new RibbonMenuItem
+        {
+            Id = "style-create",
+            Label = "Create New Style",
+            ShowInRibbonPreview = false,
+            ShowInPopup = true,
+            Order = 11,
+            PopupSectionId = "style-actions",
+            PopupSectionOrder = 1,
+        });
+
+        Assert.True(item.HasExplicitPopupMenuSections);
+        Assert.True(item.ShowStructuredPopupMenuSections);
+        Assert.False(item.ShowPopupMenuCategories);
+        Assert.False(item.ShowFlatCategorizedPopupMenuItems);
+        Assert.False(item.ShowUncategorizedPopupMenuItems);
+        Assert.False(item.ShowLegacyPopupMenuItems);
+        Assert.Equal(2, item.PopupMenuSections.Count);
+
+        var presets = item.PopupMenuSections[0];
+        Assert.Equal("style-presets", presets.Id);
+        Assert.Equal("Quick Styles", presets.Header);
+        Assert.True(presets.IsGalleryLayout);
+        Assert.False(presets.ShowSeparator);
+        Assert.Equal(2, presets.Items.Count);
+
+        var actions = item.PopupMenuSections[1];
+        Assert.Equal("style-actions", actions.Id);
+        Assert.True(actions.IsCommandListLayout);
+        Assert.True(actions.ShowSeparator);
+        Assert.Equal(2, actions.Items.Count);
+    }
+
+    [Fact]
+    public void PopupSections_DefaultToSingleCommandSectionWithoutMetadata()
+    {
+        var item = new RibbonItem
+        {
+            Id = "table",
+            Label = "Table",
+            Primitive = RibbonItemPrimitive.MenuButton,
+        };
+
+        item.MenuItems.Add(new RibbonMenuItem
+        {
+            Id = "table-2x2",
+            Label = "2 x 2",
+            ShowInPopup = true,
+            ShowInRibbonPreview = false,
+            Order = 0,
+        });
+        item.MenuItems.Add(new RibbonMenuItem
+        {
+            Id = "table-3x3",
+            Label = "3 x 3",
+            ShowInPopup = true,
+            ShowInRibbonPreview = false,
+            Order = 1,
+        });
+
+        Assert.False(item.HasExplicitPopupMenuSections);
+        Assert.False(item.ShowStructuredPopupMenuSections);
+
+        var section = Assert.Single(item.PopupMenuSections);
+        Assert.Equal("default", section.Id);
+        Assert.True(section.IsCommandListLayout);
+        Assert.False(section.ShowSeparator);
+        Assert.Equal(2, section.Items.Count);
+    }
+
+    [Fact]
     public void SelectingGalleryMenuItem_DeselectsSiblingSelection()
     {
         var item = new RibbonItem
@@ -694,6 +809,37 @@ public class RibbonItemTests
         Assert.Equal(14, runtimeItem.IconMinHeight);
         Assert.Equal(24, runtimeItem.IconMaxWidth);
         Assert.Equal(24, runtimeItem.IconMaxHeight);
+    }
+
+    [Fact]
+    public void ConvertedItem_PreservesPopupSectionMetadataFromViewModel()
+    {
+        var viewModel = new RibbonItemViewModel
+        {
+            Id = "style-gallery",
+            Label = "Styles",
+            Primitive = RibbonItemPrimitive.Gallery,
+        };
+
+        viewModel.MenuItemsViewModel.Add(new RibbonMenuItemViewModel
+        {
+            Id = "style-normal",
+            Label = "Normal",
+            ShowInRibbonPreview = false,
+            ShowInPopup = true,
+            PopupSectionId = "style-presets",
+            PopupSectionHeader = "Quick Styles",
+            PopupSectionOrder = 0,
+            PopupSectionLayout = RibbonPopupSectionLayout.GalleryWrap,
+        });
+
+        var runtimeItem = RibbonModelConverter.ToRibbonItem(viewModel);
+        var menuItem = Assert.Single(runtimeItem.MenuItems);
+
+        Assert.Equal("style-presets", menuItem.PopupSectionId);
+        Assert.Equal("Quick Styles", menuItem.PopupSectionHeader);
+        Assert.Equal(0, menuItem.PopupSectionOrder);
+        Assert.Equal(RibbonPopupSectionLayout.GalleryWrap, menuItem.PopupSectionLayout);
     }
 
     [Fact]
