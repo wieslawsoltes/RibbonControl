@@ -77,11 +77,22 @@ public class MainWindowViewModel : RibbonObservableObject
         "new-comment",
         "track-changes",
         "read-mode",
+        "separate-pages",
+        "immersive-reader",
         "print-layout",
         "web-layout",
         "ruler",
         "navigation-pane",
         "zoom",
+        "zoom-100",
+        "zoom-level-50",
+        "zoom-level-75",
+        "zoom-level-100",
+        "zoom-level-125",
+        "zoom-level-150",
+        "view-footnotes",
+        "view-endnotes",
+        "dark-mode",
         "new-window",
         "side-by-side",
         "help",
@@ -160,6 +171,12 @@ public class MainWindowViewModel : RibbonObservableObject
         var catalog = new DictionaryRibbonCommandCatalog();
         foreach (var commandId in WordCommandIds)
         {
+            if (IsViewCommandDisabled(commandId))
+            {
+                catalog.Register(commandId, new RelayCommand(_ => { }, _ => false));
+                continue;
+            }
+
             catalog.Register(commandId, new RelayCommand(_ => Status = $"{ToDisplay(commandId)} executed"));
         }
 
@@ -510,6 +527,9 @@ public class MainWindowViewModel : RibbonObservableObject
 
         Status = "Seeded Word-like state profile. Run Load State to apply it.";
     }
+
+    private static bool IsViewCommandDisabled(string commandId)
+        => commandId is "view-footnotes" or "view-endnotes";
 
     private static IEnumerable<RibbonTabViewModel> BuildWordTabs()
     {
@@ -918,19 +938,41 @@ public class MainWindowViewModel : RibbonObservableObject
             "view",
             "View",
             6,
-            Group("views", "Views", 0,
-                Item("read-mode", "Read Mode", FluentIconData.Copy20Regular, 0, "read-mode", "RM", "Switch to read mode"),
-                Item("print-layout", "Print Layout", FluentIconData.ChartMultiple20Regular, 1, "print-layout", "PL", "Switch to print layout"),
-                Item("web-layout", "Web Layout", FluentIconData.Share20Regular, 2, "web-layout", "WL", "Switch to web layout")),
-            Group("show", "Show", 1,
-                Item("ruler", "Ruler", FluentIconData.Settings20Regular, 0, "ruler", "RU", "Show or hide ruler", isToggle: true),
-                Item("navigation-pane", "Navigation Pane", FluentIconData.FolderOpen20Regular, 1, "navigation-pane", "NP", "Toggle navigation pane", isToggle: true),
-                Item("header-footer", "Header & Footer", FluentIconData.Copy20Regular, 2, "header", "HF", "Toggle header and footer markers", isToggle: true)),
-            Group("zoom", "Zoom", 2,
-                Item("zoom", "Zoom", FluentIconData.ChartMultiple20Regular, 0, "zoom", "ZM", "Adjust zoom")),
-            Group("window", "Window", 3,
-                Item("new-window", "New Window", FluentIconData.Copy20Regular, 0, "new-window", "NW", "Open in new window"),
-                Item("side-by-side", "Side by Side", FluentIconData.Share20Regular, 1, "side-by-side", "SB", "View side by side")));
+            Group("document-views", "Document Views", 0,
+                Item("separate-pages", "Separate Pages", FluentIconData.Document20Regular, 0, "separate-pages", "SP", "View document as separate pages"),
+                Item("read-mode", "Reading View", FluentIconData.Copy20Regular, 1, "read-mode", "RV", "Switch to reading view"),
+                Item("immersive-reader", "Immersive Reader", FluentIconData.Mic20Regular, 2, "immersive-reader", "IR", "Open immersive reader tools")),
+            Group(
+                "zoom",
+                "Zoom",
+                1,
+                RibbonGroupHeaderPlacement.Bottom,
+                RibbonGroupItemsLayoutMode.Docked,
+                2,
+                RibbonGroupDockedCenterLayoutMode.Horizontal,
+                Item("zoom", "Zoom:", FluentIconData.Search20Regular, 0, "zoom", "ZM", "Open zoom options", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Left),
+                ComboBoxItem("zoom-level", "Zoom Level", RibbonItemSize.Small, 1, "zoom-level-100", "ZL", "Choose zoom percentage", RibbonItemLayoutDock.Center,
+                    ComboEntry("zoom-level-50", "50%", 0, "zoom-level-50"),
+                    ComboEntry("zoom-level-75", "75%", 1, "zoom-level-75"),
+                    ComboEntry("zoom-level-100", "100%", 2, "zoom-level-100", isSelected: true),
+                    ComboEntry("zoom-level-125", "125%", 3, "zoom-level-125"),
+                    ComboEntry("zoom-level-150", "150%", 4, "zoom-level-150")),
+                Item("zoom-100", "100%", string.Empty, 2, "zoom-100", "1", "Set zoom to 100%", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center)),
+            Group(
+                "show",
+                "Show",
+                2,
+                RibbonGroupHeaderPlacement.Bottom,
+                RibbonGroupItemsLayoutMode.Docked,
+                3,
+                RibbonGroupDockedCenterLayoutMode.Horizontal,
+                Item("ruler", "Ruler", FluentIconData.Settings20Regular, 0, "ruler", "RU", "Show or hide ruler", layoutDock: RibbonItemLayoutDock.Left),
+                Item("navigation-pane", "Navigation", FluentIconData.FolderOpen20Regular, 1, "navigation-pane", "NP", "Toggle navigation pane", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
+                Item("header-footer", "Header & Footer", FluentIconData.Copy20Regular, 2, "header", "HF", "Show or hide header and footer markers", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
+                Item("view-footnotes", "Footnotes", FluentIconData.TextNumberList20Regular, 3, "view-footnotes", "FN", "Show footnotes in the current view", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
+                Item("view-endnotes", "Endnotes", FluentIconData.Document20Regular, 4, "view-endnotes", "EN", "Show endnotes in the current view", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center)),
+            Group("dark-mode", "Dark Mode", 3,
+                Item("dark-mode", "Dark Mode", FluentIconData.ChartMultiple20Regular, 0, "dark-mode", "DM", "Toggle page and canvas dark mode")));
 
     private static RibbonTabViewModel BuildHelpTab()
         => Tab(

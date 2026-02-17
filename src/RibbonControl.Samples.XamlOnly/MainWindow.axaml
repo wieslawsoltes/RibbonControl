@@ -1342,22 +1342,97 @@
       </ribbon:RibbonTab>
 
       <ribbon:RibbonTab Id="view" Header="View" Order="6">
-        <ribbon:RibbonGroup Id="views" Header="Views" Order="0">
-          <ribbon:RibbonItem Id="read-mode" Label="Read Mode" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="read-mode" KeyTip="RM" ScreenTip="Switch to read mode" />
-          <ribbon:RibbonItem Id="print-layout" Label="Print Layout" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="print-layout" KeyTip="PL" ScreenTip="Switch to print layout" />
-          <ribbon:RibbonItem Id="web-layout" Label="Web Layout" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="web-layout" KeyTip="WL" ScreenTip="Switch to web layout" />
+        <ribbon:RibbonGroup Id="document-views" Header="Document Views" Order="0">
+          <ribbon:RibbonItem Id="separate-pages" Label="Separate Pages" IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}" CommandId="separate-pages" KeyTip="SP" ScreenTip="View document as separate pages" />
+          <ribbon:RibbonItem Id="read-mode" Label="Reading View" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="read-mode" KeyTip="RV" ScreenTip="Switch to reading view" />
+          <ribbon:RibbonItem Id="immersive-reader" Label="Immersive Reader" IconPathData="{x:Static ribbon:FluentIconData.Mic20Regular}" CommandId="immersive-reader" KeyTip="IR" ScreenTip="Open immersive reader tools" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="show" Header="Show" Order="1">
-          <ribbon:RibbonItem Id="ruler" Label="Ruler" IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}" IsToggle="True" IsChecked="True" CommandId="ruler" KeyTip="RU" ScreenTip="Show or hide ruler" />
-          <ribbon:RibbonItem Id="navigation-pane" Label="Navigation Pane" IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}" IsToggle="True" CommandId="navigation-pane" KeyTip="NP" ScreenTip="Toggle navigation pane" />
-          <ribbon:RibbonItem Id="header-footer" Label="Header &amp; Footer" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" IsToggle="True" CommandId="header" KeyTip="HF" ScreenTip="Toggle header and footer markers" />
+        <ribbon:RibbonGroup Id="zoom"
+                            Header="Zoom"
+                            Order="1"
+                            ItemsLayoutMode="Docked"
+                            DockedCenterLayoutMode="Horizontal"
+                            StackedRows="2">
+          <ribbon:RibbonItem Id="zoom"
+                             Label="Zoom:"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.Search20Regular}"
+                             CommandId="zoom"
+                             KeyTip="ZM"
+                             ScreenTip="Open zoom options"
+                             LayoutDock="Left" />
+          <ribbon:RibbonItem Id="zoom-level"
+                             Label="Zoom Level"
+                             Primitive="ComboBox"
+                             Size="Small"
+                             SelectedMenuItemId="zoom-level-100"
+                             KeyTip="ZL"
+                             ScreenTip="Choose zoom percentage"
+                             LayoutDock="Center">
+            <ribbon:RibbonItem.MenuItems>
+              <ribbon:RibbonMenuItem Id="zoom-level-50" Label="50%" CommandId="zoom-level-50" Order="0" />
+              <ribbon:RibbonMenuItem Id="zoom-level-75" Label="75%" CommandId="zoom-level-75" Order="1" />
+              <ribbon:RibbonMenuItem Id="zoom-level-100" Label="100%" CommandId="zoom-level-100" IsSelected="True" Order="2" />
+              <ribbon:RibbonMenuItem Id="zoom-level-125" Label="125%" CommandId="zoom-level-125" Order="3" />
+              <ribbon:RibbonMenuItem Id="zoom-level-150" Label="150%" CommandId="zoom-level-150" Order="4" />
+            </ribbon:RibbonItem.MenuItems>
+          </ribbon:RibbonItem>
+          <ribbon:RibbonItem Id="zoom-100"
+                             Label="100%"
+                             Size="Small"
+                             CommandId="zoom-100"
+                             KeyTip="1"
+                             ScreenTip="Set zoom to 100%"
+                             LayoutDock="Center" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="zoom" Header="Zoom" Order="2">
-          <ribbon:RibbonItem Id="zoom" Label="Zoom" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="zoom" KeyTip="ZM" ScreenTip="Adjust zoom" />
+        <ribbon:RibbonGroup Id="show"
+                            Header="Show"
+                            Order="2"
+                            ItemsLayoutMode="Docked"
+                            DockedCenterLayoutMode="Horizontal"
+                            StackedRows="3">
+          <ribbon:RibbonItem Id="ruler"
+                             Label="Ruler"
+                             IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
+                             CommandId="ruler"
+                             KeyTip="RU"
+                             ScreenTip="Show or hide ruler"
+                             LayoutDock="Left" />
+          <ribbon:RibbonItem Id="navigation-pane"
+                             Label="Navigation"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.FolderOpen20Regular}"
+                             CommandId="navigation-pane"
+                             KeyTip="NP"
+                             ScreenTip="Toggle navigation pane"
+                             LayoutDock="Center" />
+          <ribbon:RibbonItem Id="header-footer"
+                             Label="Header &amp; Footer"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
+                             CommandId="header"
+                             KeyTip="HF"
+                             ScreenTip="Show or hide header and footer markers"
+                             LayoutDock="Center" />
+          <ribbon:RibbonItem Id="view-footnotes"
+                             Label="Footnotes"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
+                             CommandId="view-footnotes"
+                             KeyTip="FN"
+                             ScreenTip="Show footnotes in the current view"
+                             LayoutDock="Center" />
+          <ribbon:RibbonItem Id="view-endnotes"
+                             Label="Endnotes"
+                             Size="Small"
+                             IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                             CommandId="view-endnotes"
+                             KeyTip="EN"
+                             ScreenTip="Show endnotes in the current view"
+                             LayoutDock="Center" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="window" Header="Window" Order="3">
-          <ribbon:RibbonItem Id="new-window" Label="New Window" IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}" CommandId="new-window" KeyTip="NW" ScreenTip="Open in new window" />
-          <ribbon:RibbonItem Id="side-by-side" Label="Side by Side" IconPathData="{x:Static ribbon:FluentIconData.Share20Regular}" CommandId="side-by-side" KeyTip="SB" ScreenTip="View side by side" />
+        <ribbon:RibbonGroup Id="dark-mode" Header="Dark Mode" Order="3">
+          <ribbon:RibbonItem Id="dark-mode" Label="Dark Mode" IconPathData="{x:Static ribbon:FluentIconData.ChartMultiple20Regular}" CommandId="dark-mode" KeyTip="DM" ScreenTip="Toggle page and canvas dark mode" />
         </ribbon:RibbonGroup>
       </ribbon:RibbonTab>
 

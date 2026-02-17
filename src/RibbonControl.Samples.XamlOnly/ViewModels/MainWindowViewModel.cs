@@ -75,11 +75,22 @@ public class MainWindowViewModel : RibbonObservableObject
         "new-comment",
         "track-changes",
         "read-mode",
+        "separate-pages",
+        "immersive-reader",
         "print-layout",
         "web-layout",
         "ruler",
         "navigation-pane",
         "zoom",
+        "zoom-100",
+        "zoom-level-50",
+        "zoom-level-75",
+        "zoom-level-100",
+        "zoom-level-125",
+        "zoom-level-150",
+        "view-footnotes",
+        "view-endnotes",
+        "dark-mode",
         "new-window",
         "side-by-side",
         "help",
@@ -160,6 +171,12 @@ public class MainWindowViewModel : RibbonObservableObject
 
         foreach (var commandId in WordCommandIds)
         {
+            if (IsViewCommandDisabled(commandId))
+            {
+                catalog.Register(commandId, new RelayCommand(_ => { }, _ => false));
+                continue;
+            }
+
             catalog.Register(commandId, new RelayCommand(_ => Status = $"{ToDisplay(commandId)} executed"));
         }
 
@@ -351,6 +368,9 @@ public class MainWindowViewModel : RibbonObservableObject
 
         Status = "Seeded Word-like state profile. Run Load State to apply it.";
     }
+
+    private static bool IsViewCommandDisabled(string commandId)
+        => commandId is "view-footnotes" or "view-endnotes";
 
     private static string ToDisplay(string commandId)
         => commandId.Replace("-", " ", StringComparison.Ordinal);
