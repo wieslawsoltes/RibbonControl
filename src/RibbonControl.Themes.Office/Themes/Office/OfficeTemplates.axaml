@@ -5,7 +5,7 @@
         xmlns:models="using:RibbonControl.Core.Models">
 <DataTemplate x:Key="OfficeRibbonTabHeaderTemplate" DataType="models:RibbonTab">
       <StackPanel Spacing="2"
-                  Margin="8,2,8,1">
+                  Margin="6,2,6,1">
         <Border Height="2"
                 CornerRadius="1"
                 IsVisible="{CompiledBinding IsContextual}"
@@ -14,9 +14,8 @@
                    Tag="{CompiledBinding Id, StringFormat='tab:{0}'}"
                    AutomationProperties.Name="{CompiledBinding Header}"
                    AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Tab.{0}'}"
-                   Margin="2,2,2,1"
-                   FontSize="13"
-                   FontWeight="SemiBold"
+                   Margin="1,1,1,1"
+                   FontSize="12"
                    Foreground="{CompiledBinding ContextGroupAccentColor, TargetNullValue={DynamicResource RibbonOfficeTextBrush}}" />
       </StackPanel>
     </DataTemplate>
