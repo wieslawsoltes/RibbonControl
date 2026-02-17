@@ -1,0 +1,13 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="avares://RibbonControl.Core/Themes/Generic/GenericTokens.axaml" />
+        <MergeResourceInclude Source="avares://RibbonControl.Core/Themes/Generic/GenericTemplates.axaml" />
+        <MergeResourceInclude Source="avares://RibbonControl.Core/Themes/Generic/GenericControlThemes.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+  <StyleInclude Source="avares://RibbonControl.Core/Themes/Generic/GenericStyles.axaml" />
+</Styles>

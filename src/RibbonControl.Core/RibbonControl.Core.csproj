@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
+    <RootNamespace>RibbonControl.Core</RootNamespace>
+    <AssemblyName>RibbonControl.Core</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>RibbonControl.Core</PackageId>
+    <Description>XAML-first, MVVM-first, hybrid-ready Ribbon control for Avalonia.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Include="Themes/**/*.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="RibbonControl.Core.Tests" />
+    <InternalsVisibleTo Include="RibbonControl.Headless.Tests" />
+  </ItemGroup>
+</Project>

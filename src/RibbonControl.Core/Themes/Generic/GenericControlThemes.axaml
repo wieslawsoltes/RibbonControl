@@ -1,0 +1,466 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:RibbonControl.Core.Controls">
+  <ControlTheme x:Key="{x:Type controls:RibbonIconPresenter}" TargetType="controls:RibbonIconPresenter">
+    <Setter Property="OverlayWidth" Value="10" />
+    <Setter Property="OverlayHeight" Value="10" />
+    <Setter Property="OverlayHorizontalAlignment" Value="Right" />
+    <Setter Property="OverlayVerticalAlignment" Value="Bottom" />
+    <Setter Property="OverlayMargin" Value="0" />
+    <Setter Property="OverlayCountHorizontalAlignment" Value="Right" />
+    <Setter Property="OverlayCountVerticalAlignment" Value="Bottom" />
+    <Setter Property="OverlayCountMargin" Value="0" />
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="controls:RibbonIconPresenter">
+        <Grid ClipToBounds="False">
+          <Border Width="{TemplateBinding IconWidth}"
+                  Height="{TemplateBinding IconHeight}"
+                  MinWidth="{TemplateBinding IconMinWidth}"
+                  MinHeight="{TemplateBinding IconMinHeight}"
+                  MaxWidth="{TemplateBinding IconMaxWidth}"
+                  MaxHeight="{TemplateBinding IconMaxHeight}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+            <Viewbox Stretch="{TemplateBinding IconStretch}"
+                     StretchDirection="{TemplateBinding IconStretchDirection}"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+              <ContentPresenter Content="{CompiledBinding ResolvedIconContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center" />
+            </Viewbox>
+          </Border>
+
+          <Border x:Name="PART_OverlayHost"
+                  Width="{TemplateBinding OverlayWidth}"
+                  Height="{TemplateBinding OverlayHeight}"
+                  MinWidth="{TemplateBinding OverlayMinWidth}"
+                  MinHeight="{TemplateBinding OverlayMinHeight}"
+                  MaxWidth="{TemplateBinding OverlayMaxWidth}"
+                  MaxHeight="{TemplateBinding OverlayMaxHeight}"
+                  HorizontalAlignment="{TemplateBinding OverlayHorizontalAlignment}"
+                  VerticalAlignment="{TemplateBinding OverlayVerticalAlignment}"
+                  Margin="{TemplateBinding OverlayMargin}"
+                  IsVisible="{CompiledBinding HasOverlay, RelativeSource={RelativeSource TemplatedParent}}">
+            <Viewbox Stretch="{TemplateBinding OverlayStretch}"
+                     StretchDirection="{TemplateBinding OverlayStretchDirection}"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+              <ContentPresenter Content="{CompiledBinding ResolvedOverlayContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center" />
+            </Viewbox>
+          </Border>
+
+          <Border x:Name="PART_OverlayCountBadge"
+                  Background="{DynamicResource RibbonIconOverlayBadgeBackgroundBrush}"
+                  BorderBrush="{DynamicResource RibbonIconOverlayBadgeBorderBrush}"
+                  BorderThickness="1"
+                  CornerRadius="8"
+                  Padding="4,0"
+                  MinWidth="14"
+                  Height="14"
+                  HorizontalAlignment="{TemplateBinding OverlayCountHorizontalAlignment}"
+                  VerticalAlignment="{TemplateBinding OverlayCountVerticalAlignment}"
+                  Margin="{TemplateBinding OverlayCountMargin}"
+                  IsVisible="{CompiledBinding HasOverlayCount, RelativeSource={RelativeSource TemplatedParent}}">
+            <TextBlock Text="{CompiledBinding ResolvedOverlayCountText, RelativeSource={RelativeSource TemplatedParent}}"
+                       Foreground="{DynamicResource RibbonIconOverlayBadgeForegroundBrush}"
+                       FontSize="9"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center" />
+          </Border>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type controls:RibbonQuickAccessToolBar}" TargetType="controls:RibbonQuickAccessToolBar">
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Horizontal" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="ItemTemplate" Value="{DynamicResource RibbonThemeQuickAccessItemTemplate}" />
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type controls:RibbonContextualTabBand}" TargetType="controls:RibbonContextualTabBand">
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Horizontal" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="ItemTemplate" Value="{DynamicResource RibbonThemeContextGroupTemplate}" />
+    <Setter Property="ItemsSource" Value="{Binding ContextGroups, RelativeSource={RelativeSource Self}}" />
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type controls:RibbonBackstage}" TargetType="controls:RibbonBackstage">
+    <Setter Property="ItemTemplate" Value="{DynamicResource RibbonThemeBackstageNavigationItemTemplate}" />
+    <Setter Property="NavigationPaneWidth" Value="{DynamicResource RibbonThemeBackstageNavigationPaneWidth}" />
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="controls:RibbonBackstage">
+        <Grid ColumnDefinitions="Auto,*">
+          <Border Grid.Column="0"
+                  Background="{DynamicResource RibbonThemeBackstagePanelBackgroundBrush}"
+                  BorderBrush="{DynamicResource RibbonThemeBackstagePanelBorderBrush}"
+                  BorderThickness="{DynamicResource RibbonThemeBackstagePanelBorderThickness}"
+                  Width="{TemplateBinding NavigationPaneWidth}">
+            <Grid RowDefinitions="Auto,*,Auto">
+              <ContentPresenter Grid.Row="0"
+                                Classes="ribbon-backstage-header-host"
+                                Content="{TemplateBinding HeaderContent}"
+                                ContentTemplate="{TemplateBinding HeaderContentTemplate}" />
+              <ListBox Grid.Row="1"
+                       Classes="ribbon-backstage-nav-list"
+                       ItemsSource="{TemplateBinding ItemsSource}"
+                       ItemTemplate="{TemplateBinding ItemTemplate}"
+                       SelectedItem="{CompiledBinding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+              <ContentPresenter Grid.Row="2"
+                                Classes="ribbon-backstage-footer-host"
+                                Content="{TemplateBinding FooterContent}"
+                                ContentTemplate="{TemplateBinding FooterContentTemplate}" />
+            </Grid>
+          </Border>
+          <Border Grid.Column="1"
+                  Classes="ribbon-backstage-detail-host"
+                  Background="{DynamicResource RibbonThemeSurfaceBrush}">
+            <ContentPresenter Content="{TemplateBinding SelectedContent}"
+                              ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+          </Border>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="RibbonTabItemTheme" TargetType="TabItem">
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="Background" Value="{DynamicResource RibbonThemeTabHeaderBackgroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource RibbonThemeTabHeaderForegroundBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeTabHeaderBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource RibbonThemeTabItemCornerRadius}" />
+    <Setter Property="Padding" Value="{DynamicResource RibbonThemeTabItemPadding}" />
+    <Setter Property="Margin" Value="{DynamicResource RibbonThemeTabItemMargin}" />
+    <Setter Property="MinHeight" Value="{DynamicResource RibbonThemeTabItemMinHeight}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_LayoutRoot"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <Panel>
+            <ContentPresenter Name="PART_ContentPresenter"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}" />
+            <Border Name="PART_SelectedPipe"
+                    Background="{DynamicResource RibbonThemeTabSelectedPipeBrush}"
+                    CornerRadius="1"
+                    IsVisible="False" />
+          </Panel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="RecognizesAccessKey" Value="True" />
+    </Style>
+
+    <Style Selector="^:selected">
+      <Setter Property="Background" Value="{DynamicResource RibbonThemeTabHeaderBackgroundSelectedBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource RibbonThemeTabHeaderForegroundBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeTabHeaderBorderSelectedBrush}" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="^:selected /template/ Border#PART_SelectedPipe">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="^:pointerover /template/ Border#PART_LayoutRoot">
+      <Setter Property="Background" Value="{DynamicResource RibbonThemeTabHeaderBackgroundPointerOverBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeTabHeaderBorderPointerOverBrush}" />
+    </Style>
+
+    <Style Selector="^:selected:pointerover /template/ Border#PART_LayoutRoot">
+      <Setter Property="Background" Value="{DynamicResource RibbonThemeTabHeaderBackgroundSelectedBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeTabHeaderBorderSelectedBrush}" />
+    </Style>
+
+    <Style Selector="^:pressed /template/ Border#PART_LayoutRoot">
+      <Setter Property="Background" Value="{DynamicResource RibbonThemeTabHeaderBackgroundPressedBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeTabHeaderBorderSelectedBrush}" />
+    </Style>
+
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource RibbonThemeTabHeaderForegroundDisabledBrush}" />
+      <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Left] /template/ Border#PART_SelectedPipe">
+      <Setter Property="Width" Value="{DynamicResource RibbonThemeTabSelectedPipeVerticalThickness}" />
+      <Setter Property="Height" Value="18" />
+      <Setter Property="Margin" Value="0,0,2,0" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Right] /template/ Border#PART_SelectedPipe">
+      <Setter Property="Width" Value="{DynamicResource RibbonThemeTabSelectedPipeVerticalThickness}" />
+      <Setter Property="Height" Value="18" />
+      <Setter Property="Margin" Value="2,0,0,0" />
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_SelectedPipe, ^[TabStripPlacement=Bottom] /template/ Border#PART_SelectedPipe">
+      <Setter Property="Height" Value="{DynamicResource RibbonThemeTabSelectedPipeHorizontalThickness}" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="Margin" Value="{DynamicResource RibbonThemeTabSelectedPipeDefaultMargin}" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Bottom] /template/ Border#PART_SelectedPipe">
+      <Setter Property="VerticalAlignment" Value="Top" />
+      <Setter Property="Margin" Value="0,1,0,0" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Left] /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Margin" Value="8,0,0,0" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Right] /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Margin" Value="0,0,8,0" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="RibbonTabControlTheme" TargetType="TabControl">
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Background" Value="{DynamicResource RibbonThemeTabStripBackgroundBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="ItemContainerTheme" Value="{StaticResource RibbonTabItemTheme}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}">
+          <DockPanel LastChildFill="True">
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            DockPanel.Dock="{TemplateBinding TabStripPlacement}" />
+            <Border Name="PART_SelectedContentBorder"
+                    Background="{DynamicResource RibbonThemeSurfaceBrush}">
+              <ContentPresenter Name="PART_SelectedContentHost"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding SelectedContent}"
+                                ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+            </Border>
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+      <Setter Property="Orientation" Value="Vertical" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+      <Setter Property="Orientation" Value="Vertical" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="Margin" Value="{DynamicResource RibbonThemeTabItemsPresenterMargin}" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="Margin" Value="{DynamicResource RibbonThemeTabItemsPresenterMargin}" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_SelectedContentBorder">
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+      <Setter Property="BorderThickness" Value="0,1,0,0" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Bottom] /template/ Border#PART_SelectedContentBorder">
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+      <Setter Property="BorderThickness" Value="0,0,0,1" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Left] /template/ Border#PART_SelectedContentBorder">
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1,0,0,0" />
+    </Style>
+
+    <Style Selector="^[TabStripPlacement=Right] /template/ Border#PART_SelectedContentBorder">
+      <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+      <Setter Property="BorderThickness" Value="0,0,1,0" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type controls:Ribbon}" TargetType="controls:Ribbon">
+    <Setter Property="Background" Value="{DynamicResource RibbonThemeChromeBackgroundBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <Grid RowDefinitions="Auto,Auto,Auto,*,Auto">
+            <DockPanel x:Name="PART_TopBar"
+                       Grid.Row="0"
+                       LastChildFill="True"
+                       Background="{DynamicResource RibbonThemeTopRowBackgroundBrush}"
+                       Margin="{DynamicResource RibbonThemeTopBarMargin}">
+              <ContentPresenter x:Name="PART_TopBarStartContentHost"
+                                DockPanel.Dock="Left"
+                                Margin="{DynamicResource RibbonThemeTopBarStartContentMargin}"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding TopBarStartContent}"
+                                ContentTemplate="{TemplateBinding TopBarStartContentTemplate}" />
+              <ContentPresenter x:Name="PART_TopBarEndContentHost"
+                                DockPanel.Dock="Right"
+                                Margin="{DynamicResource RibbonThemeTopBarEndContentMargin}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding TopBarEndContent}"
+                                ContentTemplate="{TemplateBinding TopBarEndContentTemplate}" />
+              <ContentPresenter x:Name="PART_TopBarCenterContentHost"
+                                Margin="{DynamicResource RibbonThemeTopBarCenterContentMargin}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding TopBarCenterContent}"
+                                ContentTemplate="{TemplateBinding TopBarCenterContentTemplate}" />
+            </DockPanel>
+
+            <controls:RibbonContextualTabBand x:Name="PART_ContextualTabBand"
+                                              Grid.Row="1"
+                                              IsVisible="False"
+                                              Margin="{DynamicResource RibbonThemeContextualBandMargin}" />
+
+            <DockPanel x:Name="PART_QuickAccessTopRow"
+                       Grid.Row="2"
+                       LastChildFill="True"
+                       Background="{DynamicResource RibbonThemeQuickAccessRowBackgroundBrush}"
+                       Margin="{DynamicResource RibbonThemeQuickAccessRowMargin}">
+              <ContentPresenter x:Name="PART_HeaderStartContentHost"
+                                DockPanel.Dock="Left"
+                                Margin="{DynamicResource RibbonThemeHeaderStartContentMargin}"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding HeaderStartContent}"
+                                ContentTemplate="{TemplateBinding HeaderStartContentTemplate}" />
+              <Button x:Name="PART_BackstageButtonTop"
+                      DockPanel.Dock="Left"
+                      AutomationProperties.Name="File"
+                      AutomationProperties.AutomationId="Ribbon.Backstage.Top"
+                      Tag="__backstage"
+                      Focusable="True"
+                      IsTabStop="True"
+                      TabIndex="0"
+                      Content="File"
+                      Command="{TemplateBinding ToggleBackstageCommand}"
+                      MinWidth="56"
+                      Margin="{DynamicResource RibbonThemeBackstageButtonMargin}" />
+              <ContentPresenter x:Name="PART_HeaderEndContentHost"
+                                DockPanel.Dock="Right"
+                                Margin="{DynamicResource RibbonThemeHeaderEndContentMargin}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding HeaderEndContent}"
+                                ContentTemplate="{TemplateBinding HeaderEndContentTemplate}" />
+              <controls:RibbonQuickAccessToolBar x:Name="PART_QuickAccessTop"
+                                                 AutomationProperties.Name="Quick Access Toolbar"
+                                                 AutomationProperties.AutomationId="Ribbon.Qat.Top"
+                                                 DockPanel.Dock="Right"
+                                                 HorizontalAlignment="Right" />
+            </DockPanel>
+
+            <TabControl x:Name="PART_TabControl"
+                        Theme="{StaticResource RibbonTabControlTheme}"
+                        AutomationProperties.Name="Ribbon Tabs"
+                        AutomationProperties.AutomationId="Ribbon.Tabs"
+                        Focusable="True"
+                        IsTabStop="True"
+                        TabIndex="1"
+                        Grid.Row="3"
+                        ItemTemplate="{DynamicResource RibbonThemeTabHeaderTemplate}"
+                        ContentTemplate="{DynamicResource RibbonThemeTabContentTemplate}" />
+
+            <Border x:Name="PART_MinimizedDropDownHost"
+                    AutomationProperties.Name="Ribbon Minimized DropDown"
+                    AutomationProperties.AutomationId="Ribbon.Minimized.DropDown"
+                    Grid.Row="3"
+                    IsVisible="False"
+                    Background="{DynamicResource RibbonThemeMinimizedDropDownBackgroundBrush}"
+                    BorderBrush="{DynamicResource RibbonThemeMinimizedDropDownBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{DynamicResource RibbonThemeMinimizedDropDownCornerRadius}"
+                    Margin="{DynamicResource RibbonThemeMinimizedDropDownMargin}"
+                    ZIndex="950">
+              <ContentPresenter x:Name="PART_MinimizedDropDownContentHost"
+                                Content="{TemplateBinding SelectedTab}"
+                                ContentTemplate="{DynamicResource RibbonThemeTabContentTemplate}"
+                                Margin="2" />
+            </Border>
+
+            <DockPanel x:Name="PART_QuickAccessBottomRow"
+                       Grid.Row="4"
+                       LastChildFill="True"
+                       Background="{DynamicResource RibbonThemeQuickAccessRowBackgroundBrush}"
+                       Margin="{DynamicResource RibbonThemeBottomQuickAccessRowMargin}"
+                       IsVisible="False">
+              <Button x:Name="PART_BackstageButtonBottom"
+                      DockPanel.Dock="Left"
+                      AutomationProperties.Name="File"
+                      AutomationProperties.AutomationId="Ribbon.Backstage.Bottom"
+                      Tag="__backstage"
+                      Focusable="True"
+                      IsTabStop="True"
+                      TabIndex="0"
+                      Content="File"
+                      Command="{TemplateBinding ToggleBackstageCommand}"
+                      MinWidth="56"
+                      Margin="{DynamicResource RibbonThemeBackstageButtonMargin}" />
+              <controls:RibbonQuickAccessToolBar x:Name="PART_QuickAccessBottom"
+                                                 AutomationProperties.Name="Quick Access Toolbar"
+                                                 AutomationProperties.AutomationId="Ribbon.Qat.Bottom"
+                                                 DockPanel.Dock="Right"
+                                                 HorizontalAlignment="Right" />
+            </DockPanel>
+
+            <Border x:Name="PART_BackstageHost"
+                    AutomationProperties.Name="Backstage Overlay"
+                    AutomationProperties.AutomationId="Ribbon.Backstage.Overlay"
+                    Grid.Row="3"
+                    Grid.RowSpan="2"
+                    IsVisible="False"
+                    Background="{DynamicResource RibbonThemeOverlayBrush}"
+                    ZIndex="1000">
+              <Border Classes="ribbon-backstage-panel"
+                      Background="{DynamicResource RibbonThemeBackstagePanelBackgroundBrush}"
+                      BorderBrush="{DynamicResource RibbonThemeBackstagePanelBorderBrush}"
+                      BorderThickness="{DynamicResource RibbonThemeBackstagePanelBorderThickness}"
+                      CornerRadius="{DynamicResource RibbonThemeBackstagePanelCornerRadius}"
+                      Width="{DynamicResource RibbonThemeBackstagePanelWidth}"
+                      Margin="{DynamicResource RibbonThemeBackstagePanelMargin}"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top">
+                <ContentPresenter x:Name="PART_BackstageContentHost"
+                                  Margin="{DynamicResource RibbonThemeBackstageContentMargin}" />
+              </Border>
+            </Border>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

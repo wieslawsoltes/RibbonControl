@@ -1,0 +1,342 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:RibbonControl.Core.Controls">
+  <Style Selector="controls|Ribbon /template/ Border.ribbon-popup-surface">
+    <Setter Property="BoxShadow" Value="0 2 8 0 #30000000" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-group-collapsed-toggle">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="Padding" Value="6" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ DockPanel#PART_TopBar">
+    <Setter Property="MinHeight" Value="40" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ StackPanel.ribbon-topbar-shell">
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Spacing" Value="8" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-topbar-launcher">
+    <Setter Property="Padding" Value="5" />
+    <Setter Property="MinWidth" Value="30" />
+    <Setter Property="MinHeight" Value="30" />
+    <Setter Property="CornerRadius" Value="4" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ TextBox.ribbon-topbar-search">
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="MinWidth" Value="360" />
+    <Setter Property="Padding" Value="10,0" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ ContentPresenter.ribbon-backstage-header-host">
+    <Setter Property="Margin" Value="12,12,12,8" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ ContentPresenter.ribbon-backstage-footer-host">
+    <Setter Property="Margin" Value="12,8,12,12" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ Border.ribbon-backstage-detail-host">
+    <Setter Property="Padding" Value="20,16,20,20" />
+    <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeChromeBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1,0,0,0" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ ListBox.ribbon-backstage-nav-list">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="8,0" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ ListBox.ribbon-backstage-nav-list > ListBoxItem">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="Margin" Value="2,1" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ ListBox.ribbon-backstage-nav-list > ListBoxItem:pointerover">
+    <Setter Property="Background" Value="{DynamicResource RibbonGenericHoverBrush}" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ ListBox.ribbon-backstage-nav-list > ListBoxItem:selected">
+    <Setter Property="Background" Value="{DynamicResource RibbonGenericCheckedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource RibbonGenericHoverBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ Border.ribbon-backstage-nav-item">
+    <Setter Property="MinHeight" Value="38" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ TextBlock.ribbon-backstage-nav-label">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ TextBlock.ribbon-backstage-nav-description">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Opacity" Value="0.7" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ TextBlock.ribbon-backstage-nav-gesture">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Opacity" Value="0.75" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ TextBlock.ribbon-backstage-nav-chevron">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="Opacity" Value="0.7" />
+  </Style>
+
+  <Style Selector="controls|RibbonBackstage /template/ Separator.ribbon-backstage-nav-separator">
+    <Setter Property="Height" Value="1" />
+    <Setter Property="Background" Value="{DynamicResource RibbonGenericPopupDividerBrush}" />
+    <Setter Property="Margin" Value="10,6" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-command">
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-command">
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-split-main">
+    <Setter Property="CornerRadius" Value="2,0,0,2" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-split-main-small">
+    <Setter Property="Padding" Value="6,4" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-split-main-icon-only">
+    <Setter Property="CornerRadius" Value="2,0,0,2" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Border.ribbon-split-secondary-host">
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1,0,0,0" />
+    <Setter Property="Margin" Value="-1,0,0,0" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-split-secondary">
+    <Setter Property="CornerRadius" Value="0,2,2,0" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0,1,1,1" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-split-secondary">
+    <Setter Property="CornerRadius" Value="0,2,2,0" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0,1,1,1" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-stacked-split-top">
+    <Setter Property="CornerRadius" Value="2,2,0,0" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1,1,1,0" />
+    <Setter Property="Padding" Value="6,4" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-stacked-split-bottom">
+    <Setter Property="CornerRadius" Value="0,0,2,2" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="6,2" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-stacked-split-bottom">
+    <Setter Property="CornerRadius" Value="0,0,2,2" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Padding" Value="6,2" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-stacked-split-bottom-main">
+    <Setter Property="CornerRadius" Value="0,0,0,2" />
+    <Setter Property="BorderThickness" Value="1,1,0,1" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-stacked-split-bottom-toggle">
+    <Setter Property="CornerRadius" Value="0,0,2,2" />
+    <Setter Property="BorderThickness" Value="0,1,1,1" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle:pointerover">
+    <Setter Property="Background" Value="#EEF4FF" />
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle:checked">
+    <Setter Property="Background" Value="#DCEAFF" />
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-command-icon-only">
+    <Setter Property="MinWidth" Value="36" />
+    <Setter Property="MinHeight" Value="36" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="CornerRadius" Value="4" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ Button.ribbon-command-icon-only-small">
+    <Setter Property="MinWidth" Value="30" />
+    <Setter Property="MinHeight" Value="30" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-icon-only">
+    <Setter Property="MinWidth" Value="36" />
+    <Setter Property="MinHeight" Value="36" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="CornerRadius" Value="4" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-icon-only-small">
+    <Setter Property="MinWidth" Value="30" />
+    <Setter Property="MinHeight" Value="30" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-group-option">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-group-option:pointerover">
+    <Setter Property="Background" Value="#EEF4FF" />
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-group-option:checked">
+    <Setter Property="Background" Value="#DCEAFF" />
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-group-option-large">
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="MinWidth" Value="108" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-toggle-group-option-small">
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="MinWidth" Value="96" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ RadioButton.ribbon-toggle-group-option">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+          <ContentPresenter Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ RadioButton.ribbon-toggle-group-option:pointerover">
+    <Setter Property="Background" Value="#EEF4FF" />
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ RadioButton.ribbon-toggle-group-option:checked">
+    <Setter Property="Background" Value="#DCEAFF" />
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ RadioButton.ribbon-toggle-group-option-large">
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="MinWidth" Value="108" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ RadioButton.ribbon-toggle-group-option-small">
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="MinWidth" Value="96" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ComboBox.ribbon-combo">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="#CED6E5" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="Padding" Value="6,2" />
+    <Setter Property="MinHeight" Value="30" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ComboBox.ribbon-combo:pointerover">
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ComboBox.ribbon-combo:focus-within">
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ComboBox.ribbon-combo-large">
+    <Setter Property="MinWidth" Value="168" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ComboBox.ribbon-combo-small">
+    <Setter Property="MinWidth" Value="84" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-gallery-item">
+    <Setter Property="Background" Value="White" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-gallery-item:pointerover">
+    <Setter Property="Background" Value="#EEF4FF" />
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-gallery-item:checked">
+    <Setter Property="Background" Value="#DCEAFF" />
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="TabControl.ribbon-minimized">
+    <Setter Property="ContentTemplate" Value="{DynamicResource RibbonThemeCollapsedTabContentTemplate}" />
+  </Style>
+</Styles>
