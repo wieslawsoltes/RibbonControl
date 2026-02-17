@@ -1193,7 +1193,7 @@
                             StackedRows="2">
           <ribbon:RibbonItem Id="table-contents"
                              Label="Insert Table of Contents"
-                             IconPathData="{x:Static ribbon:FluentIconData.AppsList20Regular}"
+                             IconPathData="{x:Static ribbon:FluentIconData.DocumentBulletList20Regular}"
                              CommandId="table-contents"
                              KeyTip="TC"
                              ScreenTip="Insert table of contents"
@@ -1223,14 +1223,14 @@
                             StackedRows="3">
           <ribbon:RibbonItem Id="insert-footnote"
                              Label="Insert Footnote"
-                             IconPathData="{x:Static ribbon:FluentIconData.TextNumberList20Regular}"
+                             IconPathData="{x:Static ribbon:FluentIconData.TextFootnote20Regular}"
                              CommandId="insert-footnote"
                              KeyTip="FN"
                              ScreenTip="Insert footnote"
                              LayoutDock="Left" />
           <ribbon:RibbonItem Id="insert-endnote"
                              Label="Insert Endnote"
-                             IconPathData="{x:Static ribbon:FluentIconData.Document20Regular}"
+                             IconPathData="{x:Static ribbon:FluentIconData.DocumentEndnote20Regular}"
                              CommandId="insert-endnote"
                              KeyTip="EN"
                              ScreenTip="Insert endnote"
