@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <EnableAvaloniaXamlCompilation>true</EnableAvaloniaXamlCompilation>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AvaloniaXamlCreateSourceInfo>true</AvaloniaXamlCreateSourceInfo>
+    <AvaloniaXamlVerboseExceptions>true</AvaloniaXamlVerboseExceptions>
+    <AvaloniaVersion>11.3.11</AvaloniaVersion>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+</Project>
