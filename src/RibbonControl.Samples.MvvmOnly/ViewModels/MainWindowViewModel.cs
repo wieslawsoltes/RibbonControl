@@ -551,7 +551,14 @@ public class MainWindowViewModel : RibbonObservableObject
                     "Redo last action",
                     size: RibbonItemSize.Small,
                     displayMode: RibbonItemDisplayMode.IconOnly)),
-            Group("clipboard", "Clipboard", 0,
+            Group(
+                "clipboard",
+                "Clipboard",
+                0,
+                RibbonGroupHeaderPlacement.Bottom,
+                RibbonGroupItemsLayoutMode.Docked,
+                3,
+                RibbonGroupDockedCenterLayoutMode.Vertical,
                 PasteSplitItem(
                     "paste",
                     "Paste",
@@ -560,6 +567,7 @@ public class MainWindowViewModel : RibbonObservableObject
                     "paste",
                     "V",
                     "Paste from clipboard",
+                    RibbonItemLayoutDock.Left,
                     MenuEntryDetailed(
                         "paste-default",
                         "Paste",
@@ -584,27 +592,27 @@ public class MainWindowViewModel : RibbonObservableObject
                         FluentIconData.ArrowSync20Regular,
                         "Match destination formatting",
                         "Option+V")),
-                Item("cut", "Cut", FluentIconData.Settings20Regular, 1, "cut", "X", "Cut selection", size: RibbonItemSize.Small),
-                Item("copy", "Copy", FluentIconData.Copy20Regular, 2, "copy", "C", "Copy selection", size: RibbonItemSize.Small),
-                Item("format-painter", "Format Painter", FluentIconData.Wrench20Regular, 3, "format-painter", "FP", "Copy formatting", size: RibbonItemSize.Small)),
-            Group("font", "Font", 1, RibbonGroupHeaderPlacement.Top,
-                ComboBoxItem("font-family", "Font", RibbonItemSize.Large, 0, "font-family-aptos", "FF", "Choose font family",
+                Item("cut", "Cut", FluentIconData.Settings20Regular, 1, "cut", "X", "Cut selection", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
+                Item("copy", "Copy", FluentIconData.Copy20Regular, 2, "copy", "C", "Copy selection", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
+                Item("format-painter", "Format Painter", FluentIconData.Wrench20Regular, 3, "format-painter", "FP", "Copy formatting", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center)),
+            Group("font", "Font", 1, RibbonGroupHeaderPlacement.Top, RibbonGroupItemsLayoutMode.Docked, 2, RibbonGroupDockedCenterLayoutMode.Horizontal,
+                ComboBoxItem("font-family", "Font", RibbonItemSize.Large, 0, "font-family-aptos", "FF", "Choose font family", RibbonItemLayoutDock.Top,
                     ComboEntry("font-family-aptos", "Aptos (Body)", 0, "font-family-aptos", isSelected: true),
                     ComboEntry("font-family-calibri", "Calibri", 1, "font-family-calibri"),
                     ComboEntry("font-family-segoe", "Segoe UI", 2, "font-family-segoe")),
-                ComboBoxItem("font-size", "Size", RibbonItemSize.Small, 1, "font-size-12", "FS", "Choose font size",
+                ComboBoxItem("font-size", "Size", RibbonItemSize.Small, 1, "font-size-12", "FS", "Choose font size", RibbonItemLayoutDock.Top,
                     ComboEntry("font-size-10", "10", 0, "font-size-10"),
                     ComboEntry("font-size-11", "11", 1, "font-size-11"),
                     ComboEntry("font-size-12", "12", 2, "font-size-12", isSelected: true),
                     ComboEntry("font-size-14", "14", 3, "font-size-14")),
-                ToggleItem("bold", "B", 2, "bold", "B", "Apply bold formatting", isChecked: true),
-                ToggleItem("italic", "I", 3, "italic", "I", "Apply italic formatting"),
-                ToggleItem("underline", "U", 4, "underline", "U", "Underline text"),
-                ToggleItem("strikethrough", "ab", 5, "strikethrough", "ST", "Apply strikethrough"),
-                ToggleItem("superscript", "x²", 6, "superscript", "SP", "Superscript text"),
-                ToggleItem("font-grow", "A+", 7, "font-grow", "FG", "Grow font size"),
-                ToggleItem("font-shrink", "A-", 8, "font-shrink", "FK", "Shrink font size"),
-                MenuButtonItem("font-color", "Font Color", FluentIconData.Settings20Regular, 9, "font-color", "FC", "Choose font color",
+                ToggleItem("font-grow", "A+", 2, "font-grow", "FG", "Grow font size", layoutDock: RibbonItemLayoutDock.Top),
+                ToggleItem("font-shrink", "A-", 3, "font-shrink", "FK", "Shrink font size", layoutDock: RibbonItemLayoutDock.Top),
+                ToggleItem("bold", "B", 10, "bold", "B", "Apply bold formatting", isChecked: true, layoutDock: RibbonItemLayoutDock.Bottom),
+                ToggleItem("italic", "I", 11, "italic", "I", "Apply italic formatting", layoutDock: RibbonItemLayoutDock.Bottom),
+                ToggleItem("underline", "U", 12, "underline", "U", "Underline text", layoutDock: RibbonItemLayoutDock.Bottom),
+                ToggleItem("strikethrough", "ab", 13, "strikethrough", "ST", "Apply strikethrough", layoutDock: RibbonItemLayoutDock.Bottom),
+                ToggleItem("superscript", "x²", 14, "superscript", "SP", "Superscript text", layoutDock: RibbonItemLayoutDock.Bottom),
+                MenuButtonItem("font-color", "Font Color", FluentIconData.Settings20Regular, 15, "font-color", "FC", "Choose font color", RibbonItemLayoutDock.Bottom,
                     MenuEntryDetailed("font-color-more", "More Colors", 0, "font-color-more", FluentIconData.Settings20Regular))),
             Group("paragraph", "Paragraph", 2, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Stacked, 2,
                 CompactSplitItemWithPopup(
@@ -1075,7 +1083,8 @@ public class MainWindowViewModel : RibbonObservableObject
         string commandId,
         string keyTip,
         string screenTip,
-        bool isChecked = false)
+        bool isChecked = false,
+        RibbonItemLayoutDock layoutDock = RibbonItemLayoutDock.Auto)
         => new()
         {
             Id = id,
@@ -1087,6 +1096,7 @@ public class MainWindowViewModel : RibbonObservableObject
             KeyTip = keyTip,
             ScreenTip = screenTip,
             IsChecked = isChecked,
+            LayoutDock = layoutDock,
         };
 
     private static RibbonItemViewModel ComboBoxItem(
@@ -1097,6 +1107,18 @@ public class MainWindowViewModel : RibbonObservableObject
         string selectedMenuItemId,
         string keyTip,
         string screenTip,
+        params RibbonMenuItemViewModel[] menuItems)
+        => ComboBoxItem(id, label, size, order, selectedMenuItemId, keyTip, screenTip, RibbonItemLayoutDock.Auto, menuItems);
+
+    private static RibbonItemViewModel ComboBoxItem(
+        string id,
+        string label,
+        RibbonItemSize size,
+        int order,
+        string selectedMenuItemId,
+        string keyTip,
+        string screenTip,
+        RibbonItemLayoutDock layoutDock,
         params RibbonMenuItemViewModel[] menuItems)
     {
         var item = new RibbonItemViewModel
@@ -1109,6 +1131,7 @@ public class MainWindowViewModel : RibbonObservableObject
             SelectedMenuItemId = selectedMenuItemId,
             KeyTip = keyTip,
             ScreenTip = screenTip,
+            LayoutDock = layoutDock,
         };
 
         foreach (var menuItem in menuItems)
@@ -1143,6 +1166,18 @@ public class MainWindowViewModel : RibbonObservableObject
         string keyTip,
         string screenTip,
         params RibbonMenuItemViewModel[] menuItems)
+        => PasteSplitItem(id, label, iconPathData, order, commandId, keyTip, screenTip, RibbonItemLayoutDock.Auto, menuItems);
+
+    private static RibbonItemViewModel PasteSplitItem(
+        string id,
+        string label,
+        string iconPathData,
+        int order,
+        string commandId,
+        string keyTip,
+        string screenTip,
+        RibbonItemLayoutDock layoutDock,
+        params RibbonMenuItemViewModel[] menuItems)
     {
         var item = new RibbonItemViewModel
         {
@@ -1154,6 +1189,7 @@ public class MainWindowViewModel : RibbonObservableObject
             CommandId = commandId,
             KeyTip = keyTip,
             ScreenTip = screenTip,
+            LayoutDock = layoutDock,
         };
 
         foreach (var menuItem in menuItems)
@@ -1384,6 +1420,18 @@ public class MainWindowViewModel : RibbonObservableObject
         string keyTip,
         string screenTip,
         params RibbonMenuItemViewModel[] menuItems)
+        => MenuButtonItem(id, label, iconPathData, order, commandId, keyTip, screenTip, RibbonItemLayoutDock.Auto, menuItems);
+
+    private static RibbonItemViewModel MenuButtonItem(
+        string id,
+        string label,
+        string iconPathData,
+        int order,
+        string commandId,
+        string keyTip,
+        string screenTip,
+        RibbonItemLayoutDock layoutDock,
+        params RibbonMenuItemViewModel[] menuItems)
     {
         var item = new RibbonItemViewModel
         {
@@ -1395,6 +1443,7 @@ public class MainWindowViewModel : RibbonObservableObject
             CommandId = commandId,
             KeyTip = keyTip,
             ScreenTip = screenTip,
+            LayoutDock = layoutDock,
         };
 
         foreach (var menuItem in menuItems)

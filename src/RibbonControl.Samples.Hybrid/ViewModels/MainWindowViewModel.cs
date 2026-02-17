@@ -566,7 +566,14 @@ public class MainWindowViewModel : RibbonObservableObject
                     "Redo last action",
                     size: RibbonItemSize.Small,
                     displayMode: RibbonItemDisplayMode.IconOnly)),
-            Group("clipboard", "Clipboard", 0,
+            Group(
+                "clipboard",
+                "Clipboard",
+                0,
+                RibbonGroupHeaderPlacement.Bottom,
+                RibbonGroupItemsLayoutMode.Docked,
+                3,
+                RibbonGroupDockedCenterLayoutMode.Vertical,
                 PasteSplitItem(
                     "paste",
                     "Paste",
@@ -575,6 +582,7 @@ public class MainWindowViewModel : RibbonObservableObject
                     "paste",
                     "V",
                     "Paste from clipboard (dynamic metadata path)",
+                    RibbonItemLayoutDock.Left,
                     MenuEntryDetailed(
                         "paste-default",
                         "Paste",
@@ -599,8 +607,8 @@ public class MainWindowViewModel : RibbonObservableObject
                         FluentIconData.ArrowSync20Regular,
                         "Match destination formatting",
                         "Option+V")),
-                Item("cut", "Cut", FluentIconData.Settings20Regular, 1, "cut", "X", "Cut selection", size: RibbonItemSize.Small),
-                Item("format-painter", "Format Painter", FluentIconData.Wrench20Regular, 2, "format-painter", "FP", "Copy formatting", size: RibbonItemSize.Small)),
+                Item("cut", "Cut", FluentIconData.Settings20Regular, 1, "cut", "X", "Cut selection", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
+                Item("format-painter", "Format Painter", FluentIconData.Wrench20Regular, 2, "format-painter", "FP", "Copy formatting", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center)),
             Group("paragraph", "Paragraph", 2, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Stacked, 2,
                 CompactSplitItemWithPopup(
                     "para-bullets",
@@ -1065,6 +1073,7 @@ public class MainWindowViewModel : RibbonObservableObject
         string commandId,
         string keyTip,
         string screenTip,
+        RibbonItemLayoutDock layoutDock = RibbonItemLayoutDock.Auto,
         params RibbonMenuItemViewModel[] menuItems)
     {
         var item = new RibbonItemViewModel
@@ -1077,6 +1086,7 @@ public class MainWindowViewModel : RibbonObservableObject
             CommandId = commandId,
             KeyTip = keyTip,
             ScreenTip = screenTip,
+            LayoutDock = layoutDock,
         };
 
         foreach (var menuItem in menuItems)

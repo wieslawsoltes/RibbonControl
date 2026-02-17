@@ -151,10 +151,15 @@
                              KeyTip="Y"
                              ScreenTip="Redo last action" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="clipboard" Header="Clipboard" Order="0">
+        <ribbon:RibbonGroup Id="clipboard"
+                            Header="Clipboard"
+                            ItemsLayoutMode="Docked"
+                            DockedCenterLayoutMode="Vertical"
+                            Order="0">
           <ribbon:RibbonItem Id="paste"
                              Label="Paste"
                              Primitive="PasteSplitButton"
+                             LayoutDock="Left"
                              IconPathData="{x:Static ribbon:FluentIconData.ClipboardPaste20Regular}"
                              IconMinWidth="20"
                              IconMinHeight="20"
@@ -189,16 +194,24 @@
           </ribbon:RibbonItem>
           <ribbon:RibbonItem Id="copy"
                              Label="Copy"
+                             LayoutDock="Center"
                              IconPathData="{x:Static ribbon:FluentIconData.Copy20Regular}"
                              CommandId="copy"
                              KeyTip="C"
                              ScreenTip="Copy selection" />
         </ribbon:RibbonGroup>
-        <ribbon:RibbonGroup Id="font" Header="Font" HeaderPlacement="Top" Order="1">
+        <ribbon:RibbonGroup Id="font"
+                            Header="Font"
+                            HeaderPlacement="Top"
+                            ItemsLayoutMode="Docked"
+                            DockedCenterLayoutMode="Horizontal"
+                            StackedRows="2"
+                            Order="1">
           <ribbon:RibbonItem Id="font-family"
                              Label="Font"
                              Primitive="ComboBox"
                              Size="Large"
+                             LayoutDock="Top"
                              Order="0"
                              SelectedMenuItemId="font-family-aptos"
                              KeyTip="FF"
@@ -223,6 +236,7 @@
                              Label="Size"
                              Primitive="ComboBox"
                              Size="Small"
+                             LayoutDock="Top"
                              Order="1"
                              SelectedMenuItemId="font-size-12"
                              KeyTip="FS"
@@ -234,13 +248,13 @@
               <ribbon:RibbonMenuItem Id="font-size-14" Label="14" CommandId="font-size-14" Order="3" />
             </ribbon:RibbonItem.MenuItems>
           </ribbon:RibbonItem>
-          <ribbon:RibbonItem Id="bold" Label="B" Primitive="ToggleButton" Size="Small" IsChecked="True" CommandId="bold" Order="2" KeyTip="B" ScreenTip="Apply bold formatting" />
-          <ribbon:RibbonItem Id="italic" Label="I" Primitive="ToggleButton" Size="Small" CommandId="italic" Order="3" KeyTip="I" ScreenTip="Apply italic formatting" />
-          <ribbon:RibbonItem Id="underline" Label="U" Primitive="ToggleButton" Size="Small" CommandId="underline" Order="4" KeyTip="U" ScreenTip="Underline text" />
-          <ribbon:RibbonItem Id="strikethrough" Label="ab" Primitive="ToggleButton" Size="Small" CommandId="strikethrough" Order="5" KeyTip="ST" ScreenTip="Apply strikethrough" />
-          <ribbon:RibbonItem Id="superscript" Label="x²" Primitive="ToggleButton" Size="Small" CommandId="superscript" Order="6" KeyTip="SP" ScreenTip="Superscript text" />
-          <ribbon:RibbonItem Id="font-grow" Label="A+" Primitive="ToggleButton" Size="Small" CommandId="font-grow" Order="7" KeyTip="FG" ScreenTip="Grow font size" />
-          <ribbon:RibbonItem Id="font-shrink" Label="A-" Primitive="ToggleButton" Size="Small" CommandId="font-shrink" Order="8" KeyTip="FK" ScreenTip="Shrink font size" />
+          <ribbon:RibbonItem Id="font-grow" Label="A+" Primitive="ToggleButton" Size="Small" LayoutDock="Top" CommandId="font-grow" Order="2" KeyTip="FG" ScreenTip="Grow font size" />
+          <ribbon:RibbonItem Id="font-shrink" Label="A-" Primitive="ToggleButton" Size="Small" LayoutDock="Top" CommandId="font-shrink" Order="3" KeyTip="FK" ScreenTip="Shrink font size" />
+          <ribbon:RibbonItem Id="bold" Label="B" Primitive="ToggleButton" Size="Small" LayoutDock="Bottom" IsChecked="True" CommandId="bold" Order="10" KeyTip="B" ScreenTip="Apply bold formatting" />
+          <ribbon:RibbonItem Id="italic" Label="I" Primitive="ToggleButton" Size="Small" LayoutDock="Bottom" CommandId="italic" Order="11" KeyTip="I" ScreenTip="Apply italic formatting" />
+          <ribbon:RibbonItem Id="underline" Label="U" Primitive="ToggleButton" Size="Small" LayoutDock="Bottom" CommandId="underline" Order="12" KeyTip="U" ScreenTip="Underline text" />
+          <ribbon:RibbonItem Id="strikethrough" Label="ab" Primitive="ToggleButton" Size="Small" LayoutDock="Bottom" CommandId="strikethrough" Order="13" KeyTip="ST" ScreenTip="Apply strikethrough" />
+          <ribbon:RibbonItem Id="superscript" Label="x²" Primitive="ToggleButton" Size="Small" LayoutDock="Bottom" CommandId="superscript" Order="14" KeyTip="SP" ScreenTip="Superscript text" />
         </ribbon:RibbonGroup>
       </ribbon:RibbonTab>
 
