@@ -1,0 +1,5 @@
+{
+  "maxElapsedMilliseconds": 1500,
+  "commands": 250,
+  "iterations": 200
+}
