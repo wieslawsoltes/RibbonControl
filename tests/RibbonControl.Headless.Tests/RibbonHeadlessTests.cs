@@ -925,6 +925,58 @@ public class RibbonHeadlessTests
         Assert.True(ribbon.EffectiveSynchronizedLargeCommandHeight >= 87);
     }
 
+    [AvaloniaFact]
+    public void SynchronizedCommandHeights_OfficeSplitMainSmallTargetsSmallHeight()
+    {
+        EnsureCoreThemeLoaded();
+
+        var splitMainSmallProbe = new Button { Content = "SplitMainSmallProbe" };
+        splitMainSmallProbe.Classes.Add("office-ribbon-split-main");
+        splitMainSmallProbe.Classes.Add("office-ribbon-split-main-small");
+
+        var ribbon = new Ribbon
+        {
+            SelectedTabId = "home",
+            SynchronizeCommandHeights = true,
+            AutoSynchronizeCommandHeights = true,
+            SynchronizedLargeCommandHeight = 66,
+            SynchronizedSmallCommandHeight = 30,
+            EnableAdaptiveLayout = false,
+            HeaderEndContent = splitMainSmallProbe,
+        };
+
+        ribbon.Tabs.Add(new RibbonTab
+        {
+            Id = "home",
+            Header = "Home",
+            Groups =
+            {
+                new RibbonGroup
+                {
+                    Id = "paragraph",
+                    Header = "Paragraph",
+                    Items =
+                    {
+                        new RibbonItem { Id = "align-left", Label = "Align Left", Primitive = RibbonItemPrimitive.Button, Size = RibbonItemSize.Small },
+                    },
+                },
+            },
+        });
+
+        var window = new Window
+        {
+            Width = 1200,
+            Height = 700,
+            Content = ribbon,
+        };
+
+        window.Show();
+        window.UpdateLayout();
+
+        Assert.True(splitMainSmallProbe.MinHeight <= ribbon.EffectiveSynchronizedSmallCommandHeight + 1);
+        Assert.True(splitMainSmallProbe.MinHeight < ribbon.EffectiveSynchronizedLargeCommandHeight - 10);
+    }
+
     private static void EnsureCoreThemeLoaded()
     {
         if (Application.Current is null)
