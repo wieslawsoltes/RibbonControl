@@ -352,11 +352,13 @@
           <ribbon:RibbonItem Id="font-color"
                              Label="Font Color"
                              Size="Small"
+                             DisplayMode="IconOnly"
                              LayoutDock="Bottom"
                              Order="15"
-                             Primitive="MenuButton"
+                             Primitive="SplitButton"
                              IconPathData="{x:Static ribbon:FluentIconData.Settings20Regular}"
                              CommandId="font-color"
+                             SecondaryCommandId="font-color"
                              KeyTip="FC"
                              ScreenTip="Choose font color">
             <ribbon:RibbonItem.PopupContent>

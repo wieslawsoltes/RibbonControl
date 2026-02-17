@@ -612,7 +612,7 @@ public class MainWindowViewModel : RibbonObservableObject
                 ToggleItem("underline", "U", 12, "underline", "U", "Underline text", layoutDock: RibbonItemLayoutDock.Bottom),
                 ToggleItem("strikethrough", "ab", 13, "strikethrough", "ST", "Apply strikethrough", layoutDock: RibbonItemLayoutDock.Bottom),
                 ToggleItem("superscript", "x²", 14, "superscript", "SP", "Superscript text", layoutDock: RibbonItemLayoutDock.Bottom),
-                MenuButtonItem("font-color", "Font Color", FluentIconData.Settings20Regular, 15, "font-color", "FC", "Choose font color", RibbonItemLayoutDock.Bottom,
+                CompactSplitItem("font-color", "Font Color", FluentIconData.Settings20Regular, 15, "font-color", "font-color", "FC", "Choose font color", RibbonItemLayoutDock.Bottom,
                     MenuEntryDetailed("font-color-more", "More Colors", 0, "font-color-more", FluentIconData.Settings20Regular))),
             Group("paragraph", "Paragraph", 2, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Stacked, 2,
                 CompactSplitItemWithPopup(
@@ -1350,6 +1350,33 @@ public class MainWindowViewModel : RibbonObservableObject
 
         item.Size = RibbonItemSize.Small;
         item.DisplayMode = RibbonItemDisplayMode.IconOnly;
+        return item;
+    }
+
+    private static RibbonItemViewModel CompactSplitItem(
+        string id,
+        string label,
+        string iconPathData,
+        int order,
+        string commandId,
+        string secondaryCommandId,
+        string keyTip,
+        string screenTip,
+        RibbonItemLayoutDock layoutDock,
+        params RibbonMenuItemViewModel[] menuItems)
+    {
+        var item = CompactSplitItem(
+            id,
+            label,
+            iconPathData,
+            order,
+            commandId,
+            secondaryCommandId,
+            keyTip,
+            screenTip,
+            menuItems);
+
+        item.LayoutDock = layoutDock;
         return item;
     }
 
