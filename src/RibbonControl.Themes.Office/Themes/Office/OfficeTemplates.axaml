@@ -73,14 +73,11 @@
     </DataTemplate>
 
     <DataTemplate x:Key="OfficeRibbonMenuItemTemplate" DataType="models:RibbonMenuItem">
-      <Grid Margin="2">
-        <Separator Classes="office-ribbon-separator"
-                   Margin="4,2"
+      <Grid Classes="office-ribbon-menu-item-host">
+        <Separator Classes="office-ribbon-separator office-ribbon-menu-separator"
                    IsVisible="{CompiledBinding IsSeparator}" />
         <Button Classes="office-ribbon-command office-ribbon-menu-item office-ribbon-popup-command"
-                MinWidth="220"
-                Padding="10,6"
-                HorizontalContentAlignment="Left"
+                HorizontalContentAlignment="Stretch"
                 IsVisible="{CompiledBinding IsCommand}"
                 Command="{CompiledBinding Command}"
                 CommandParameter="{CompiledBinding CommandParameter}"
@@ -91,10 +88,11 @@
           <Grid>
             <ContentPresenter Content="{CompiledBinding Content}"
                               IsVisible="{CompiledBinding HasContent}" />
-            <Grid ColumnDefinitions="Auto,*,Auto,Auto"
-                  ColumnSpacing="8"
+            <Grid Classes="office-ribbon-menu-item-layout"
+                  ColumnDefinitions="22,*,Auto,Auto"
                   IsVisible="{CompiledBinding HasNoContent}">
               <controls:RibbonIconPresenter Grid.Column="0"
+                        Classes="office-ribbon-menu-item-icon"
                         Icon="{CompiledBinding Icon}"
                         IconResourceKey="{CompiledBinding IconResourceKey}"
                         IconPathData="{CompiledBinding IconPathData}"
@@ -119,33 +117,25 @@
                         OverlayMargin="{CompiledBinding OverlayMargin}"
                         OverlayCountHorizontalAlignment="{CompiledBinding OverlayCountHorizontalAlignment}"
                         OverlayCountVerticalAlignment="{CompiledBinding OverlayCountVerticalAlignment}"
-                        OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
-                        Width="16"
-                        Height="16" />
+                        OverlayCountMargin="{CompiledBinding OverlayCountMargin}" />
               <StackPanel Grid.Column="1"
-                          Spacing="1">
-                <TextBlock Text="{CompiledBinding Label}"
-                           VerticalAlignment="Center" />
-                <TextBlock Text="{CompiledBinding Description}"
-                           FontSize="10"
-                           Opacity="0.7"
+                          Classes="office-ribbon-menu-item-text">
+                <TextBlock Classes="office-ribbon-menu-item-label"
+                           Text="{CompiledBinding Label}" />
+                <TextBlock Classes="office-ribbon-menu-item-description"
+                           Text="{CompiledBinding Description}"
                            IsVisible="{CompiledBinding HasDescription}" />
               </StackPanel>
               <TextBlock Grid.Column="2"
+                         Classes="office-ribbon-menu-item-gesture"
                          Text="{CompiledBinding InputGestureText}"
-                         VerticalAlignment="Center"
-                         Opacity="0.7"
                          IsVisible="{CompiledBinding HasInputGestureText}" />
               <Border Grid.Column="3"
-                      BorderBrush="{DynamicResource RibbonOfficeGroupSeparatorBrush}"
-                      BorderThickness="1,0,0,0"
-                      Padding="8,0,0,0"
+                      Classes="office-ribbon-menu-item-chevron-host"
                       IsVisible="{CompiledBinding ShowsChevronGlyph}">
-                <PathIcon Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
-                          Width="12"
-                          Height="12"
-                          VerticalAlignment="Center"
-                          Foreground="{DynamicResource RibbonOfficeMutedTextBrush}" />
+                <PathIcon Classes="office-ribbon-menu-item-chevron"
+                          Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
+                          VerticalAlignment="Center" />
               </Border>
             </Grid>
           </Grid>
@@ -153,9 +143,7 @@
 
         <ToggleButton x:Name="PART_OfficeSubMenuToggle"
                       Classes="office-ribbon-command office-ribbon-menu-item office-ribbon-popup-command"
-                      MinWidth="220"
-                      Padding="10,6"
-                      HorizontalContentAlignment="Left"
+                      HorizontalContentAlignment="Stretch"
                       IsVisible="{CompiledBinding HasSubMenuItems}"
                       IsChecked="{CompiledBinding IsSubMenuOpen, Mode=TwoWay}"
                       Tag="{CompiledBinding Id, StringFormat='submenu:{0}'}"
@@ -165,10 +153,11 @@
           <Grid>
             <ContentPresenter Content="{CompiledBinding Content}"
                               IsVisible="{CompiledBinding HasContent}" />
-            <Grid ColumnDefinitions="Auto,*,Auto,Auto"
-                  ColumnSpacing="8"
+            <Grid Classes="office-ribbon-menu-item-layout"
+                  ColumnDefinitions="22,*,Auto,Auto"
                   IsVisible="{CompiledBinding HasNoContent}">
               <controls:RibbonIconPresenter Grid.Column="0"
+                        Classes="office-ribbon-menu-item-icon"
                         Icon="{CompiledBinding Icon}"
                         IconResourceKey="{CompiledBinding IconResourceKey}"
                         IconPathData="{CompiledBinding IconPathData}"
@@ -193,32 +182,24 @@
                         OverlayMargin="{CompiledBinding OverlayMargin}"
                         OverlayCountHorizontalAlignment="{CompiledBinding OverlayCountHorizontalAlignment}"
                         OverlayCountVerticalAlignment="{CompiledBinding OverlayCountVerticalAlignment}"
-                        OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
-                        Width="16"
-                        Height="16" />
+                        OverlayCountMargin="{CompiledBinding OverlayCountMargin}" />
               <StackPanel Grid.Column="1"
-                          Spacing="1">
-                <TextBlock Text="{CompiledBinding Label}"
-                           VerticalAlignment="Center" />
-                <TextBlock Text="{CompiledBinding Description}"
-                           FontSize="10"
-                           Opacity="0.7"
+                          Classes="office-ribbon-menu-item-text">
+                <TextBlock Classes="office-ribbon-menu-item-label"
+                           Text="{CompiledBinding Label}" />
+                <TextBlock Classes="office-ribbon-menu-item-description"
+                           Text="{CompiledBinding Description}"
                            IsVisible="{CompiledBinding HasDescription}" />
               </StackPanel>
               <TextBlock Grid.Column="2"
+                         Classes="office-ribbon-menu-item-gesture"
                          Text="{CompiledBinding InputGestureText}"
-                         VerticalAlignment="Center"
-                         Opacity="0.7"
                          IsVisible="{CompiledBinding HasInputGestureText}" />
               <Border Grid.Column="3"
-                      BorderBrush="{DynamicResource RibbonOfficeGroupSeparatorBrush}"
-                      BorderThickness="1,0,0,0"
-                      Padding="8,0,0,0">
-                <PathIcon Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
-                          Width="12"
-                          Height="12"
-                          VerticalAlignment="Center"
-                          Foreground="{DynamicResource RibbonOfficeMutedTextBrush}" />
+                      Classes="office-ribbon-menu-item-chevron-host">
+                <PathIcon Classes="office-ribbon-menu-item-chevron"
+                          Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
+                          VerticalAlignment="Center" />
               </Border>
             </Grid>
           </Grid>
@@ -233,8 +214,6 @@
                   BorderBrush="{DynamicResource RibbonOfficePopupBorderBrush}"
                   BorderThickness="1"
                   CornerRadius="3"
-                  Padding="6"
-                  MinWidth="248"
                   MaxHeight="460">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
               <ItemsControl ItemsSource="{CompiledBinding SubMenuItems}"
@@ -1036,7 +1015,6 @@
                     BorderBrush="{DynamicResource RibbonOfficePopupBorderBrush}"
                     BorderThickness="1"
                     CornerRadius="3"
-                    Padding="6"
                     MinWidth="{CompiledBinding PopupMinWidth}">
               <StackPanel Spacing="4">
                 <TextBlock Text="{CompiledBinding PopupTitle}"
@@ -1198,7 +1176,6 @@
                     BorderBrush="{DynamicResource RibbonOfficePopupBorderBrush}"
                     BorderThickness="1"
                     CornerRadius="3"
-                    Padding="6"
                     MinWidth="{CompiledBinding PopupMinWidth}">
               <StackPanel Spacing="4">
                 <TextBlock Text="{CompiledBinding PopupTitle}"
@@ -1282,7 +1259,6 @@
                     BorderBrush="{DynamicResource RibbonOfficePopupBorderBrush}"
                     BorderThickness="1"
                     CornerRadius="3"
-                    Padding="6"
                     MinWidth="{CompiledBinding PopupMinWidth}">
               <StackPanel Spacing="4">
                 <TextBlock Text="{CompiledBinding PopupTitle}"

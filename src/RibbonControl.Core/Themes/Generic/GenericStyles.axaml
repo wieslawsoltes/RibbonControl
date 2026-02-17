@@ -5,6 +5,105 @@
     <Setter Property="BoxShadow" Value="0 2 8 0 #30000000" />
   </Style>
 
+  <Style Selector="Grid.ribbon-menu-item-host">
+    <Setter Property="Margin" Value="1,0" />
+  </Style>
+
+  <Style Selector="Separator.ribbon-menu-separator">
+    <Setter Property="Margin" Value="4,2" />
+  </Style>
+
+  <Style Selector="Button.ribbon-popup-command">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="8,4" />
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="MinWidth" Value="180" />
+  </Style>
+
+  <Style Selector="ToggleButton.ribbon-popup-command">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="8,4" />
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="MinWidth" Value="180" />
+  </Style>
+
+  <Style Selector="Button.ribbon-popup-command:pointerover">
+    <Setter Property="Background" Value="#EEF4FF" />
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="ToggleButton.ribbon-popup-command:pointerover">
+    <Setter Property="Background" Value="#EEF4FF" />
+    <Setter Property="BorderBrush" Value="#9BB9E5" />
+  </Style>
+
+  <Style Selector="Button.ribbon-popup-command:pressed">
+    <Setter Property="Background" Value="#DCEAFF" />
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="ToggleButton.ribbon-popup-command:checked">
+    <Setter Property="Background" Value="#DCEAFF" />
+    <Setter Property="BorderBrush" Value="#4F7CCB" />
+  </Style>
+
+  <Style Selector="Grid.ribbon-menu-item-layout">
+    <Setter Property="ColumnSpacing" Value="6" />
+  </Style>
+
+  <Style Selector="controls|RibbonIconPresenter.ribbon-menu-item-icon">
+    <Setter Property="Width" Value="14" />
+    <Setter Property="Height" Value="14" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="StackPanel.ribbon-menu-item-text">
+    <Setter Property="Spacing" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="TextBlock.ribbon-menu-item-description">
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="Opacity" Value="0.7" />
+  </Style>
+
+  <Style Selector="TextBlock.ribbon-menu-item-gesture">
+    <Setter Property="MinWidth" Value="84" />
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="TextAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Opacity" Value="0.75" />
+  </Style>
+
+  <Style Selector="Border.ribbon-menu-item-chevron-host">
+    <Setter Property="Padding" Value="6,0,0,0" />
+    <Setter Property="Margin" Value="2,0,0,0" />
+  </Style>
+
+  <Style Selector="TextBlock.ribbon-menu-item-chevron">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="Opacity" Value="0.75" />
+  </Style>
+
+  <Style Selector="Border.ribbon-popup-menu-surface">
+    <Setter Property="Padding" Value="4" />
+  </Style>
+
+  <Style Selector="Border.ribbon-popup-submenu-surface">
+    <Setter Property="Padding" Value="4" />
+    <Setter Property="MinWidth" Value="220" />
+  </Style>
+
   <Style Selector="controls|Ribbon /template/ ToggleButton.ribbon-group-collapsed-toggle">
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="CornerRadius" Value="2" />
