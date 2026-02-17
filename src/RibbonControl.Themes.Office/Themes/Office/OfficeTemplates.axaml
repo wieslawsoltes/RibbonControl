@@ -641,7 +641,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="OfficeRibbonItemTemplate" DataType="models:RibbonItem">
-      <Grid Margin="2,0"
+      <Grid Margin="1,0"
             RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
         <Button Classes="office-ribbon-command office-ribbon-large ribbon-command ribbon-command-large"
                 MinWidth="82"
@@ -693,7 +693,7 @@
 
         <Button Classes="office-ribbon-command office-ribbon-small ribbon-command ribbon-command-small"
                 MinWidth="44"
-                Padding="4,3"
+                Padding="4,2"
                 Grid.Row="1"
                 IsVisible="{CompiledBinding IsEffectiveSmallButtonPrimitive}"
                 Command="{CompiledBinding Command}"
@@ -779,8 +779,8 @@
         </Button>
 
         <Button Classes="office-ribbon-command office-ribbon-icon-only office-ribbon-icon-only-small ribbon-command"
-                MinWidth="30"
-                MinHeight="30"
+                MinWidth="28"
+                MinHeight="28"
                 Padding="0"
                 Grid.Row="11"
                 IsVisible="{CompiledBinding IsEffectiveSmallIconOnlyButtonPrimitive}"
@@ -1453,8 +1453,8 @@
         <ToggleButton Classes="office-ribbon-command office-ribbon-toggle office-ribbon-toggle-small ribbon-command"
                       Grid.Row="6"
                       MinWidth="44"
-                      MinHeight="28"
-                      Padding="6,3"
+                      MinHeight="26"
+                      Padding="4,2"
                       IsVisible="{CompiledBinding IsEffectiveSmallToggleButtonPrimitive}"
                       IsChecked="{CompiledBinding IsChecked, Mode=TwoWay}"
                       Command="{CompiledBinding Command}"
@@ -1545,8 +1545,8 @@
 
         <ToggleButton Classes="office-ribbon-command office-ribbon-toggle office-ribbon-toggle-icon-only office-ribbon-toggle-icon-only-small ribbon-command"
                       Grid.Row="13"
-                      MinWidth="30"
-                      MinHeight="30"
+                      MinWidth="28"
+                      MinHeight="28"
                       Padding="0"
                       IsVisible="{CompiledBinding IsEffectiveSmallIconOnlyToggleButtonPrimitive}"
                       IsChecked="{CompiledBinding IsChecked, Mode=TwoWay}"
@@ -1728,15 +1728,15 @@
     <DataTemplate x:Key="OfficeRibbonGroupTemplate" DataType="models:RibbonGroup">
       <Grid>
         <Border Classes="office-ribbon-group"
-                Margin="0,2,0,2"
-                Padding="8,6,8,5"
+                Margin="0,1,0,1"
+                Padding="6,4,6,4"
                 BorderBrush="{DynamicResource RibbonOfficeGroupSeparatorBrush}"
                 BorderThickness="0,0,1,0"
                 IsVisible="{CompiledBinding IsInlineMode}">
           <Grid RowDefinitions="Auto,*,Auto"
                 ColumnDefinitions="Auto,*,Auto"
-                RowSpacing="6"
-                ColumnSpacing="6">
+                RowSpacing="2"
+                ColumnSpacing="2">
             <TextBlock Grid.Row="0"
                        Grid.Column="1"
                        Text="{CompiledBinding Header}"
@@ -1783,6 +1783,7 @@
             </LayoutTransformControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsWrapLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource OfficeRibbonItemTemplate}">
@@ -1794,6 +1795,7 @@
             </ItemsControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsHorizontalLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource OfficeRibbonItemTemplate}">
@@ -1805,6 +1807,7 @@
             </ItemsControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsVerticalLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource OfficeRibbonItemTemplate}">
@@ -1816,19 +1819,21 @@
             </ItemsControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsStackedLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource OfficeRibbonItemTemplate}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                   HorizontalSpacing="4"
-                                                   VerticalSpacing="4" />
+                                                   HorizontalSpacing="2"
+                                                   VerticalSpacing="2" />
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
             </ItemsControl>
             <DockPanel Grid.Row="1"
                        Grid.Column="1"
+                       VerticalAlignment="Center"
                        LastChildFill="True"
                        IsVisible="{CompiledBinding IsItemsDockedLayout}">
               <ItemsControl DockPanel.Dock="Top"
@@ -1905,8 +1910,8 @@
                   <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                       <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                       HorizontalSpacing="4"
-                                                       VerticalSpacing="4" />
+                                                       HorizontalSpacing="2"
+                                                       VerticalSpacing="2" />
                     </ItemsPanelTemplate>
                   </ItemsControl.ItemsPanel>
                 </ItemsControl>
@@ -2014,8 +2019,8 @@
                 <ItemsControl.ItemsPanel>
                   <ItemsPanelTemplate>
                     <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                     HorizontalSpacing="4"
-                                                     VerticalSpacing="4" />
+                                                     HorizontalSpacing="2"
+                                                     VerticalSpacing="2" />
                   </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
               </ItemsControl>
@@ -2095,8 +2100,8 @@
                     <ItemsControl.ItemsPanel>
                       <ItemsPanelTemplate>
                         <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                         HorizontalSpacing="4"
-                                                         VerticalSpacing="4" />
+                                                         HorizontalSpacing="2"
+                                                         VerticalSpacing="2" />
                       </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                   </ItemsControl>

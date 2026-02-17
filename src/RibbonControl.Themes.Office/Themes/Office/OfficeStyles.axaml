@@ -256,9 +256,9 @@
   </Style>
 
   <Style Selector="Button.office-ribbon-small">
-    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="MinHeight" Value="26" />
     <Setter Property="MinWidth" Value="42" />
-    <Setter Property="Padding" Value="6,3" />
+    <Setter Property="Padding" Value="4,2" />
   </Style>
 
   <Style Selector="Button.office-ribbon-icon-only">
@@ -269,8 +269,8 @@
   </Style>
 
   <Style Selector="Button.office-ribbon-icon-only-small">
-    <Setter Property="MinHeight" Value="30" />
-    <Setter Property="MinWidth" Value="30" />
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="MinWidth" Value="28" />
   </Style>
 
   <Style Selector="ToggleButton.office-ribbon-dropdown-toggle">
@@ -286,9 +286,9 @@
   </Style>
 
   <Style Selector="Button.office-ribbon-split-main-small">
-    <Setter Property="MinHeight" Value="30" />
+    <Setter Property="MinHeight" Value="28" />
     <Setter Property="MinWidth" Value="38" />
-    <Setter Property="Padding" Value="4,3" />
+    <Setter Property="Padding" Value="3,2" />
   </Style>
 
   <Style Selector="Button.office-ribbon-split-main-icon-only">
