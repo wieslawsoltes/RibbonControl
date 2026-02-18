@@ -162,8 +162,12 @@
                               ContentTemplate="{TemplateBinding HeaderTemplate}" />
             <Border Name="PART_SelectedPipe"
                     Background="{DynamicResource RibbonThemeTabSelectedPipeBrush}"
-                    CornerRadius="1"
-                    IsVisible="False" />
+                    CornerRadius="0"
+                    IsVisible="False"
+                    Height="3"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" />
           </Panel>
         </Border>
       </ControlTemplate>

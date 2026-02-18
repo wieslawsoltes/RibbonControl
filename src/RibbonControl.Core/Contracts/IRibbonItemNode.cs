@@ -117,6 +117,8 @@ public interface IRibbonItemNode : IRibbonNode
 
     IEnumerable<IRibbonMenuItemNode>? MenuItems { get; }
 
+    IEnumerable<IRibbonItemNode>? Items => null;
+
     string? KeyTip { get; }
 
     string? ScreenTip { get; }

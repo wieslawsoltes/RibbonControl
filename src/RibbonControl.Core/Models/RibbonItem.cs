@@ -639,7 +639,11 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
 
     public ObservableCollection<RibbonMenuItem> MenuItems { get; } = [];
 
+    public ObservableCollection<RibbonItem> Items { get; } = [];
+
     IEnumerable<IRibbonMenuItemNode>? IRibbonItemNode.MenuItems => MenuItems;
+
+    IEnumerable<IRibbonItemNode>? IRibbonItemNode.Items => Items;
 
     public bool IsButtonPrimitive => Primitive == RibbonItemPrimitive.Button;
 
@@ -676,6 +680,10 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
     public bool IsComboBoxPrimitive => Primitive == RibbonItemPrimitive.ComboBox;
 
     public bool IsToggleGroupPrimitive => Primitive == RibbonItemPrimitive.ToggleGroup;
+
+    public bool IsGroupPrimitive => Primitive == RibbonItemPrimitive.Group;
+
+    public bool IsRowPrimitive => Primitive == RibbonItemPrimitive.Row;
 
     public bool IsToggleGroupSingleSelectionMode =>
         IsToggleGroupPrimitive && ToggleGroupSelectionMode == RibbonToggleGroupSelectionMode.Single;
@@ -1251,6 +1259,8 @@ public class RibbonItem : RibbonObservableObject, IRibbonItemNode
         RaisePropertyChanged(nameof(IsToggleButtonPrimitive));
         RaisePropertyChanged(nameof(IsComboBoxPrimitive));
         RaisePropertyChanged(nameof(IsToggleGroupPrimitive));
+        RaisePropertyChanged(nameof(IsGroupPrimitive));
+        RaisePropertyChanged(nameof(IsRowPrimitive));
         RaisePropertyChanged(nameof(IsToggleGroupSingleSelectionMode));
         RaisePropertyChanged(nameof(IsToggleGroupMultipleSelectionMode));
         RaisePropertyChanged(nameof(IsLargeButtonPrimitive));

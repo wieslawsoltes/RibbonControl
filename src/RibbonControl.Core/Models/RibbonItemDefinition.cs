@@ -120,6 +120,10 @@ public class RibbonItemDefinition : IRibbonItemNode
 
     IEnumerable<IRibbonMenuItemNode>? IRibbonItemNode.MenuItems => MenuItems;
 
+    public IList<RibbonItemDefinition> Items { get; set; } = [];
+
+    IEnumerable<IRibbonItemNode>? IRibbonItemNode.Items => Items;
+
     public string? KeyTip { get; set; }
 
     public string? ScreenTip { get; set; }

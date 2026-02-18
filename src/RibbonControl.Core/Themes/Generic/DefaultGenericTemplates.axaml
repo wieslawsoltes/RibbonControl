@@ -89,8 +89,13 @@
             <ContentPresenter Content="{CompiledBinding Content}"
                               IsVisible="{CompiledBinding HasContent}" />
             <Grid Classes="ribbon-menu-item-layout"
-                  ColumnDefinitions="22,*,Auto,Auto"
                   IsVisible="{CompiledBinding HasNoContent}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="22" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="RibbonMenuItemGestureColumn" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
               <controls:RibbonIconPresenter Grid.Column="0"
                         Classes="ribbon-menu-item-icon"
                         Icon="{CompiledBinding Icon}"
@@ -129,6 +134,7 @@
               <TextBlock Grid.Column="2"
                          Classes="ribbon-menu-item-gesture"
                          Text="{CompiledBinding InputGestureText}"
+                         HorizontalAlignment="Right"
                          IsVisible="{CompiledBinding HasInputGestureText}" />
               <Border Grid.Column="3"
                       Classes="ribbon-menu-item-chevron-host"
@@ -154,8 +160,13 @@
             <ContentPresenter Content="{CompiledBinding Content}"
                               IsVisible="{CompiledBinding HasContent}" />
             <Grid Classes="ribbon-menu-item-layout"
-                  ColumnDefinitions="22,*,Auto,Auto"
                   IsVisible="{CompiledBinding HasNoContent}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="22" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="RibbonMenuItemGestureColumn" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
               <controls:RibbonIconPresenter Grid.Column="0"
                         Classes="ribbon-menu-item-icon"
                         Icon="{CompiledBinding Icon}"
@@ -194,6 +205,7 @@
               <TextBlock Grid.Column="2"
                          Classes="ribbon-menu-item-gesture"
                          Text="{CompiledBinding InputGestureText}"
+                         HorizontalAlignment="Right"
                          IsVisible="{CompiledBinding HasInputGestureText}" />
               <Border Grid.Column="3"
                       Classes="ribbon-menu-item-chevron-host">
@@ -216,7 +228,8 @@
                   CornerRadius="3"
                   MaxHeight="460">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-              <ItemsControl ItemsSource="{CompiledBinding SubMenuItems}"
+              <ItemsControl Grid.IsSharedSizeScope="True"
+                            ItemsSource="{CompiledBinding SubMenuItems}"
                             ItemTemplate="{StaticResource RibbonMenuItemTemplate}" />
             </ScrollViewer>
           </Border>
@@ -350,6 +363,7 @@
           </ItemsControl.ItemsPanel>
         </ItemsControl>
         <ItemsControl Classes="ribbon-popup-section-command-items"
+                      Grid.IsSharedSizeScope="True"
                       ItemsSource="{CompiledBinding Items}"
                       ItemTemplate="{StaticResource RibbonMenuItemTemplate}"
                       IsVisible="{CompiledBinding IsCommandListLayout}" />
@@ -644,8 +658,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonItemTemplate" DataType="models:RibbonItem">
-      <Grid Margin="1,0"
-            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+      <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
         <Button Classes="ribbon-command ribbon-large ribbon-command-large"
                 MinWidth="82"
                 Padding="6,7"
@@ -686,7 +699,8 @@
                         OverlayCountVerticalAlignment="{CompiledBinding OverlayCountVerticalAlignment}"
                         OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
                       Width="32"
-                      Height="32" />
+                      Height="32"
+                      HorizontalAlignment="Center" />
             <TextBlock Text="{CompiledBinding Label}"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
@@ -866,7 +880,8 @@
                         OverlayCountVerticalAlignment="{CompiledBinding OverlayCountVerticalAlignment}"
                         OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
                           Width="32"
-                          Height="32" />
+                          Height="32"
+                          HorizontalAlignment="Center" />
                 <TextBlock Text="{CompiledBinding Label}"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
@@ -1052,7 +1067,8 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               MaxHeight="{CompiledBinding PopupMaxHeight}"
                               IsVisible="{CompiledBinding HasPopupMenuSections}">
-                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                  <ItemsControl Grid.IsSharedSizeScope="True"
+                                ItemsSource="{CompiledBinding PopupMenuSections}"
                                 ItemTemplate="{StaticResource RibbonPopupMenuSectionTemplate}" />
                 </ScrollViewer>
                 <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
@@ -1129,18 +1145,20 @@
                           ToolTip.Tip="{CompiledBinding ScreenTip}"
                           AutomationProperties.Name="{CompiledBinding Label, StringFormat='{}{0} Options'}"
                           AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.StackedSplitBottomToggle.{0}'}">
-              <DockPanel LastChildFill="False">
+              <StackPanel Orientation="Vertical"
+                          HorizontalAlignment="Center"
+                          Spacing="2">
                 <TextBlock Text="{CompiledBinding Label}"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            FontSize="11" />
                 <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
-                          Margin="4,0,0,0"
                           Width="10"
                           Height="10"
+                          HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
-              </DockPanel>
+              </StackPanel>
             </ToggleButton>
             <Grid IsVisible="{CompiledBinding IsStackedSplitBottomSplitVisible}"
                   ColumnDefinitions="*,Auto">
@@ -1213,7 +1231,8 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               MaxHeight="{CompiledBinding PopupMaxHeight}"
                               IsVisible="{CompiledBinding HasPopupMenuSections}">
-                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                  <ItemsControl Grid.IsSharedSizeScope="True"
+                                ItemsSource="{CompiledBinding PopupMenuSections}"
                                 ItemTemplate="{StaticResource RibbonPopupMenuSectionTemplate}" />
                 </ScrollViewer>
                 <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
@@ -1296,7 +1315,8 @@
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               MaxHeight="{CompiledBinding PopupMaxHeight}"
                               IsVisible="{CompiledBinding HasPopupMenuSections}">
-                  <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                  <ItemsControl Grid.IsSharedSizeScope="True"
+                                ItemsSource="{CompiledBinding PopupMenuSections}"
                                 ItemTemplate="{StaticResource RibbonPopupMenuSectionTemplate}" />
                 </ScrollViewer>
                 <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
@@ -1362,7 +1382,8 @@
                   <ScrollViewer VerticalScrollBarVisibility="Auto"
                                 MaxHeight="{CompiledBinding PopupMaxHeight}"
                                 IsVisible="{CompiledBinding ShowStructuredPopupMenuSections}">
-                    <ItemsControl ItemsSource="{CompiledBinding PopupMenuSections}"
+                    <ItemsControl Grid.IsSharedSizeScope="True"
+                                  ItemsSource="{CompiledBinding PopupMenuSections}"
                                   ItemTemplate="{StaticResource RibbonPopupMenuSectionTemplate}" />
                   </ScrollViewer>
                   <ScrollViewer VerticalScrollBarVisibility="Auto"
@@ -1388,13 +1409,15 @@
                   <ScrollViewer VerticalScrollBarVisibility="Auto"
                                 MaxHeight="{CompiledBinding PopupMaxHeight}"
                                 IsVisible="{CompiledBinding ShowUncategorizedPopupMenuItems}">
-                    <ItemsControl ItemsSource="{CompiledBinding UncategorizedPopupMenuItems}"
+                    <ItemsControl Grid.IsSharedSizeScope="True"
+                                  ItemsSource="{CompiledBinding UncategorizedPopupMenuItems}"
                                   ItemTemplate="{StaticResource RibbonMenuItemTemplate}" />
                   </ScrollViewer>
                   <ScrollViewer VerticalScrollBarVisibility="Auto"
                                 MaxHeight="{CompiledBinding PopupMaxHeight}"
                                 IsVisible="{CompiledBinding ShowLegacyPopupMenuItems}">
-                    <ItemsControl ItemsSource="{CompiledBinding PopupMenuItems}"
+                    <ItemsControl Grid.IsSharedSizeScope="True"
+                                  ItemsSource="{CompiledBinding PopupMenuItems}"
                                   ItemTemplate="{StaticResource RibbonMenuItemTemplate}" />
                   </ScrollViewer>
                   <ContentPresenter Content="{CompiledBinding PopupFooterContent}"
@@ -1686,6 +1709,32 @@
                 AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.Custom.{0}'}">
           <ContentPresenter Content="{CompiledBinding Content}" />
         </Border>
+
+        <ItemsControl Grid.Row="16"
+                      ItemsSource="{CompiledBinding Items}"
+                      IsVisible="{CompiledBinding IsGroupPrimitive}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Vertical" Spacing="2"/>
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <StaticResource ResourceKey="RibbonItemTemplate" />
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <ItemsControl Grid.Row="16"
+                      ItemsSource="{CompiledBinding Items}"
+                      IsVisible="{CompiledBinding IsRowPrimitive}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="2"/>
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <StaticResource ResourceKey="RibbonItemTemplate" />
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
       </Grid>
     </DataTemplate>
 
@@ -1734,7 +1783,7 @@
     <DataTemplate x:Key="RibbonGroupTemplate" DataType="models:RibbonGroup">
       <Grid>
         <Border Classes="ribbon-group"
-                Margin="0,1,0,1"
+                Margin="0,2,0,2"
                 Padding="6,4,6,4"
                 BorderBrush="{DynamicResource RibbonThemeGroupSeparatorBrush}"
                 BorderThickness="0,0,1,0"

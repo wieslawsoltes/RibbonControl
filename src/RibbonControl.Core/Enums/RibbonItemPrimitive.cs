@@ -14,4 +14,6 @@ public enum RibbonItemPrimitive
     ComboBox = 6,
     PasteSplitButton = 7,
     ToggleGroup = 8,
+    Group = 9,
+    Row = 10,
 }

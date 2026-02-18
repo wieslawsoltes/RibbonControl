@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="using:RibbonControl.Core.Controls">
   <Style Selector="controls|Ribbon">
-    <Setter Property="FontFamily" Value="Segoe UI" />
+    <Setter Property="FontFamily" Value="Segoe UI, SF Pro Display, .AppleSystemUIFont, Helvetica Neue, Helvetica, Arial, sans-serif" />
     <Setter Property="Foreground" Value="{DynamicResource RibbonThemePrimaryTextBrush}" />
   </Style>
 
@@ -706,7 +706,6 @@
   </Style>
 
   <Style Selector="TextBlock.ribbon-menu-item-gesture">
-    <Setter Property="MinWidth" Value="96" />
     <Setter Property="HorizontalAlignment" Value="Right" />
     <Setter Property="TextAlignment" Value="Right" />
     <Setter Property="VerticalAlignment" Value="Center" />

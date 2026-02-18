@@ -581,9 +581,9 @@ public class MainWindowViewModel : RibbonObservableObject
                 "Clipboard",
                 0,
                 RibbonGroupHeaderPlacement.Bottom,
-                RibbonGroupItemsLayoutMode.Docked,
+                RibbonGroupItemsLayoutMode.Horizontal,
                 3,
-                RibbonGroupDockedCenterLayoutMode.Vertical,
+                RibbonGroupDockedCenterLayoutMode.Auto,
                 PasteSplitItem(
                     "paste",
                     "Paste",
@@ -592,7 +592,7 @@ public class MainWindowViewModel : RibbonObservableObject
                     "paste",
                     "V",
                     "Paste from clipboard",
-                    RibbonItemLayoutDock.Left,
+                    RibbonItemLayoutDock.Auto, // Was Left
                     MenuEntryDetailed(
                         "paste-default",
                         "Paste",
@@ -617,136 +617,149 @@ public class MainWindowViewModel : RibbonObservableObject
                         FluentIconData.ArrowSync20Regular,
                         "Match destination formatting",
                         "Option+V")),
-                Item("cut", "Cut", FluentIconData.Settings20Regular, 1, "cut", "X", "Cut selection", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
-                Item("copy", "Copy", FluentIconData.Copy20Regular, 2, "copy", "C", "Copy selection", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center),
-                Item("format-painter", "Format Painter", FluentIconData.Wrench20Regular, 3, "format-painter", "FP", "Copy formatting", size: RibbonItemSize.Small, layoutDock: RibbonItemLayoutDock.Center)),
-            Group("font", "Font", 1, RibbonGroupHeaderPlacement.Top, RibbonGroupItemsLayoutMode.Docked, 2, RibbonGroupDockedCenterLayoutMode.Horizontal,
-                ComboBoxItem("font-family", "Font", RibbonItemSize.Large, 0, "font-family-aptos", "FF", "Choose font family", RibbonItemLayoutDock.Top,
-                    ComboEntry("font-family-aptos", "Aptos (Body)", 0, "font-family-aptos", isSelected: true),
-                    ComboEntry("font-family-calibri", "Calibri", 1, "font-family-calibri"),
-                    ComboEntry("font-family-segoe", "Segoe UI", 2, "font-family-segoe")),
-                ComboBoxItem("font-size", "Size", RibbonItemSize.Small, 1, "font-size-12", "FS", "Choose font size", RibbonItemLayoutDock.Top,
-                    ComboEntry("font-size-10", "10", 0, "font-size-10"),
-                    ComboEntry("font-size-11", "11", 1, "font-size-11"),
-                    ComboEntry("font-size-12", "12", 2, "font-size-12", isSelected: true),
-                    ComboEntry("font-size-14", "14", 3, "font-size-14")),
-                ToggleItem("font-grow", "A+", 2, "font-grow", "FG", "Grow font size", layoutDock: RibbonItemLayoutDock.Top),
-                ToggleItem("font-shrink", "A-", 3, "font-shrink", "FK", "Shrink font size", layoutDock: RibbonItemLayoutDock.Top),
-                ToggleItem("bold", "B", 10, "bold", "B", "Apply bold formatting", isChecked: true, layoutDock: RibbonItemLayoutDock.Bottom),
-                ToggleItem("italic", "I", 11, "italic", "I", "Apply italic formatting", layoutDock: RibbonItemLayoutDock.Bottom),
-                ToggleItem("underline", "U", 12, "underline", "U", "Underline text", layoutDock: RibbonItemLayoutDock.Bottom),
-                ToggleItem("strikethrough", "ab", 13, "strikethrough", "ST", "Apply strikethrough", layoutDock: RibbonItemLayoutDock.Bottom),
-                ToggleItem("superscript", "x²", 14, "superscript", "SP", "Superscript text", layoutDock: RibbonItemLayoutDock.Bottom),
-                CompactSplitItem("font-color", "Font Color", FluentIconData.Settings20Regular, 15, "font-color", "font-color", "FC", "Choose font color", RibbonItemLayoutDock.Bottom,
-                    MenuEntryDetailed("font-color-more", "More Colors", 0, "font-color-more", FluentIconData.Settings20Regular))),
-            Group("paragraph", "Paragraph", 2, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Stacked, 2,
-                CompactSplitItemWithPopup(
-                    "para-bullets",
-                    "Bullets",
-                    FluentIconData.TextBulletList20Regular,
-                    0,
-                    "para-bullets",
-                    "para-bullets",
-                    "BU",
-                    "Apply bullet list",
-                    "Bullet Library",
-                    320,
-                    360,
-                    MenuSeparator("para-bullets-separator", 80, showInPopup: true),
-                    MenuEntryDetailed("para-bullets-define", "Define New Bullet", 81, "para-bullets", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-bullets-none", "None", 82, "para-bullets", showInRibbonPreview: false)),
-                Item("para-align-left", "Align Left", FluentIconData.Copy20Regular, 1, "para-align-left", "AL", "Align paragraph left", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
-                CompactSplitItem(
-                    "para-numbering",
-                    "Numbering",
-                    FluentIconData.TextNumberList20Regular,
-                    2,
-                    "spacing",
-                    "spacing",
-                    "NU",
-                    "Apply numbering",
-                    MenuEntryDetailed("para-numbering-decimal", "1. 2. 3.", 0, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-numbering-alpha", "a. b. c.", 1, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-numbering-roman", "i. ii. iii.", 2, "spacing", showInRibbonPreview: false)),
-                Item("para-align-center", "Align Center", FluentIconData.TextBold20Regular, 3, "spacing", "AC", "Center align paragraph", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
-                CompactSplitItem(
-                    "para-multilevel",
-                    "Multilevel List",
-                    FluentIconData.TextNumberList20Regular,
-                    4,
-                    "spacing",
-                    "spacing",
-                    "ML",
-                    "Apply multilevel list",
-                    MenuEntryDetailed("para-multilevel-1", "1. 1.1. 1.1.1", 0, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-multilevel-a", "A. I. a.", 1, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-multilevel-custom", "Define New Multilevel List", 2, "spacing", showInRibbonPreview: false)),
-                Item("para-align-right", "Align Right", FluentIconData.TextItalic20Regular, 5, "spacing", "AR", "Right align paragraph", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
-                CompactSplitItem(
-                    "para-indent-decrease",
-                    "Decrease Indent",
-                    FluentIconData.TextIndentDecrease20Regular,
-                    6,
-                    "indent-left",
-                    "indent-left",
-                    "DI",
-                    "Decrease indent",
-                    MenuEntryDetailed("para-indent-decrease-options", "Indent Options", 0, "indent-left", showInRibbonPreview: false)),
-                Item("para-align-justify", "Justify", FluentIconData.ChartMultiple20Regular, 7, "spacing", "AJ", "Justify paragraph", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
-                CompactSplitItem(
-                    "para-indent-increase",
-                    "Increase Indent",
-                    FluentIconData.TextIndentIncrease20Regular,
-                    8,
-                    "spacing",
-                    "spacing",
-                    "II",
-                    "Increase indent",
-                    MenuEntryDetailed("para-indent-increase-options", "Indent Options", 0, "spacing", showInRibbonPreview: false)),
-                CompactSplitItem(
-                    "para-line-spacing",
-                    "Line Spacing",
-                    FluentIconData.Document20Regular,
-                    9,
-                    "spacing",
-                    "spacing",
-                    "LS",
-                    "Set line and paragraph spacing",
-                    MenuEntryDetailed("para-line-spacing-100", "1.0", 0, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-line-spacing-115", "1.15", 1, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-line-spacing-150", "1.5", 2, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-line-spacing-200", "2.0", 3, "spacing", showInRibbonPreview: false)),
-                Item("para-show-marks", "Show Marks", FluentIconData.TextItalic20Regular, 10, "spacing", "PM", "Show or hide paragraph marks", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
-                CompactSplitItemWithPopup(
-                    "para-shading",
-                    "Shading",
-                    FluentIconData.Wrench20Regular,
-                    11,
-                    "spacing",
-                    "spacing",
-                    "SD",
-                    "Apply paragraph shading",
-                    "Shading",
-                    260,
-                    320,
-                    MenuEntryDetailed("para-shading-none", "No Color", 0, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-shading-theme", "Theme Colors", 1, "spacing", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-shading-more", "More Colors", 2, "spacing", showInRibbonPreview: false)),
-                Item("para-line-numbers", "Line Numbers", FluentIconData.TextNumberList20Regular, 12, "spacing", "LN", "Adjust line numbering", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
-                CompactSplitItem(
-                    "para-borders",
-                    "Borders",
-                    FluentIconData.Grid20Regular,
-                    13,
-                    "page-borders",
-                    "page-borders",
-                    "BR",
-                    "Configure borders",
-                    MenuEntryDetailed("para-borders-all", "All Borders", 0, "border-all", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-borders-top", "Top Border", 1, "border-top", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-borders-bottom", "Bottom Border", 2, "border-bottom", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-borders-left", "Left Border", 3, "border-left", showInRibbonPreview: false),
-                    MenuEntryDetailed("para-borders-right", "Right Border", 4, "border-right", showInRibbonPreview: false))),
+                VerticalGroup(
+                    Item("cut", "Cut", FluentIconData.Settings20Regular, 1, "cut", "X", "Cut selection", size: RibbonItemSize.Small),
+                    Item("copy", "Copy", FluentIconData.Copy20Regular, 2, "copy", "C", "Copy selection", size: RibbonItemSize.Small),
+                    Item("format-painter", "Format Painter", FluentIconData.Wrench20Regular, 3, "format-painter", "FP", "Copy formatting", size: RibbonItemSize.Small))),
+            Group("font", "Font", 1, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Vertical, 2, RibbonGroupDockedCenterLayoutMode.Auto,
+                Row(
+                    ComboBoxItem("font-family", "Font", RibbonItemSize.Small, 0, "font-family-aptos", "FF", "Choose font family", RibbonItemLayoutDock.Auto,
+                        ComboEntry("font-family-aptos", "Aptos (Body)", 0, "font-family-aptos", isSelected: true),
+                        ComboEntry("font-family-calibri", "Calibri", 1, "font-family-calibri"),
+                        ComboEntry("font-family-segoe", "Segoe UI", 2, "font-family-segoe")),
+                    ComboBoxItem("font-size", "Size", RibbonItemSize.Small, 1, "font-size-12", "FS", "Choose font size", RibbonItemLayoutDock.Auto,
+                        ComboEntry("font-size-10", "10", 0, "font-size-10"),
+                        ComboEntry("font-size-11", "11", 1, "font-size-11"),
+                        ComboEntry("font-size-12", "12", 2, "font-size-12", isSelected: true),
+                        ComboEntry("font-size-14", "14", 3, "font-size-14")),
+                    ToggleItem("font-grow", "A+", 2, "font-grow", "FG", "Grow font size", size: RibbonItemSize.Small),
+                    ToggleItem("font-shrink", "A-", 3, "font-shrink", "FK", "Shrink font size", size: RibbonItemSize.Small)),
+                Row(
+                    ToggleItem("bold", "B", 10, "bold", "B", "Apply bold formatting", isChecked: true, size: RibbonItemSize.Small),
+                    ToggleItem("italic", "I", 11, "italic", "I", "Apply italic formatting", size: RibbonItemSize.Small),
+                    ToggleItem("underline", "U", 12, "underline", "U", "Underline text", size: RibbonItemSize.Small),
+                    ToggleItem("strikethrough", "ab", 13, "strikethrough", "ST", "Apply strikethrough", size: RibbonItemSize.Small),
+                    ToggleItem("superscript", "x²", 14, "superscript", "SP", "Superscript text", size: RibbonItemSize.Small),
+                    CompactSplitItem("font-color", "Font Color", FluentIconData.Settings20Regular, 15, "font-color", "font-color", "FC", "Choose font color", RibbonItemLayoutDock.Auto, size: RibbonItemSize.Small,
+                        MenuEntryDetailed("font-color-more", "More Colors", 0, "font-color-more", FluentIconData.Settings20Regular)))),
+            Group("paragraph", "Paragraph", 2, RibbonGroupHeaderPlacement.Bottom, RibbonGroupItemsLayoutMode.Vertical, 2, RibbonGroupDockedCenterLayoutMode.Auto,
+                Row(
+                    CompactSplitItemWithPopup(
+                        "para-bullets",
+                        "Bullets",
+                        FluentIconData.TextBulletList20Regular,
+                        0,
+                        "para-bullets",
+                        "para-bullets",
+                        "BU",
+                        "Apply bullet list",
+                        "Bullet Library",
+                        320,
+                        360,
+                        size: RibbonItemSize.Small,
+                        MenuSeparator("para-bullets-separator", 80, showInPopup: true),
+                        MenuEntryDetailed("para-bullets-define", "Define New Bullet", 81, "para-bullets", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-bullets-none", "None", 82, "para-bullets", showInRibbonPreview: false)),
+                    CompactSplitItem(
+                        "para-numbering",
+                        "Numbering",
+                        FluentIconData.TextNumberList20Regular,
+                        1,
+                        "spacing",
+                        "spacing",
+                        "NU",
+                        "Apply numbering",
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-numbering-decimal", "1. 2. 3.", 0, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-numbering-alpha", "a. b. c.", 1, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-numbering-roman", "i. ii. iii.", 2, "spacing", showInRibbonPreview: false)),
+                    CompactSplitItem(
+                        "para-multilevel",
+                        "Multilevel List",
+                        FluentIconData.TextNumberList20Regular,
+                        2,
+                        "spacing",
+                        "spacing",
+                        "ML",
+                        "Apply multilevel list",
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-multilevel-1", "1. 1.1. 1.1.1", 0, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-multilevel-a", "A. I. a.", 1, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-multilevel-custom", "Define New Multilevel List", 2, "spacing", showInRibbonPreview: false)),
+                    CompactSplitItem(
+                        "para-indent-decrease",
+                        "Decrease Indent",
+                        FluentIconData.TextIndentDecrease20Regular,
+                        3,
+                        "indent-left",
+                        "indent-left",
+                        "DI",
+                        "Decrease indent",
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-indent-decrease-options", "Indent Options", 0, "indent-left", showInRibbonPreview: false)),
+                    CompactSplitItem(
+                        "para-indent-increase",
+                        "Increase Indent",
+                        FluentIconData.TextIndentIncrease20Regular,
+                        4,
+                        "spacing",
+                        "spacing",
+                        "II",
+                        "Increase indent",
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-indent-increase-options", "Indent Options", 0, "spacing", showInRibbonPreview: false)),
+                    Item("para-show-marks", "Show Marks", FluentIconData.TextItalic20Regular, 5, "spacing", "PM", "Show or hide paragraph marks", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
+                    Item("para-line-numbers", "Line Numbers", FluentIconData.TextNumberList20Regular, 6, "spacing", "LN", "Adjust line numbering", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true)),
+                Row(
+                    Item("para-align-left", "Align Left", FluentIconData.Copy20Regular, 0, "para-align-left", "AL", "Align paragraph left", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
+                    Item("para-align-center", "Align Center", FluentIconData.TextBold20Regular, 1, "spacing", "AC", "Center align paragraph", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
+                    Item("para-align-right", "Align Right", FluentIconData.TextItalic20Regular, 2, "spacing", "AR", "Right align paragraph", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
+                    Item("para-align-justify", "Justify", FluentIconData.ChartMultiple20Regular, 3, "spacing", "AJ", "Justify paragraph", size: RibbonItemSize.Small, displayMode: RibbonItemDisplayMode.IconOnly, isToggle: true),
+                    CompactSplitItem(
+                        "para-line-spacing",
+                        "Line Spacing",
+                        FluentIconData.Document20Regular,
+                        4,
+                        "spacing",
+                        "spacing",
+                        "LS",
+                        "Set line and paragraph spacing",
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-line-spacing-100", "1.0", 0, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-line-spacing-115", "1.15", 1, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-line-spacing-150", "1.5", 2, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-line-spacing-200", "2.0", 3, "spacing", showInRibbonPreview: false)),
+                    CompactSplitItemWithPopup(
+                        "para-shading",
+                        "Shading",
+                        FluentIconData.Wrench20Regular,
+                        5,
+                        "spacing",
+                        "spacing",
+                        "SD",
+                        "Apply paragraph shading",
+                        "Shading",
+                        260,
+                        320,
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-shading-none", "No Color", 0, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-shading-theme", "Theme Colors", 1, "spacing", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-shading-more", "More Colors", 2, "spacing", showInRibbonPreview: false)),
+                    CompactSplitItem(
+                        "para-borders",
+                        "Borders",
+                        FluentIconData.Grid20Regular,
+                        6,
+                        "page-borders",
+                        "page-borders",
+                        "BR",
+                        "Configure borders",
+                        size: RibbonItemSize.Small,
+                        MenuEntryDetailed("para-borders-all", "All Borders", 0, "border-all", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-borders-top", "Top Border", 1, "border-top", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-borders-bottom", "Bottom Border", 2, "border-bottom", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-borders-left", "Left Border", 3, "border-left", showInRibbonPreview: false),
+                        MenuEntryDetailed("para-borders-right", "Right Border", 4, "border-right", showInRibbonPreview: false)))),
             Group("styles", "Styles", 3, RibbonGroupHeaderPlacement.Right,
                 GalleryItem("style-gallery", "Styles", FluentIconData.DocumentSave20Regular, 0, "SG", "Pick a style preset", "Quick style presets",
                     MenuEntryDetailed("style-preview-normal", "Normal", 0, "style-normal", content: "Normal\nAptos, 12", showInPopup: false, isSelected: true),
@@ -1107,6 +1120,36 @@ public class MainWindowViewModel : RibbonObservableObject
         return group;
     }
 
+    private static RibbonItemViewModel VerticalGroup(params RibbonItemViewModel[] items)
+    {
+        var group = new RibbonItemViewModel
+        {
+            Primitive = RibbonItemPrimitive.Group,
+        };
+
+        foreach (var item in items)
+        {
+            group.ItemsViewModel.Add(item);
+        }
+
+        return group;
+    }
+
+    private static RibbonItemViewModel Row(params RibbonItemViewModel[] items)
+    {
+        var row = new RibbonItemViewModel
+        {
+            Primitive = RibbonItemPrimitive.Row,
+        };
+
+        foreach (var item in items)
+        {
+            row.ItemsViewModel.Add(item);
+        }
+
+        return row;
+    }
+
     private static RibbonItemViewModel Item(
         string id,
         string label,
@@ -1142,13 +1185,14 @@ public class MainWindowViewModel : RibbonObservableObject
         string keyTip,
         string screenTip,
         bool isChecked = false,
+        RibbonItemSize size = RibbonItemSize.Small,
         RibbonItemLayoutDock layoutDock = RibbonItemLayoutDock.Auto)
         => new()
         {
             Id = id,
             Label = label,
             Primitive = RibbonItemPrimitive.ToggleButton,
-            Size = RibbonItemSize.Small,
+            Size = size,
             Order = order,
             CommandId = commandId,
             KeyTip = keyTip,
@@ -1392,6 +1436,7 @@ public class MainWindowViewModel : RibbonObservableObject
         string secondaryCommandId,
         string keyTip,
         string screenTip,
+        RibbonItemSize size = RibbonItemSize.Small,
         params RibbonMenuItemViewModel[] menuItems)
     {
         var item = SplitItem(
@@ -1406,7 +1451,7 @@ public class MainWindowViewModel : RibbonObservableObject
             RibbonSplitButtonMode.SideBySide,
             menuItems);
 
-        item.Size = RibbonItemSize.Small;
+        item.Size = size;
         item.DisplayMode = RibbonItemDisplayMode.IconOnly;
         return item;
     }
@@ -1421,6 +1466,7 @@ public class MainWindowViewModel : RibbonObservableObject
         string keyTip,
         string screenTip,
         RibbonItemLayoutDock layoutDock,
+        RibbonItemSize size = RibbonItemSize.Small,
         params RibbonMenuItemViewModel[] menuItems)
     {
         var item = CompactSplitItem(
@@ -1432,6 +1478,7 @@ public class MainWindowViewModel : RibbonObservableObject
             secondaryCommandId,
             keyTip,
             screenTip,
+            size,
             menuItems);
 
         item.LayoutDock = layoutDock;
@@ -1477,6 +1524,7 @@ public class MainWindowViewModel : RibbonObservableObject
         string popupTitle,
         double popupMinWidth,
         double popupMaxHeight,
+        RibbonItemSize size = RibbonItemSize.Small,
         params RibbonMenuItemViewModel[] menuItems)
     {
         var item = CompactSplitItem(
@@ -1488,6 +1536,7 @@ public class MainWindowViewModel : RibbonObservableObject
             secondaryCommandId,
             keyTip,
             screenTip,
+            size,
             menuItems);
 
         item.PopupTitle = popupTitle;

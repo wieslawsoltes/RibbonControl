@@ -77,6 +77,10 @@ public class RibbonItemViewModel : RibbonObservableObject, IRibbonItemNode
 
     IEnumerable<IRibbonMenuItemNode>? IRibbonItemNode.MenuItems => MenuItemsViewModel;
 
+    public ObservableCollection<RibbonItemViewModel> ItemsViewModel { get; } = [];
+
+    IEnumerable<IRibbonItemNode>? IRibbonItemNode.Items => ItemsViewModel;
+
     public string Id
     {
         get => _id;
