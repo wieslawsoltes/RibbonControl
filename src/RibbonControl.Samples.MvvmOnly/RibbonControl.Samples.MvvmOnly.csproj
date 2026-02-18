@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="../RibbonControl.Core/RibbonControl.Core.csproj" />
-    <ProjectReference Include="../RibbonControl.Themes.Office/RibbonControl.Themes.Office.csproj" />
     <ProjectReference Include="../RibbonControl.Persistence.Json/RibbonControl.Persistence.Json.csproj" />
   </ItemGroup>
 </Project>

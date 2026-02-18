@@ -16,6 +16,5 @@
 
   <ItemGroup>
     <ProjectReference Include="../../src/RibbonControl.Core/RibbonControl.Core.csproj" />
-    <ProjectReference Include="../../src/RibbonControl.Themes.Office/RibbonControl.Themes.Office.csproj" />
   </ItemGroup>
 </Project>

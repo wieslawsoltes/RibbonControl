@@ -1516,7 +1516,7 @@
               <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                             VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12">
-                  <TextBlock Text="RibbonControl Office Theme Preview"
+                  <TextBlock Text="RibbonControl Default Generic Theme Preview"
                              FontSize="26"
                              FontWeight="SemiBold" />
                   <TextBlock Text="This central surface mimics a Word page so ribbon layout and command density can be evaluated in context."

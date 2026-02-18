@@ -184,7 +184,7 @@
               <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                             VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12">
-                  <TextBlock Text="RibbonControl Office Theme Preview"
+                  <TextBlock Text="RibbonControl Default Generic Theme Preview"
                              FontSize="26"
                              FontWeight="SemiBold" />
                   <TextBlock Text="This MVVM sample drives the entire ribbon from a dynamic model graph and keeps state synchronization two-way."

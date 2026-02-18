@@ -4,6 +4,6 @@
              RequestedThemeVariant="Default">
   <Application.Styles>
     <FluentTheme />
-    <StyleInclude Source="avares://RibbonControl.Themes.Office/Themes/OfficeTheme.axaml" />
+    <StyleInclude Source="avares://RibbonControl.Core/Themes/Generic.axaml" />
   </Application.Styles>
 </Application>
