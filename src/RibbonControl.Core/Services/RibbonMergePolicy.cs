@@ -254,7 +254,7 @@ public sealed class RibbonMergePolicy : IRibbonMergePolicy
         return merged;
     }
 
-    private static RibbonItem MergeItem(RibbonItem staticItem, RibbonItem dynamicItem)
+    private RibbonItem MergeItem(RibbonItem staticItem, RibbonItem dynamicItem)
     {
         var merged = RibbonModelConverter.Clone(staticItem);
         merged.Label = dynamicItem.Label;
@@ -328,6 +328,12 @@ public sealed class RibbonMergePolicy : IRibbonMergePolicy
         foreach (var menuItem in MergeMenuItems(staticItem.MenuItems, dynamicItem.MenuItems))
         {
             merged.MenuItems.Add(menuItem);
+        }
+
+        merged.Items.Clear();
+        foreach (var childItem in MergeItems(staticItem.Items, dynamicItem.Items, RibbonMergeMode.Merge))
+        {
+            merged.Items.Add(childItem);
         }
 
         if (dynamicItem.ReplaceTemplate)

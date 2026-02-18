@@ -165,6 +165,99 @@ public class MergePolicyTests
     }
 
     [Fact]
+    public void MergeItems_NestedItems_AreMergedById()
+    {
+        var staticItem = new RibbonItem
+        {
+            Id = "font-group",
+            Label = "Font Group",
+            Primitive = RibbonItemPrimitive.Group,
+            Items =
+            {
+                new RibbonItem
+                {
+                    Id = "font-row",
+                    Label = "Font Row",
+                    Primitive = RibbonItemPrimitive.Row,
+                    Order = 0,
+                    Items =
+                    {
+                        new RibbonItem
+                        {
+                            Id = "bold",
+                            Label = "Bold",
+                            Primitive = RibbonItemPrimitive.ToggleButton,
+                            IsToggle = true,
+                            IsChecked = false,
+                            Order = 0,
+                        },
+                        new RibbonItem
+                        {
+                            Id = "italic",
+                            Label = "Italic",
+                            Primitive = RibbonItemPrimitive.ToggleButton,
+                            IsToggle = true,
+                            IsChecked = false,
+                            Order = 1,
+                        },
+                    },
+                },
+            },
+        };
+
+        var dynamicItem = new RibbonItemDefinition
+        {
+            Id = "font-group",
+            Label = "Font Group+",
+            Primitive = RibbonItemPrimitive.Group,
+            Items =
+            {
+                new RibbonItemDefinition
+                {
+                    Id = "font-row",
+                    Label = "Font Row+",
+                    Primitive = RibbonItemPrimitive.Row,
+                    Order = 0,
+                    Items =
+                    {
+                        new RibbonItemDefinition
+                        {
+                            Id = "bold",
+                            Label = "Bold+",
+                            Primitive = RibbonItemPrimitive.ToggleButton,
+                            IsToggle = true,
+                            IsChecked = true,
+                            Order = 0,
+                        },
+                        new RibbonItemDefinition
+                        {
+                            Id = "underline",
+                            Label = "Underline",
+                            Primitive = RibbonItemPrimitive.ToggleButton,
+                            IsToggle = true,
+                            IsChecked = false,
+                            Order = 2,
+                        },
+                    },
+                },
+            },
+        };
+
+        var mergePolicy = RibbonMergePolicy.StaticThenDynamic;
+        var merged = mergePolicy.MergeItems([staticItem], [dynamicItem], RibbonMergeMode.Merge);
+
+        var mergedItem = Assert.Single(merged);
+        var mergedRow = Assert.Single(mergedItem.Items);
+        var mergedBold = Assert.Single(mergedRow.Items, item => item.Id == "bold");
+        Assert.Equal("Font Group+", mergedItem.Label);
+        Assert.Equal("Font Row+", mergedRow.Label);
+        Assert.Equal("Bold+", mergedBold.Label);
+        Assert.True(mergedBold.IsChecked);
+        Assert.Contains(mergedRow.Items, item => item.Id == "italic");
+        Assert.Contains(mergedRow.Items, item => item.Id == "underline");
+    }
+
+    [Fact]
     public void MergeItems_IconMetadata_UsesDynamicValuesAndStaticFallback()
     {
         var staticItem = new RibbonItem

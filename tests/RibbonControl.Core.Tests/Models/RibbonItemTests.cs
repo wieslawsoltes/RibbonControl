@@ -578,6 +578,44 @@ public class RibbonItemTests
     }
 
     [Fact]
+    public void Clone_PreservesNestedItemsTree()
+    {
+        var source = new RibbonItem
+        {
+            Id = "font-group",
+            Label = "Font Group",
+            Primitive = RibbonItemPrimitive.Group,
+        };
+        var row = new RibbonItem
+        {
+            Id = "font-row",
+            Label = "Font Row",
+            Primitive = RibbonItemPrimitive.Row,
+        };
+        row.Items.Add(new RibbonItem
+        {
+            Id = "bold",
+            Label = "Bold",
+            Primitive = RibbonItemPrimitive.ToggleButton,
+            IsToggle = true,
+            IsChecked = true,
+        });
+        source.Items.Add(row);
+
+        var clone = RibbonModelConverter.Clone(source);
+
+        var clonedRow = Assert.Single(clone.Items);
+        var clonedBold = Assert.Single(clonedRow.Items);
+        Assert.Equal("font-row", clonedRow.Id);
+        Assert.Equal("bold", clonedBold.Id);
+        Assert.NotSame(row, clonedRow);
+        Assert.NotSame(row.Items[0], clonedBold);
+
+        row.Items.Add(new RibbonItem { Id = "italic", Label = "Italic", Primitive = RibbonItemPrimitive.ToggleButton });
+        Assert.Single(clonedRow.Items);
+    }
+
+    [Fact]
     public void ConvertedItem_SynchronizesToggleStateWithViewModelNode()
     {
         var source = new RibbonItemViewModel

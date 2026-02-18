@@ -1168,6 +1168,11 @@ public class Ribbon : TemplatedControl
         }
 
         ResolveMenuItemCommands(item, item.MenuItems, commandCatalog);
+
+        foreach (var child in item.Items)
+        {
+            ResolveCommand(child);
+        }
     }
 
     private static void ResolveMenuItemCommands(
@@ -1198,6 +1203,19 @@ public class Ribbon : TemplatedControl
         }
     }
 
+    private static IEnumerable<RibbonItem> EnumerateNestedItems(IEnumerable<RibbonItem> items)
+    {
+        foreach (var item in items)
+        {
+            yield return item;
+
+            foreach (var child in EnumerateNestedItems(item.Items))
+            {
+                yield return child;
+            }
+        }
+    }
+
     private void RewireDropDownHandlers()
     {
         DetachDropDownHandlers();
@@ -1206,7 +1224,7 @@ public class Ribbon : TemplatedControl
         {
             foreach (var group in tab.MergedGroups)
             {
-                foreach (var item in group.MergedItems)
+                foreach (var item in EnumerateNestedItems(group.MergedItems))
                 {
                     var capturedItem = item;
                     PropertyChangedEventHandler handler = (_, args) =>
@@ -1734,8 +1752,12 @@ public class Ribbon : TemplatedControl
 
         var items = selected.MergedGroups
             .Where(group => group.IsVisible)
-            .SelectMany(group => group.MergedItems)
-            .Where(item => item.IsVisible)
+            .SelectMany(group => EnumerateNestedItems(group.MergedItems))
+            .Where(item =>
+                item.IsVisible &&
+                !item.IsGroupPrimitive &&
+                !item.IsRowPrimitive &&
+                !string.IsNullOrWhiteSpace(item.Id))
             .Cast<IRibbonItemNode>()
             .ToList();
 

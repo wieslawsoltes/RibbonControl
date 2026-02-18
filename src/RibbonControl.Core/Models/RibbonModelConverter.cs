@@ -170,6 +170,11 @@ public static class RibbonModelConverter
             converted.MenuItems.Add(ToRibbonMenuItem(menuItem));
         }
 
+        foreach (var subItem in node.Items ?? Enumerable.Empty<IRibbonItemNode>())
+        {
+            converted.Items.Add(ToRibbonItem(subItem));
+        }
+
         converted.BindStateSyncSource(node);
         return converted;
     }
@@ -324,6 +329,11 @@ public static class RibbonModelConverter
         foreach (var menuItem in source.MenuItems)
         {
             clone.MenuItems.Add(Clone(menuItem));
+        }
+
+        foreach (var item in source.Items)
+        {
+            clone.Items.Add(Clone(item));
         }
 
         if (source.StateSyncSource is { } boundSource)

@@ -13,6 +13,7 @@ using Avalonia.VisualTree;
 using RibbonControl.Core.Controls;
 using RibbonControl.Core.Enums;
 using RibbonControl.Core.Models;
+using RibbonControl.Core.Services;
 using RibbonControl.Core.ViewModels;
 using System.Windows.Input;
 
@@ -431,6 +432,85 @@ public class RibbonHeadlessTests
 
         Assert.False(first.IsDropDownOpen);
         Assert.True(second.IsDropDownOpen);
+    }
+
+    [AvaloniaFact]
+    public void NestedItems_ResolveCommandsAndCoordinateDropDownState()
+    {
+        EnsureCoreThemeLoaded();
+
+        var invocationCount = 0;
+        var ribbon = new Ribbon
+        {
+            SelectedTabId = "home",
+            CommandCatalog = new DictionaryRibbonCommandCatalog()
+                .Register("nested-command", new RelayCommand(_ => invocationCount++)),
+        };
+
+        ribbon.Tabs.Add(new RibbonTab
+        {
+            Id = "home",
+            Header = "Home",
+            Groups =
+            {
+                new RibbonGroup
+                {
+                    Id = "font",
+                    Header = "Font",
+                    Items =
+                    {
+                        new RibbonItem
+                        {
+                            Id = "font-group",
+                            Primitive = RibbonItemPrimitive.Group,
+                            Items =
+                            {
+                                new RibbonItem
+                                {
+                                    Id = "bold",
+                                    Label = "Bold",
+                                    Primitive = RibbonItemPrimitive.MenuButton,
+                                    CommandId = "nested-command",
+                                },
+                                new RibbonItem
+                                {
+                                    Id = "italic",
+                                    Label = "Italic",
+                                    Primitive = RibbonItemPrimitive.MenuButton,
+                                    CommandId = "nested-command",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+        var window = new Window
+        {
+            Width = 1000,
+            Height = 700,
+            Content = ribbon,
+        };
+
+        window.Show();
+        ribbon.SelectedTabId = "home";
+        window.UpdateLayout();
+
+        var mergedGroup = Assert.Single(ribbon.MergedTabs.Single().MergedGroups);
+        var mergedContainer = mergedGroup.MergedItems.Single(item => item.Id == "font-group");
+        var mergedBold = mergedContainer.Items.Single(item => item.Id == "bold");
+        var mergedItalic = mergedContainer.Items.Single(item => item.Id == "italic");
+
+        Assert.NotNull(mergedBold.Command);
+        mergedBold.Command!.Execute(null);
+        Assert.Equal(1, invocationCount);
+
+        mergedBold.IsDropDownOpen = true;
+        mergedItalic.IsDropDownOpen = true;
+
+        Assert.False(mergedBold.IsDropDownOpen);
+        Assert.True(mergedItalic.IsDropDownOpen);
     }
 
     [AvaloniaFact]
