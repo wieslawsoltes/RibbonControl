@@ -1499,20 +1499,20 @@ public class Ribbon : TemplatedControl
     private static bool TryResolveSynchronizedHeightTarget(Control control, out bool largeTarget)
     {
         if (control.Classes.Contains("ribbon-command-small") ||
-            control.Classes.Contains("office-ribbon-small") ||
-            control.Classes.Contains("office-ribbon-split-main-small") ||
-            control.Classes.Contains("office-ribbon-icon-only-small") ||
-            control.Classes.Contains("office-ribbon-toggle-small") ||
-            control.Classes.Contains("office-ribbon-toggle-icon-only-small"))
+            control.Classes.Contains("ribbon-small") ||
+            control.Classes.Contains("ribbon-split-main-small") ||
+            control.Classes.Contains("ribbon-icon-only-small") ||
+            control.Classes.Contains("ribbon-toggle-small") ||
+            control.Classes.Contains("ribbon-toggle-icon-only-small"))
         {
             largeTarget = false;
             return true;
         }
 
         if (control.Classes.Contains("ribbon-command-large") ||
-            control.Classes.Contains("office-ribbon-large") ||
-            control.Classes.Contains("office-ribbon-menu") ||
-            control.Classes.Contains("office-ribbon-split-main"))
+            control.Classes.Contains("ribbon-large") ||
+            control.Classes.Contains("ribbon-menu") ||
+            control.Classes.Contains("ribbon-split-main"))
         {
             largeTarget = true;
             return true;

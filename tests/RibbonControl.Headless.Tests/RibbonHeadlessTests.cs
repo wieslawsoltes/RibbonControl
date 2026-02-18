@@ -926,13 +926,13 @@ public class RibbonHeadlessTests
     }
 
     [AvaloniaFact]
-    public void SynchronizedCommandHeights_OfficeSplitMainSmallTargetsSmallHeight()
+    public void SynchronizedCommandHeights_SplitMainSmallTargetsSmallHeight()
     {
         EnsureCoreThemeLoaded();
 
         var splitMainSmallProbe = new Button { Content = "SplitMainSmallProbe" };
-        splitMainSmallProbe.Classes.Add("office-ribbon-split-main");
-        splitMainSmallProbe.Classes.Add("office-ribbon-split-main-small");
+        splitMainSmallProbe.Classes.Add("ribbon-split-main");
+        splitMainSmallProbe.Classes.Add("ribbon-split-main-small");
 
         var ribbon = new Ribbon
         {
