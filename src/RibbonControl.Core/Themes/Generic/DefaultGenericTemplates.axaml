@@ -1,10 +1,11 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="using:RibbonControl.Core.Controls"
+        xmlns:icons="using:RibbonControl.Core.Icons"
         xmlns:models="using:RibbonControl.Core.Models">
 <DataTemplate x:Key="RibbonTabHeaderTemplate" DataType="models:RibbonTab">
       <StackPanel Spacing="2"
-                  Margin="6,2">
+                  Margin="6,2,6,1">
         <Border Height="2"
                 CornerRadius="1"
                 IsVisible="{CompiledBinding IsContextual}"
@@ -13,21 +14,22 @@
                    Tag="{CompiledBinding Id, StringFormat='tab:{0}'}"
                    AutomationProperties.Name="{CompiledBinding Header}"
                    AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Tab.{0}'}"
-                   Margin="2,0"
+                   Margin="1,1,1,1"
+                   FontSize="12"
                    Foreground="{CompiledBinding ContextGroupAccentColor, TargetNullValue={DynamicResource RibbonThemePrimaryTextBrush}}" />
       </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonBackstageNavigationItemTemplate" DataType="models:RibbonBackstageItem">
       <Grid IsVisible="{CompiledBinding IsVisible}">
-        <Separator Classes="ribbon-backstage-nav-separator"
+        <Separator Classes="ribbon-backstage-separator ribbon-backstage-nav-separator"
                    IsVisible="{CompiledBinding IsSeparator}" />
-        <Border Classes="ribbon-backstage-nav-item"
+        <Border Classes="ribbon-backstage-item ribbon-backstage-nav-item"
                 IsVisible="{CompiledBinding IsActionItem}"
                 IsEnabled="{CompiledBinding IsEnabled}"
-                Padding="10,7">
+                Padding="14,8">
           <Grid ColumnDefinitions="Auto,*,Auto,Auto"
-                ColumnSpacing="10">
+                ColumnSpacing="12">
             <controls:RibbonIconPresenter Grid.Column="0"
                         Icon="{CompiledBinding Icon}"
                         IconResourceKey="{CompiledBinding IconResourceKey}"
@@ -41,28 +43,30 @@
                         IconMinHeight="{CompiledBinding IconMinHeight}"
                         IconMaxWidth="{CompiledBinding IconMaxWidth}"
                         IconMaxHeight="{CompiledBinding IconMaxHeight}"
-                        Width="18"
-                        Height="18"
+                        Width="22"
+                        Height="22"
                         IsVisible="{CompiledBinding HasIcon}" />
             <StackPanel Grid.Column="1"
-                        Spacing="1"
+                        Spacing="2"
                         VerticalAlignment="Center">
-              <TextBlock Classes="ribbon-backstage-nav-label"
+              <TextBlock Classes="ribbon-backstage-label ribbon-backstage-nav-label"
                          Text="{CompiledBinding Label}" />
-              <TextBlock Classes="ribbon-backstage-nav-description"
+              <TextBlock Classes="ribbon-backstage-description ribbon-backstage-nav-description"
                          Text="{CompiledBinding Description}"
                          IsVisible="{CompiledBinding HasDescription}" />
             </StackPanel>
             <TextBlock Grid.Column="2"
-                       Classes="ribbon-backstage-nav-gesture"
+                       Classes="ribbon-backstage-gesture ribbon-backstage-nav-gesture"
                        Text="{CompiledBinding InputGestureText}"
                        VerticalAlignment="Center"
                        IsVisible="{CompiledBinding HasInputGestureText}" />
-            <TextBlock Grid.Column="3"
-                       Classes="ribbon-backstage-nav-chevron"
-                       Text="›"
-                       VerticalAlignment="Center"
-                       IsVisible="{CompiledBinding ShowsChevronGlyph}" />
+            <PathIcon Grid.Column="3"
+                      Classes="ribbon-backstage-chevron"
+                      Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
+                      Width="14"
+                      Height="14"
+                      VerticalAlignment="Center"
+                      IsVisible="{CompiledBinding ShowsChevronGlyph}" />
           </Grid>
         </Border>
       </Grid>
@@ -70,9 +74,9 @@
 
     <DataTemplate x:Key="RibbonMenuItemTemplate" DataType="models:RibbonMenuItem">
       <Grid Classes="ribbon-menu-item-host">
-        <Separator Classes="ribbon-menu-separator"
+        <Separator Classes="ribbon-separator ribbon-menu-separator"
                    IsVisible="{CompiledBinding IsSeparator}" />
-        <Button Classes="ribbon-popup-command"
+        <Button Classes="ribbon-command ribbon-menu-item ribbon-popup-command"
                 HorizontalContentAlignment="Stretch"
                 IsVisible="{CompiledBinding IsCommand}"
                 Command="{CompiledBinding Command}"
@@ -129,16 +133,16 @@
               <Border Grid.Column="3"
                       Classes="ribbon-menu-item-chevron-host"
                       IsVisible="{CompiledBinding ShowsChevronGlyph}">
-                <TextBlock Classes="ribbon-menu-item-chevron"
-                           Text="›"
-                           VerticalAlignment="Center" />
+                <PathIcon Classes="ribbon-menu-item-chevron"
+                          Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
+                          VerticalAlignment="Center" />
               </Border>
             </Grid>
           </Grid>
         </Button>
 
-        <ToggleButton x:Name="PART_SubMenuToggle"
-                      Classes="ribbon-popup-command"
+        <ToggleButton x:Name="PART_RibbonSubMenuToggle"
+                      Classes="ribbon-command ribbon-menu-item ribbon-popup-command"
                       HorizontalContentAlignment="Stretch"
                       IsVisible="{CompiledBinding HasSubMenuItems}"
                       IsChecked="{CompiledBinding IsSubMenuOpen, Mode=TwoWay}"
@@ -193,9 +197,9 @@
                          IsVisible="{CompiledBinding HasInputGestureText}" />
               <Border Grid.Column="3"
                       Classes="ribbon-menu-item-chevron-host">
-                <TextBlock Classes="ribbon-menu-item-chevron"
-                           Text="›"
-                           VerticalAlignment="Center" />
+                <PathIcon Classes="ribbon-menu-item-chevron"
+                          Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
+                          VerticalAlignment="Center" />
               </Border>
             </Grid>
           </Grid>
@@ -204,12 +208,12 @@
         <Popup IsOpen="{CompiledBinding IsSubMenuOpen, Mode=TwoWay}"
                IsLightDismissEnabled="True"
                Placement="RightEdgeAlignedTop"
-               PlacementTarget="{Binding #PART_SubMenuToggle}">
-          <Border Classes="ribbon-popup-surface ribbon-popup-submenu-surface"
+               PlacementTarget="{Binding #PART_RibbonSubMenuToggle}">
+          <Border Classes="ribbon-popup-surface ribbon-menu-popup ribbon-popup-menu-surface ribbon-submenu-popup ribbon-popup-submenu-surface"
                   Background="{DynamicResource RibbonThemeMenuSurfaceBrush}"
                   BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
                   BorderThickness="1"
-                  CornerRadius="2"
+                  CornerRadius="3"
                   MaxHeight="460">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
               <ItemsControl ItemsSource="{CompiledBinding SubMenuItems}"
@@ -221,8 +225,8 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonGalleryItemTemplate" DataType="models:RibbonMenuItem">
-      <ToggleButton Classes="ribbon-gallery-item"
-                    MinWidth="92"
+      <ToggleButton Classes="ribbon-command ribbon-gallery-item"
+                    MinWidth="108"
                     Margin="2"
                     Padding="6,4"
                     IsChecked="{CompiledBinding IsSelected, Mode=TwoWay}"
@@ -275,10 +279,62 @@
       </ToggleButton>
     </DataTemplate>
 
+    <DataTemplate x:Key="RibbonGalleryPreviewItemTemplate" DataType="models:RibbonMenuItem">
+      <ToggleButton Classes="ribbon-command ribbon-gallery-preview-item"
+                    IsChecked="{CompiledBinding IsSelected, Mode=TwoWay}"
+                    Command="{CompiledBinding Command}"
+                    CommandParameter="{CompiledBinding CommandParameter}"
+                    Tag="{CompiledBinding Id, StringFormat='gallery-preview:{0}'}"
+                    ToolTip.Tip="{CompiledBinding ScreenTip}"
+                    AutomationProperties.Name="{CompiledBinding Label}"
+                    AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.GalleryPreviewItem.{0}'}">
+        <Grid>
+          <ContentPresenter Content="{CompiledBinding Content}"
+                            IsVisible="{CompiledBinding HasContent}" />
+          <StackPanel Orientation="Vertical"
+                      HorizontalAlignment="Center"
+                      Spacing="4"
+                      IsVisible="{CompiledBinding HasNoContent}">
+            <controls:RibbonIconPresenter Icon="{CompiledBinding Icon}"
+                        IconResourceKey="{CompiledBinding IconResourceKey}"
+                        IconPathData="{CompiledBinding IconPathData}"
+                        IconEmoji="{CompiledBinding IconEmoji}"
+                        IconStretch="{CompiledBinding IconStretch}"
+                        IconStretchDirection="{CompiledBinding IconStretchDirection}"
+                        IconWidth="{CompiledBinding IconWidth}"
+                        IconHeight="{CompiledBinding IconHeight}"
+                        IconMinWidth="{CompiledBinding IconMinWidth}"
+                        IconMinHeight="{CompiledBinding IconMinHeight}"
+                        IconMaxWidth="{CompiledBinding IconMaxWidth}"
+                        IconMaxHeight="{CompiledBinding IconMaxHeight}"
+                        Overlay="{CompiledBinding Overlay}"
+                        OverlayResourceKey="{CompiledBinding OverlayResourceKey}"
+                        OverlayPathData="{CompiledBinding OverlayPathData}"
+                        OverlayEmoji="{CompiledBinding OverlayEmoji}"
+                        OverlayCount="{CompiledBinding OverlayCount}"
+                        OverlayCountText="{CompiledBinding OverlayCountText}"
+                        ShowOverlayCountWhenZero="{CompiledBinding ShowOverlayCountWhenZero}"
+                        OverlayHorizontalAlignment="{CompiledBinding OverlayHorizontalAlignment}"
+                        OverlayVerticalAlignment="{CompiledBinding OverlayVerticalAlignment}"
+                        OverlayMargin="{CompiledBinding OverlayMargin}"
+                        OverlayCountHorizontalAlignment="{CompiledBinding OverlayCountHorizontalAlignment}"
+                        OverlayCountVerticalAlignment="{CompiledBinding OverlayCountVerticalAlignment}"
+                        OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
+                      Width="16"
+                      Height="16" />
+            <TextBlock Text="{CompiledBinding Label}"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="11" />
+          </StackPanel>
+        </Grid>
+      </ToggleButton>
+    </DataTemplate>
+
     <DataTemplate x:Key="RibbonPopupMenuSectionTemplate" DataType="models:RibbonPopupMenuSection">
       <StackPanel Classes="ribbon-popup-section"
                   Spacing="4">
-        <Separator Classes="ribbon-popup-section-separator"
+        <Separator Classes="ribbon-separator ribbon-popup-section-separator"
                    IsVisible="{CompiledBinding ShowSeparator}" />
         <TextBlock Classes="ribbon-popup-section-header"
                    Text="{CompiledBinding Header}"
@@ -301,10 +357,10 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonToggleGroupOptionLargeTemplate" DataType="models:RibbonMenuItem">
-      <ToggleButton Classes="ribbon-command ribbon-toggle-group-option ribbon-toggle-group-option-large"
-                    MinWidth="108"
+      <ToggleButton Classes="ribbon-command ribbon-toggle-group-option-large ribbon-command"
+                    MinWidth="114"
                     Margin="2"
-                    Padding="8,5"
+                    Padding="9,5"
                     HorizontalContentAlignment="Left"
                     IsChecked="{CompiledBinding IsSelected, Mode=TwoWay}"
                     Command="{CompiledBinding Command}"
@@ -349,17 +405,18 @@
                       Height="16"
                       IsVisible="{CompiledBinding HasIcon}" />
             <TextBlock Text="{CompiledBinding Label}"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       FontSize="11.5" />
           </StackPanel>
         </Grid>
       </ToggleButton>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonToggleGroupOptionSmallTemplate" DataType="models:RibbonMenuItem">
-      <ToggleButton Classes="ribbon-command ribbon-toggle-group-option ribbon-toggle-group-option-small"
-                    MinWidth="96"
+      <ToggleButton Classes="ribbon-command ribbon-toggle-group-option-small ribbon-command"
+                    MinWidth="98"
                     Margin="2"
-                    Padding="6,4"
+                    Padding="7,4"
                     HorizontalContentAlignment="Left"
                     IsChecked="{CompiledBinding IsSelected, Mode=TwoWay}"
                     Command="{CompiledBinding Command}"
@@ -404,18 +461,18 @@
                       Height="14"
                       IsVisible="{CompiledBinding HasIcon}" />
             <TextBlock Text="{CompiledBinding Label}"
-                       FontSize="11"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       FontSize="10.5" />
           </StackPanel>
         </Grid>
       </ToggleButton>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonToggleGroupSingleOptionLargeTemplate" DataType="models:RibbonMenuItem">
-      <RadioButton Classes="ribbon-command ribbon-toggle-group-option ribbon-toggle-group-option-large ribbon-toggle-group-option-single"
-                   MinWidth="108"
+      <RadioButton Classes="ribbon-command ribbon-toggle-group-option-large ribbon-toggle-group-option-single ribbon-command"
+                   MinWidth="114"
                    Margin="2"
-                   Padding="8,5"
+                   Padding="9,5"
                    HorizontalContentAlignment="Left"
                    GroupName="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                    IsChecked="{CompiledBinding IsSelected, Mode=TwoWay}"
@@ -461,17 +518,18 @@
                       Height="16"
                       IsVisible="{CompiledBinding HasIcon}" />
             <TextBlock Text="{CompiledBinding Label}"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       FontSize="11.5" />
           </StackPanel>
         </Grid>
       </RadioButton>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonToggleGroupSingleOptionSmallTemplate" DataType="models:RibbonMenuItem">
-      <RadioButton Classes="ribbon-command ribbon-toggle-group-option ribbon-toggle-group-option-small ribbon-toggle-group-option-single"
-                   MinWidth="96"
+      <RadioButton Classes="ribbon-command ribbon-toggle-group-option-small ribbon-toggle-group-option-single ribbon-command"
+                   MinWidth="98"
                    Margin="2"
-                   Padding="6,4"
+                   Padding="7,4"
                    HorizontalContentAlignment="Left"
                    GroupName="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                    IsChecked="{CompiledBinding IsSelected, Mode=TwoWay}"
@@ -517,20 +575,21 @@
                       Height="14"
                       IsVisible="{CompiledBinding HasIcon}" />
             <TextBlock Text="{CompiledBinding Label}"
-                       FontSize="11"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       FontSize="10.5" />
           </StackPanel>
         </Grid>
       </RadioButton>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonGalleryCategoryTemplate" DataType="models:RibbonGalleryCategory">
-      <StackPanel Spacing="4"
+      <StackPanel Spacing="5"
                   Margin="0,0,0,6">
         <TextBlock Text="{CompiledBinding Header}"
                    Margin="2,0,2,2"
-                   FontSize="11"
-                   FontWeight="SemiBold" />
+                   FontSize="12"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource RibbonThemePrimaryTextBrush}" />
         <ItemsControl ItemsSource="{CompiledBinding Items}"
                       ItemTemplate="{StaticResource RibbonGalleryItemTemplate}">
           <ItemsControl.ItemsPanel>
@@ -547,7 +606,7 @@
         <ContentPresenter Content="{CompiledBinding Content}"
                           IsVisible="{CompiledBinding HasContent}" />
         <StackPanel Orientation="Horizontal"
-                    Spacing="6"
+                    Spacing="7"
                     IsVisible="{CompiledBinding HasNoContent}">
           <controls:RibbonIconPresenter Icon="{CompiledBinding Icon}"
                         IconResourceKey="{CompiledBinding IconResourceKey}"
@@ -578,17 +637,18 @@
                     Height="14"
                     IsVisible="{CompiledBinding HasIcon}" />
           <TextBlock Text="{CompiledBinding Label}"
+                     FontSize="12"
                      VerticalAlignment="Center" />
         </StackPanel>
       </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonItemTemplate" DataType="models:RibbonItem">
-      <Grid Margin="2"
+      <Grid Margin="1,0"
             RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-        <Button Classes="ribbon-command ribbon-command-large"
-                MinWidth="76"
-                Padding="6"
+        <Button Classes="ribbon-command ribbon-large ribbon-command-large"
+                MinWidth="82"
+                Padding="6,7"
                 Grid.Row="0"
                 IsVisible="{CompiledBinding IsEffectiveLargeButtonPrimitive}"
                 Command="{CompiledBinding Command}"
@@ -629,13 +689,14 @@
                       Height="32" />
             <TextBlock Text="{CompiledBinding Label}"
                        HorizontalAlignment="Center"
-                       TextAlignment="Center" />
+                       TextAlignment="Center"
+                       FontSize="11" />
           </StackPanel>
         </Button>
 
-        <Button Classes="ribbon-command ribbon-command-small"
-                MinWidth="38"
-                Padding="6,4"
+        <Button Classes="ribbon-command ribbon-small ribbon-command-small"
+                MinWidth="44"
+                Padding="4,2"
                 Grid.Row="1"
                 IsVisible="{CompiledBinding IsEffectiveSmallButtonPrimitive}"
                 Command="{CompiledBinding Command}"
@@ -674,11 +735,12 @@
                         OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
                       Width="14"
                       Height="14" />
-            <TextBlock Text="{CompiledBinding Label}" />
+            <TextBlock Text="{CompiledBinding Label}"
+                       FontSize="11" />
           </StackPanel>
         </Button>
 
-        <Button Classes="ribbon-command ribbon-command-icon-only"
+        <Button Classes="ribbon-command ribbon-icon-only ribbon-command"
                 MinWidth="36"
                 MinHeight="36"
                 Padding="0"
@@ -719,9 +781,9 @@
                     Height="16" />
         </Button>
 
-        <Button Classes="ribbon-command ribbon-command-icon-only ribbon-command-icon-only-small"
-                MinWidth="30"
-                MinHeight="30"
+        <Button Classes="ribbon-command ribbon-icon-only-small ribbon-command"
+                MinWidth="28"
+                MinHeight="28"
                 Padding="0"
                 Grid.Row="11"
                 IsVisible="{CompiledBinding IsEffectiveSmallIconOnlyButtonPrimitive}"
@@ -760,13 +822,14 @@
                     Height="14" />
         </Button>
 
-        <Grid x:Name="PART_SplitHost"
+        <Grid x:Name="PART_RibbonSplitHost"
               Grid.Row="2"
               IsVisible="{CompiledBinding IsSideBySideSplitButtonPrimitive}"
               ColumnDefinitions="Auto,Auto">
           <Grid Grid.Column="0">
-            <Button Classes="ribbon-command ribbon-command-large ribbon-split-main"
-                    MinWidth="76"
+            <Button Classes="ribbon-command ribbon-large ribbon-split-main ribbon-command-large"
+                    MinWidth="82"
+                    Padding="6,7"
                     IsVisible="{CompiledBinding IsSideBySideLargeSplitButtonPrimitive}"
                     Command="{CompiledBinding Command}"
                     CommandParameter="{CompiledBinding CommandParameter}"
@@ -806,10 +869,11 @@
                           Height="32" />
                 <TextBlock Text="{CompiledBinding Label}"
                            HorizontalAlignment="Center"
-                           TextAlignment="Center" />
+                           TextAlignment="Center"
+                           FontSize="11" />
               </StackPanel>
             </Button>
-            <Button Classes="ribbon-command ribbon-command-small ribbon-split-main ribbon-split-main-small"
+            <Button Classes="ribbon-command ribbon-small ribbon-split-main-small ribbon-command"
                     MinWidth="44"
                     IsVisible="{CompiledBinding IsSideBySideSmallSplitButtonPrimitive}"
                     Command="{CompiledBinding Command}"
@@ -848,10 +912,11 @@
                         OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
                           Width="14"
                           Height="14" />
-                <TextBlock Text="{CompiledBinding Label}" />
+                <TextBlock Text="{CompiledBinding Label}"
+                           FontSize="11" />
               </StackPanel>
             </Button>
-            <Button Classes="ribbon-command ribbon-command-icon-only ribbon-split-main ribbon-split-main-icon-only"
+            <Button Classes="ribbon-command ribbon-icon-only ribbon-split-main-icon-only ribbon-command"
                     IsVisible="{CompiledBinding IsSideBySideLargeIconOnlySplitButtonPrimitive}"
                     Command="{CompiledBinding Command}"
                     CommandParameter="{CompiledBinding CommandParameter}"
@@ -887,7 +952,7 @@
                         Width="16"
                         Height="16" />
             </Button>
-            <Button Classes="ribbon-command ribbon-command-icon-only ribbon-command-icon-only-small ribbon-split-main ribbon-split-main-small ribbon-split-main-icon-only"
+            <Button Classes="ribbon-command ribbon-icon-only-small ribbon-split-main-small ribbon-split-main-icon-only ribbon-command"
                     IsVisible="{CompiledBinding IsSideBySideSmallIconOnlySplitButtonPrimitive}"
                     Command="{CompiledBinding Command}"
                     CommandParameter="{CompiledBinding CommandParameter}"
@@ -925,10 +990,10 @@
             </Button>
           </Grid>
           <Border Grid.Column="1"
-                  Classes="ribbon-split-secondary-host">
+                  Classes="ribbon-splitter-host ribbon-split-secondary-host">
             <Grid>
-              <ToggleButton x:Name="PART_SplitDropDownToggle"
-                            Classes="ribbon-command ribbon-split-secondary"
+              <ToggleButton x:Name="PART_RibbonSplitDropDownToggle"
+                            Classes="ribbon-command ribbon-split-secondary ribbon-dropdown-toggle"
                             MinWidth="24"
                             IsVisible="{CompiledBinding IsSplitDropDownToggleVisible}"
                             IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}"
@@ -936,12 +1001,11 @@
                             ToolTip.Tip="{CompiledBinding ScreenTip}"
                             AutomationProperties.Name="{CompiledBinding Label, StringFormat='{}{0} Options'}"
                             AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.SplitSecondary.{0}'}">
-                <TextBlock Text="▼"
-                           FontSize="10"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                          Width="10"
+                          Height="10" />
               </ToggleButton>
-              <Button Classes="ribbon-command ribbon-split-secondary"
+              <Button Classes="ribbon-command ribbon-split-secondary-action"
                       MinWidth="24"
                       IsVisible="{CompiledBinding IsSplitSecondaryCommandVisible}"
                       Command="{CompiledBinding SecondaryCommand}"
@@ -950,39 +1014,38 @@
                       ToolTip.Tip="{CompiledBinding ScreenTip}"
                       AutomationProperties.Name="{CompiledBinding Label, StringFormat='{}{0} Secondary Action'}"
                       AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.SplitSecondaryAction.{0}'}">
-                <TextBlock Text="▸"
-                           FontSize="12"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronRight20Regular}"
+                          Width="10"
+                          Height="10" />
               </Button>
-              <ToggleButton Classes="ribbon-command ribbon-split-secondary"
+              <ToggleButton Classes="ribbon-command ribbon-split-secondary ribbon-dropdown-toggle"
                             MinWidth="24"
                             IsVisible="{CompiledBinding IsSplitFallbackToggleVisible}"
                             IsEnabled="False"
                             ToolTip.Tip="{CompiledBinding ScreenTip}"
                             AutomationProperties.Name="{CompiledBinding Label, StringFormat='{}{0} Options'}"
                             AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.SplitSecondaryFallback.{0}'}">
-                <TextBlock Text="▼"
-                           FontSize="10"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                          Width="10"
+                          Height="10" />
               </ToggleButton>
             </Grid>
           </Border>
           <Popup IsOpen="{CompiledBinding IsSideBySideSplitDropDownOpen, Mode=TwoWay}"
                  IsLightDismissEnabled="True"
                  Placement="Bottom"
-                 PlacementTarget="{Binding #PART_SplitHost}">
-            <Border Classes="ribbon-popup-surface ribbon-popup-menu-surface"
+                 PlacementTarget="{Binding #PART_RibbonSplitHost}">
+            <Border Classes="ribbon-popup-surface ribbon-menu-popup ribbon-popup-menu-surface"
                     Background="{DynamicResource RibbonThemeMenuSurfaceBrush}"
                     BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
                     BorderThickness="1"
-                    CornerRadius="2"
+                    CornerRadius="3"
                     MinWidth="{CompiledBinding PopupMinWidth}">
               <StackPanel Spacing="4">
                 <TextBlock Text="{CompiledBinding PopupTitle}"
+                           FontSize="15"
                            FontWeight="SemiBold"
-                           FontSize="14"
+                           Foreground="{DynamicResource RibbonThemePrimaryTextBrush}"
                            IsVisible="{CompiledBinding HasPopupTitle}" />
                 <ContentPresenter Content="{CompiledBinding PopupContent}"
                                   IsVisible="{CompiledBinding HasPopupContent}" />
@@ -999,13 +1062,14 @@
           </Popup>
         </Grid>
 
-        <Grid x:Name="PART_StackedSplitHost"
+        <Grid x:Name="PART_RibbonStackedSplitHost"
               Grid.Row="2"
               IsVisible="{CompiledBinding IsStackedSplitButtonPrimitive}"
               RowDefinitions="Auto,Auto"
-              MinWidth="90">
-          <Button Classes="ribbon-command ribbon-command-large ribbon-stacked-split-top"
-                  MinWidth="90"
+              MinWidth="82">
+          <Button Classes="ribbon-command ribbon-stacked-split-top ribbon-command-large"
+                  MinWidth="82"
+                  Padding="6,6,6,5"
                   Command="{CompiledBinding Command}"
                   CommandParameter="{CompiledBinding CommandParameter}"
                   Tag="{CompiledBinding Id, StringFormat='split-stacked-top:{0}'}"
@@ -1043,8 +1107,8 @@
                       VerticalAlignment="Center" />
           </Button>
           <Grid Grid.Row="1">
-            <Button Classes="ribbon-command ribbon-stacked-split-bottom"
-                    MinWidth="90"
+            <Button Classes="ribbon-command ribbon-stacked-split-bottom ribbon-command"
+                    MinWidth="82"
                     IsVisible="{CompiledBinding IsStackedSplitBottomCommandOnlyVisible}"
                     Command="{CompiledBinding SecondaryCommand}"
                     CommandParameter="{CompiledBinding SecondaryCommandParameter}"
@@ -1054,10 +1118,11 @@
                     AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.StackedSplitBottomCommand.{0}'}">
               <TextBlock Text="{CompiledBinding Label}"
                          HorizontalAlignment="Center"
-                         TextAlignment="Center" />
+                         TextAlignment="Center"
+                         FontSize="11" />
             </Button>
-            <ToggleButton Classes="ribbon-command ribbon-stacked-split-bottom"
-                          MinWidth="90"
+            <ToggleButton Classes="ribbon-command ribbon-stacked-split-bottom ribbon-dropdown-toggle ribbon-command"
+                          MinWidth="82"
                           IsVisible="{CompiledBinding IsStackedSplitBottomDropDownOnlyVisible}"
                           IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}"
                           Tag="{CompiledBinding Id, StringFormat='split-stacked-bottom-toggle:{0}'}"
@@ -1067,16 +1132,19 @@
               <DockPanel LastChildFill="False">
                 <TextBlock Text="{CompiledBinding Label}"
                            HorizontalAlignment="Center"
-                           TextAlignment="Center" />
-                <TextBlock Text="▼"
-                           Margin="4,0,0,0"
-                           FontSize="10"
-                           VerticalAlignment="Center" />
+                           TextAlignment="Center"
+                           FontSize="11" />
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                          Margin="4,0,0,0"
+                          Width="10"
+                          Height="10"
+                          VerticalAlignment="Center"
+                          Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
               </DockPanel>
             </ToggleButton>
             <Grid IsVisible="{CompiledBinding IsStackedSplitBottomSplitVisible}"
                   ColumnDefinitions="*,Auto">
-              <Button Classes="ribbon-command ribbon-stacked-split-bottom ribbon-stacked-split-bottom-main"
+              <Button Classes="ribbon-command ribbon-stacked-split-bottom-main ribbon-command"
                       Grid.Column="0"
                       Command="{CompiledBinding SecondaryCommand}"
                       CommandParameter="{CompiledBinding SecondaryCommandParameter}"
@@ -1086,9 +1154,10 @@
                       AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.StackedSplitBottomMain.{0}'}">
                 <TextBlock Text="{CompiledBinding Label}"
                            HorizontalAlignment="Center"
-                           TextAlignment="Center" />
+                           TextAlignment="Center"
+                           FontSize="11" />
               </Button>
-              <ToggleButton Classes="ribbon-command ribbon-stacked-split-bottom ribbon-stacked-split-bottom-toggle"
+              <ToggleButton Classes="ribbon-command ribbon-stacked-split-bottom-toggle ribbon-dropdown-toggle ribbon-command"
                             Grid.Column="1"
                             MinWidth="24"
                             IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}"
@@ -1096,14 +1165,14 @@
                             ToolTip.Tip="{CompiledBinding ScreenTip}"
                             AutomationProperties.Name="{CompiledBinding Label, StringFormat='{}{0} Options'}"
                             AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.StackedSplitBottomArrow.{0}'}">
-                <TextBlock Text="▼"
-                           FontSize="10"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                          Width="10"
+                          Height="10"
+                          Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
               </ToggleButton>
             </Grid>
-            <ToggleButton Classes="ribbon-command ribbon-stacked-split-bottom"
-                          MinWidth="90"
+            <ToggleButton Classes="ribbon-command ribbon-stacked-split-bottom ribbon-dropdown-toggle ribbon-command"
+                          MinWidth="82"
                           IsVisible="{CompiledBinding IsStackedSplitBottomFallbackVisible}"
                           IsEnabled="False"
                           ToolTip.Tip="{CompiledBinding ScreenTip}"
@@ -1112,28 +1181,32 @@
               <DockPanel LastChildFill="False">
                 <TextBlock Text="{CompiledBinding Label}"
                            HorizontalAlignment="Center"
-                           TextAlignment="Center" />
-                <TextBlock Text="▼"
-                           Margin="4,0,0,0"
-                           FontSize="10"
-                           VerticalAlignment="Center" />
+                           TextAlignment="Center"
+                           FontSize="11" />
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                          Margin="4,0,0,0"
+                          Width="10"
+                          Height="10"
+                          VerticalAlignment="Center"
+                          Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
               </DockPanel>
             </ToggleButton>
           </Grid>
           <Popup IsOpen="{CompiledBinding IsStackedSplitDropDownOpen, Mode=TwoWay}"
                  IsLightDismissEnabled="True"
                  Placement="Bottom"
-                 PlacementTarget="{Binding #PART_StackedSplitHost}">
-            <Border Classes="ribbon-popup-surface ribbon-popup-menu-surface"
+                 PlacementTarget="{Binding #PART_RibbonStackedSplitHost}">
+            <Border Classes="ribbon-popup-surface ribbon-menu-popup ribbon-popup-menu-surface"
                     Background="{DynamicResource RibbonThemeMenuSurfaceBrush}"
                     BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
                     BorderThickness="1"
-                    CornerRadius="2"
+                    CornerRadius="3"
                     MinWidth="{CompiledBinding PopupMinWidth}">
               <StackPanel Spacing="4">
                 <TextBlock Text="{CompiledBinding PopupTitle}"
+                           FontSize="15"
                            FontWeight="SemiBold"
-                           FontSize="14"
+                           Foreground="{DynamicResource RibbonThemePrimaryTextBrush}"
                            IsVisible="{CompiledBinding HasPopupTitle}" />
                 <ContentPresenter Content="{CompiledBinding PopupContent}"
                                   IsVisible="{CompiledBinding HasPopupContent}" />
@@ -1152,9 +1225,10 @@
 
         <Grid Grid.Row="3"
               IsVisible="{CompiledBinding IsMenuButtonPrimitive}">
-          <ToggleButton x:Name="PART_MenuDropDownToggle"
-                        Classes="ribbon-command ribbon-command-large"
-                        MinWidth="76"
+          <ToggleButton x:Name="PART_RibbonMenuDropDownToggle"
+                        Classes="ribbon-command ribbon-menu ribbon-dropdown-toggle ribbon-command-large"
+                        MinWidth="82"
+                        Padding="6,7"
                         IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}"
                         Tag="{CompiledBinding Id}"
                         ToolTip.Tip="{CompiledBinding ScreenTip}"
@@ -1162,7 +1236,7 @@
                         AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.Menu.{0}'}">
             <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Center"
-                        Spacing="4">
+                        Spacing="2">
               <controls:RibbonIconPresenter Icon="{CompiledBinding Icon}"
                         IconResourceKey="{CompiledBinding IconResourceKey}"
                         IconPathData="{CompiledBinding IconPathData}"
@@ -1190,32 +1264,32 @@
                         OverlayCountMargin="{CompiledBinding OverlayCountMargin}"
                         Width="16"
                         Height="16" />
-              <DockPanel LastChildFill="False">
-                <TextBlock Text="{CompiledBinding Label}"
-                           HorizontalAlignment="Center"
-                           TextAlignment="Center" />
-                <TextBlock Text="▾"
-                           Margin="4,0,0,0"
-                           VerticalAlignment="Center"
-                           FontSize="10"
-                           Opacity="0.75" />
-              </DockPanel>
+              <TextBlock Text="{CompiledBinding Label}"
+                         HorizontalAlignment="Center"
+                         TextAlignment="Center"
+                         FontSize="11" />
+              <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                        Width="10"
+                        Height="10"
+                        HorizontalAlignment="Center"
+                        Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
             </StackPanel>
           </ToggleButton>
           <Popup IsOpen="{CompiledBinding IsMenuDropDownOpen, Mode=TwoWay}"
                  IsLightDismissEnabled="True"
                  Placement="Bottom"
-                 PlacementTarget="{Binding #PART_MenuDropDownToggle}">
-            <Border Classes="ribbon-popup-surface ribbon-popup-menu-surface"
+                 PlacementTarget="{Binding #PART_RibbonMenuDropDownToggle}">
+            <Border Classes="ribbon-popup-surface ribbon-menu-popup ribbon-popup-menu-surface"
                     Background="{DynamicResource RibbonThemeMenuSurfaceBrush}"
                     BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
                     BorderThickness="1"
-                    CornerRadius="2"
+                    CornerRadius="3"
                     MinWidth="{CompiledBinding PopupMinWidth}">
               <StackPanel Spacing="4">
                 <TextBlock Text="{CompiledBinding PopupTitle}"
+                           FontSize="15"
                            FontWeight="SemiBold"
-                           FontSize="14"
+                           Foreground="{DynamicResource RibbonThemePrimaryTextBrush}"
                            IsVisible="{CompiledBinding HasPopupTitle}" />
                 <ContentPresenter Content="{CompiledBinding PopupContent}"
                                   IsVisible="{CompiledBinding HasPopupContent}" />
@@ -1233,60 +1307,55 @@
         </Grid>
 
         <Border Grid.Row="4"
+                Classes="ribbon-gallery"
                 IsVisible="{CompiledBinding IsGalleryPrimitive}"
-                Padding="4"
-                BorderThickness="1"
-                BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
-                CornerRadius="2"
+                MinWidth="172"
+                Padding="0"
                 Tag="{CompiledBinding Id}"
                 ToolTip.Tip="{CompiledBinding ScreenTip}"
                 AutomationProperties.Name="{CompiledBinding Label}"
                 AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.Gallery.{0}'}">
-          <Grid RowDefinitions="Auto,Auto">
-            <DockPanel Grid.Row="0"
-                       LastChildFill="False">
-              <TextBlock Text="{CompiledBinding Label}"
-                         FontSize="11"
-                         FontWeight="SemiBold"
-                         HorizontalAlignment="Left" />
-              <ToggleButton x:Name="PART_GalleryDropDownToggle"
-                            MinWidth="20"
-                            MinHeight="20"
-                            Margin="6,0,0,0"
-                            Padding="2"
-                            Content="▾"
-                            IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}" />
-            </DockPanel>
-            <ItemsControl Grid.Row="1"
-                          Margin="0,4,0,0"
+          <Grid ColumnDefinitions="*,Auto">
+            <ItemsControl Grid.Column="0"
+                          Margin="5,4,0,4"
                           ItemsSource="{CompiledBinding RibbonPreviewMenuItems}"
-                          ItemTemplate="{StaticResource RibbonGalleryItemTemplate}"
+                          ItemTemplate="{StaticResource RibbonGalleryPreviewItemTemplate}"
                           IsVisible="{CompiledBinding HasRibbonPreviewMenuItems}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                  <WrapPanel />
+                  <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
             </ItemsControl>
+            <ToggleButton x:Name="PART_RibbonGalleryDropDownToggle"
+                            Grid.Column="1"
+                            Classes="ribbon-command ribbon-gallery-split-toggle ribbon-dropdown-toggle"
+                            IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}">
+                <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                          Width="10"
+                          Height="10"
+                          Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
+            </ToggleButton>
             <Popup IsOpen="{CompiledBinding IsGalleryDropDownOpen, Mode=TwoWay}"
                    IsLightDismissEnabled="True"
                    Placement="Bottom"
-                   PlacementTarget="{Binding #PART_GalleryDropDownToggle}">
-              <Border Classes="ribbon-popup-surface"
+                   PlacementTarget="{Binding #PART_RibbonGalleryDropDownToggle}">
+              <Border Classes="ribbon-popup-surface ribbon-gallery-popup"
                       Background="{DynamicResource RibbonThemeMenuSurfaceBrush}"
                       BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
                       BorderThickness="1"
-                      CornerRadius="2"
-                      Padding="4"
+                      CornerRadius="3"
+                      Padding="6"
                       MinWidth="{CompiledBinding PopupMinWidth}">
                 <StackPanel Spacing="4">
                   <TextBlock Text="{CompiledBinding PopupTitle}"
+                             FontSize="15"
                              FontWeight="SemiBold"
-                             FontSize="14"
+                             Foreground="{DynamicResource RibbonThemePrimaryTextBrush}"
                              IsVisible="{CompiledBinding HasPopupTitle}" />
                   <TextBlock Text="{CompiledBinding Description}"
                              FontSize="10"
-                             Opacity="0.7"
+                             Foreground="{DynamicResource RibbonThemeMutedTextBrush}"
                              IsVisible="{CompiledBinding HasDescription}" />
                   <ContentPresenter Content="{CompiledBinding PopupContent}"
                                     IsVisible="{CompiledBinding HasPopupContent}" />
@@ -1314,7 +1383,8 @@
                       </ItemsControl.ItemsPanel>
                     </ItemsControl>
                   </ScrollViewer>
-                  <Separator IsVisible="{CompiledBinding ShowUncategorizedPopupMenuItems}" />
+                  <Separator Classes="ribbon-separator"
+                             IsVisible="{CompiledBinding ShowUncategorizedPopupMenuItems}" />
                   <ScrollViewer VerticalScrollBarVisibility="Auto"
                                 MaxHeight="{CompiledBinding PopupMaxHeight}"
                                 IsVisible="{CompiledBinding ShowUncategorizedPopupMenuItems}">
@@ -1335,11 +1405,11 @@
           </Grid>
         </Border>
 
-        <ToggleButton Classes="ribbon-command ribbon-toggle ribbon-toggle-large"
+        <ToggleButton Classes="ribbon-command ribbon-toggle-large ribbon-command"
                       Grid.Row="5"
-                      MinWidth="76"
-                      MinHeight="60"
-                      Padding="6"
+                      MinWidth="82"
+                      MinHeight="62"
+                      Padding="6,6"
                       IsVisible="{CompiledBinding IsEffectiveLargeToggleButtonPrimitive}"
                       IsChecked="{CompiledBinding IsChecked, Mode=TwoWay}"
                       Command="{CompiledBinding Command}"
@@ -1381,15 +1451,16 @@
                       IsVisible="{CompiledBinding HasIcon}" />
             <TextBlock Text="{CompiledBinding Label}"
                        HorizontalAlignment="Center"
-                       TextAlignment="Center" />
+                       TextAlignment="Center"
+                       FontSize="11" />
           </StackPanel>
         </ToggleButton>
 
-        <ToggleButton Classes="ribbon-command ribbon-toggle ribbon-toggle-small"
+        <ToggleButton Classes="ribbon-command ribbon-toggle-small ribbon-command"
                       Grid.Row="6"
-                      MinWidth="38"
-                      MinHeight="28"
-                      Padding="6,4"
+                      MinWidth="44"
+                      MinHeight="26"
+                      Padding="4,2"
                       IsVisible="{CompiledBinding IsEffectiveSmallToggleButtonPrimitive}"
                       IsChecked="{CompiledBinding IsChecked, Mode=TwoWay}"
                       Command="{CompiledBinding Command}"
@@ -1399,9 +1470,9 @@
                       AutomationProperties.Name="{CompiledBinding Label}"
                       AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.Toggle.Small.{0}'}">
           <StackPanel Orientation="Horizontal"
-                      HorizontalAlignment="Center"
                       Spacing="5"
-                      VerticalAlignment="Center">
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
             <controls:RibbonIconPresenter Icon="{CompiledBinding Icon}"
                         IconResourceKey="{CompiledBinding IconResourceKey}"
                         IconPathData="{CompiledBinding IconPathData}"
@@ -1430,11 +1501,12 @@
                       Width="14"
                       Height="14"
                       IsVisible="{CompiledBinding HasIcon}" />
-            <TextBlock Text="{CompiledBinding Label}" />
+            <TextBlock Text="{CompiledBinding Label}"
+                       FontSize="11" />
           </StackPanel>
         </ToggleButton>
 
-        <ToggleButton Classes="ribbon-command ribbon-toggle ribbon-toggle-icon-only"
+        <ToggleButton Classes="ribbon-command ribbon-toggle-icon-only ribbon-command"
                       Grid.Row="12"
                       MinWidth="36"
                       MinHeight="36"
@@ -1477,10 +1549,10 @@
                     IsVisible="{CompiledBinding HasIcon}" />
         </ToggleButton>
 
-        <ToggleButton Classes="ribbon-command ribbon-toggle ribbon-toggle-icon-only ribbon-toggle-icon-only-small"
+        <ToggleButton Classes="ribbon-command ribbon-toggle-icon-only-small ribbon-command"
                       Grid.Row="13"
-                      MinWidth="30"
-                      MinHeight="30"
+                      MinWidth="28"
+                      MinHeight="28"
                       Padding="0"
                       IsVisible="{CompiledBinding IsEffectiveSmallIconOnlyToggleButtonPrimitive}"
                       IsChecked="{CompiledBinding IsChecked, Mode=TwoWay}"
@@ -1520,9 +1592,9 @@
                     IsVisible="{CompiledBinding HasIcon}" />
         </ToggleButton>
 
-        <ComboBox Classes="ribbon-combo ribbon-combo-large"
+        <ComboBox Classes="ribbon-combo-large"
                   Grid.Row="7"
-                  MinWidth="168"
+                  MinWidth="176"
                   IsVisible="{CompiledBinding IsEffectiveLargeComboBoxPrimitive}"
                   ItemsSource="{CompiledBinding ComboBoxMenuItems}"
                   ItemTemplate="{StaticResource RibbonComboBoxMenuItemTemplate}"
@@ -1532,7 +1604,7 @@
                   AutomationProperties.Name="{CompiledBinding Label}"
                   AutomationProperties.AutomationId="{CompiledBinding Id, StringFormat='Ribbon.Item.ComboBox.{0}'}" />
 
-        <ComboBox Classes="ribbon-combo ribbon-combo-small"
+        <ComboBox Classes="ribbon-combo-small"
                   Grid.Row="8"
                   MinWidth="84"
                   IsVisible="{CompiledBinding IsEffectiveSmallComboBoxPrimitive}"
@@ -1618,10 +1690,11 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonQuickAccessItemTemplate" DataType="models:RibbonItem">
-      <Button MinWidth="28"
+      <Button Classes="ribbon-command ribbon-qat-item"
+              MinWidth="28"
               MinHeight="28"
               Padding="4"
-              Margin="2"
+              Margin="1"
               Command="{CompiledBinding Command}"
               CommandParameter="{CompiledBinding CommandParameter}"
               Tag="{CompiledBinding Id, StringFormat='qat:{0}'}"
@@ -1659,24 +1732,32 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonGroupTemplate" DataType="models:RibbonGroup">
-      <Grid Margin="4">
-        <Border Padding="8"
+      <Grid>
+        <Border Classes="ribbon-group"
+                Margin="0,1,0,1"
+                Padding="6,4,6,4"
+                BorderBrush="{DynamicResource RibbonThemeGroupSeparatorBrush}"
+                BorderThickness="0,0,1,0"
                 IsVisible="{CompiledBinding IsInlineMode}">
           <Grid RowDefinitions="Auto,*,Auto"
                 ColumnDefinitions="Auto,*,Auto"
-                RowSpacing="6"
-                ColumnSpacing="6">
+                RowSpacing="2"
+                ColumnSpacing="2">
             <TextBlock Grid.Row="0"
                        Grid.Column="1"
                        Text="{CompiledBinding Header}"
                        HorizontalAlignment="Center"
-                       FontSize="12"
+                       FontSize="10"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource RibbonThemeMutedTextBrush}"
                        IsVisible="{CompiledBinding IsHeaderTop}" />
             <TextBlock Grid.Row="2"
                        Grid.Column="1"
                        Text="{CompiledBinding Header}"
                        HorizontalAlignment="Center"
-                       FontSize="12"
+                       FontSize="10"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource RibbonThemeMutedTextBrush}"
                        IsVisible="{CompiledBinding IsHeaderBottom}" />
             <LayoutTransformControl Grid.Row="1"
                                     Grid.Column="0"
@@ -1686,9 +1767,11 @@
                 <RotateTransform Angle="-90" />
               </LayoutTransformControl.LayoutTransform>
               <TextBlock Text="{CompiledBinding Header}"
-                         FontSize="12"
                          HorizontalAlignment="Center"
-                         VerticalAlignment="Center" />
+                         VerticalAlignment="Center"
+                         FontSize="10"
+                         FontWeight="SemiBold"
+                         Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
             </LayoutTransformControl>
             <LayoutTransformControl Grid.Row="1"
                                     Grid.Column="2"
@@ -1698,12 +1781,15 @@
                 <RotateTransform Angle="90" />
               </LayoutTransformControl.LayoutTransform>
               <TextBlock Text="{CompiledBinding Header}"
-                         FontSize="12"
                          HorizontalAlignment="Center"
-                         VerticalAlignment="Center" />
+                         VerticalAlignment="Center"
+                         FontSize="10"
+                         FontWeight="SemiBold"
+                         Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
             </LayoutTransformControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsWrapLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource RibbonItemTemplate}">
@@ -1715,6 +1801,7 @@
             </ItemsControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsHorizontalLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource RibbonItemTemplate}">
@@ -1726,6 +1813,7 @@
             </ItemsControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsVerticalLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource RibbonItemTemplate}">
@@ -1737,19 +1825,21 @@
             </ItemsControl>
             <ItemsControl Grid.Row="1"
                           Grid.Column="1"
+                          VerticalAlignment="Center"
                           IsVisible="{CompiledBinding IsItemsStackedLayout}"
                           ItemsSource="{CompiledBinding MergedItems}"
                           ItemTemplate="{StaticResource RibbonItemTemplate}">
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                   <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                   HorizontalSpacing="4"
-                                                   VerticalSpacing="4" />
+                                                   HorizontalSpacing="2"
+                                                   VerticalSpacing="2" />
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
             </ItemsControl>
             <DockPanel Grid.Row="1"
                        Grid.Column="1"
+                       VerticalAlignment="Center"
                        LastChildFill="True"
                        IsVisible="{CompiledBinding IsItemsDockedLayout}">
               <ItemsControl DockPanel.Dock="Top"
@@ -1826,8 +1916,8 @@
                   <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                       <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                       HorizontalSpacing="4"
-                                                       VerticalSpacing="4" />
+                                                       HorizontalSpacing="2"
+                                                       VerticalSpacing="2" />
                     </ItemsPanelTemplate>
                   </ItemsControl.ItemsPanel>
                 </ItemsControl>
@@ -1836,13 +1926,13 @@
           </Grid>
         </Border>
 
-        <ToggleButton x:Name="PART_CollapsedGroupToggle"
-                      Classes="ribbon-group-collapsed-toggle"
+        <ToggleButton x:Name="PART_RibbonCollapsedGroupToggle"
+                      Classes="ribbon-command ribbon-group-collapsed-toggle"
+                      MinWidth="72"
+                      MinHeight="82"
+                      Padding="6"
                       IsVisible="{CompiledBinding IsCollapsedMode}"
                       IsChecked="{CompiledBinding IsDropDownOpen, Mode=TwoWay}"
-                      MinWidth="68"
-                      MinHeight="72"
-                      Padding="6"
                       Tag="{CompiledBinding Id, StringFormat='group:{0}'}"
                       ToolTip.Tip="{CompiledBinding Header}"
                       AutomationProperties.Name="{CompiledBinding Header}"
@@ -1878,26 +1968,29 @@
                       Height="16"
                       IsVisible="{CompiledBinding HasCollapsedIcon}" />
             <TextBlock Text="{CompiledBinding Header}"
-                       FontSize="11"
                        HorizontalAlignment="Center"
-                       TextAlignment="Center" />
-            <TextBlock Text="▾"
-                       FontSize="10"
-                       HorizontalAlignment="Center" />
+                       TextAlignment="Center"
+                       FontSize="11" />
+            <PathIcon Data="{x:Static icons:FluentIconData.ChevronDown20Regular}"
+                      Width="10"
+                      Height="10"
+                      HorizontalAlignment="Center"
+                      Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
           </StackPanel>
         </ToggleButton>
 
         <Popup IsOpen="{CompiledBinding IsDropDownOpen, Mode=TwoWay}"
                IsLightDismissEnabled="True"
                Placement="Bottom"
-               PlacementTarget="{Binding #PART_CollapsedGroupToggle}">
-          <Border Classes="ribbon-popup-surface"
+               PlacementTarget="{Binding #PART_RibbonCollapsedGroupToggle}">
+          <Border Classes="ribbon-popup-surface ribbon-group-popup"
                   Background="{DynamicResource RibbonThemeMenuSurfaceBrush}"
                   BorderBrush="{DynamicResource RibbonThemePopupBorderBrush}"
                   BorderThickness="1"
-                  CornerRadius="2"
+                  CornerRadius="3"
                   Padding="8"
-                  MinWidth="220">
+                  MinWidth="260"
+                  MaxWidth="640">
             <StackPanel Spacing="8">
               <ItemsControl IsVisible="{CompiledBinding IsItemsWrapLayout}"
                             ItemsSource="{CompiledBinding MergedItems}"
@@ -1932,8 +2025,8 @@
                 <ItemsControl.ItemsPanel>
                   <ItemsPanelTemplate>
                     <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                     HorizontalSpacing="4"
-                                                     VerticalSpacing="4" />
+                                                     HorizontalSpacing="2"
+                                                     VerticalSpacing="2" />
                   </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
               </ItemsControl>
@@ -2013,8 +2106,8 @@
                     <ItemsControl.ItemsPanel>
                       <ItemsPanelTemplate>
                         <controls:RibbonStackedWrapPanel MaxRows="{CompiledBinding StackedRows}"
-                                                         HorizontalSpacing="4"
-                                                         VerticalSpacing="4" />
+                                                         HorizontalSpacing="2"
+                                                         VerticalSpacing="2" />
                       </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                   </ItemsControl>
@@ -2022,8 +2115,9 @@
               </DockPanel>
               <TextBlock Text="{CompiledBinding Header}"
                          HorizontalAlignment="Center"
-                         FontSize="12"
-                         FontWeight="SemiBold" />
+                         FontSize="11"
+                         FontWeight="SemiBold"
+                         Foreground="{DynamicResource RibbonThemeMutedTextBrush}" />
             </StackPanel>
           </Border>
         </Popup>
@@ -2031,17 +2125,19 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonTabContentTemplate" DataType="models:RibbonTab">
-      <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Disabled">
-        <ItemsControl ItemsSource="{CompiledBinding MergedGroups}"
-                      ItemTemplate="{StaticResource RibbonGroupTemplate}">
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <StackPanel Orientation="Horizontal" />
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-        </ItemsControl>
-      </ScrollViewer>
+      <Border Background="{DynamicResource RibbonThemeCommandSurfaceBrush}">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled">
+          <ItemsControl ItemsSource="{CompiledBinding MergedGroups}"
+                        ItemTemplate="{StaticResource RibbonGroupTemplate}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+          </ItemsControl>
+        </ScrollViewer>
+      </Border>
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonCollapsedTabContentTemplate" DataType="models:RibbonTab">
@@ -2049,16 +2145,16 @@
     </DataTemplate>
 
     <DataTemplate x:Key="RibbonContextGroupTemplate" DataType="models:RibbonContextualTabGroup">
-      <Border Background="{DynamicResource RibbonThemeContextBandBrush}"
-              BorderBrush="{CompiledBinding AccentColor, TargetNullValue={DynamicResource RibbonThemeContextBandBorderBrush}}"
+      <Border Background="#E3EFFD"
+              BorderBrush="{CompiledBinding AccentColor, TargetNullValue=#B6D2F7}"
               BorderThickness="1"
               CornerRadius="3"
-              Margin="2"
+              Margin="2,0"
               Padding="8,2">
         <TextBlock Text="{CompiledBinding Header}"
                    FontSize="11"
                    FontWeight="SemiBold"
-                   Foreground="{CompiledBinding AccentColor, TargetNullValue={DynamicResource RibbonThemePrimaryTextBrush}}" />
+                   Foreground="{CompiledBinding AccentColor, TargetNullValue=#0F6CBD}" />
       </Border>
     </DataTemplate>
 </ResourceDictionary>

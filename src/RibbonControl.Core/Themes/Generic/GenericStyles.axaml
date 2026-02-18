@@ -188,12 +188,12 @@
   </Style>
 
   <Style Selector="controls|RibbonBackstage /template/ ListBox.ribbon-backstage-nav-list > ListBoxItem:pointerover">
-    <Setter Property="Background" Value="{DynamicResource RibbonGenericHoverBrush}" />
+    <Setter Property="Background" Value="{DynamicResource RibbonThemeHoverBrush}" />
   </Style>
 
   <Style Selector="controls|RibbonBackstage /template/ ListBox.ribbon-backstage-nav-list > ListBoxItem:selected">
-    <Setter Property="Background" Value="{DynamicResource RibbonGenericCheckedBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource RibbonGenericHoverBorderBrush}" />
+    <Setter Property="Background" Value="{DynamicResource RibbonThemeCheckedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource RibbonThemeHoverBorderBrush}" />
     <Setter Property="BorderThickness" Value="1" />
   </Style>
 
@@ -223,7 +223,7 @@
 
   <Style Selector="controls|RibbonBackstage /template/ Separator.ribbon-backstage-nav-separator">
     <Setter Property="Height" Value="1" />
-    <Setter Property="Background" Value="{DynamicResource RibbonGenericPopupDividerBrush}" />
+    <Setter Property="Background" Value="{DynamicResource RibbonThemePopupDividerBrush}" />
     <Setter Property="Margin" Value="10,6" />
   </Style>
 

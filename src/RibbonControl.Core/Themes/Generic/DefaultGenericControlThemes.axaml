@@ -1,0 +1,42 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:RibbonControl.Core.Controls">
+  <ControlTheme x:Key="RibbonBackstageTheme" TargetType="controls:RibbonBackstage">
+    <Setter Property="ItemTemplate" Value="{DynamicResource RibbonThemeBackstageNavigationItemTemplate}" />
+    <Setter Property="NavigationPaneWidth" Value="{DynamicResource RibbonThemeBackstageNavigationPaneWidth}" />
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="controls:RibbonBackstage">
+        <Border Classes="ribbon-backstage-root"
+                Background="{DynamicResource RibbonThemeMenuSurfaceBrush}">
+          <Grid ColumnDefinitions="Auto,*">
+            <Border Grid.Column="0"
+                    Classes="ribbon-backstage-nav-host"
+                    Width="{TemplateBinding NavigationPaneWidth}">
+              <Grid RowDefinitions="Auto,*,Auto">
+                <ContentPresenter Grid.Row="0"
+                                  Classes="ribbon-backstage-header-host"
+                                  Content="{TemplateBinding HeaderContent}"
+                                  ContentTemplate="{TemplateBinding HeaderContentTemplate}" />
+                <ListBox Grid.Row="1"
+                         Classes="ribbon-backstage-nav-list"
+                         ItemsSource="{TemplateBinding ItemsSource}"
+                         ItemTemplate="{TemplateBinding ItemTemplate}"
+                         SelectedItem="{CompiledBinding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                <ContentPresenter Grid.Row="2"
+                                  Classes="ribbon-backstage-footer-host"
+                                  Content="{TemplateBinding FooterContent}"
+                                  ContentTemplate="{TemplateBinding FooterContentTemplate}" />
+              </Grid>
+            </Border>
+            <Border Grid.Column="1"
+                    Classes="ribbon-backstage-detail-host"
+                    Background="{DynamicResource RibbonThemeCommandSurfaceBrush}">
+              <ContentPresenter Content="{TemplateBinding SelectedContent}"
+                                ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+            </Border>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

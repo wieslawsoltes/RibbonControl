@@ -1,0 +1,132 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="RibbonDefaultShellColor">#F4F6FA</Color>
+  <Color x:Key="RibbonDefaultTopRowColor">#EEF1F6</Color>
+  <Color x:Key="RibbonDefaultCommandSurfaceColor">#FFFFFF</Color>
+  <Color x:Key="RibbonDefaultBorderColor">#D5DBE6</Color>
+  <Color x:Key="RibbonDefaultAccentColor">#0F6CBD</Color>
+  <Color x:Key="RibbonDefaultAccentSoftColor">#E6F0FC</Color>
+  <Color x:Key="RibbonDefaultFileTabColor">#185ABD</Color>
+  <Color x:Key="RibbonDefaultTextColor">#1F2633</Color>
+  <Color x:Key="RibbonDefaultMutedTextColor">#5E6678</Color>
+  <Color x:Key="RibbonDefaultCommandHoverColor">#EAF2FE</Color>
+  <Color x:Key="RibbonDefaultCommandPressedColor">#D7E8FD</Color>
+  <Color x:Key="RibbonDefaultCommandBorderColor">#C9D2E2</Color>
+  <Color x:Key="RibbonDefaultCommandDisabledTextColor">#A4ACBC</Color>
+  <Color x:Key="RibbonDefaultMenuSurfaceColor">#FBFCFF</Color>
+  <Color x:Key="RibbonDefaultPopupBorderColor">#C6CFDE</Color>
+  <Color x:Key="RibbonDefaultGroupSeparatorColor">#DCE2EC</Color>
+  <Color x:Key="RibbonIconOverlayBadgeBackgroundColor">#C4314B</Color>
+  <Color x:Key="RibbonIconOverlayBadgeBorderColor">#FFFFFF</Color>
+  <Color x:Key="RibbonIconOverlayBadgeForegroundColor">#FFFFFF</Color>
+  <Color x:Key="RibbonDefaultTabStripBackgroundColor">#EEF1F6</Color>
+  <Color x:Key="RibbonDefaultTabHeaderForegroundColor">#3B3B3B</Color>
+  <Color x:Key="RibbonDefaultTabHeaderForegroundDisabledColor">#8E96A8</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBackgroundColor">#00FFFFFF</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBackgroundPointerOverColor">#E6EAF0</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBackgroundSelectedColor">#00FFFFFF</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBackgroundPressedColor">#E0E5ED</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBorderColor">#00FFFFFF</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBorderPointerOverColor">#00FFFFFF</Color>
+  <Color x:Key="RibbonDefaultTabHeaderBorderSelectedColor">#00FFFFFF</Color>
+  <Color x:Key="RibbonDefaultTabSelectedPipeColor">#0F6CBD</Color>
+
+  <SolidColorBrush x:Key="RibbonDefaultShellBrush" Color="{StaticResource RibbonDefaultShellColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTopRowBrush" Color="{StaticResource RibbonDefaultTopRowColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultCommandSurfaceBrush" Color="{StaticResource RibbonDefaultCommandSurfaceColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultBorderBrush" Color="{StaticResource RibbonDefaultBorderColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultAccentBrush" Color="{StaticResource RibbonDefaultAccentColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultAccentSoftBrush" Color="{StaticResource RibbonDefaultAccentSoftColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultFileTabBrush" Color="{StaticResource RibbonDefaultFileTabColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTextBrush" Color="{StaticResource RibbonDefaultTextColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultMutedTextBrush" Color="{StaticResource RibbonDefaultMutedTextColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultCommandHoverBrush" Color="{StaticResource RibbonDefaultCommandHoverColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultCommandPressedBrush" Color="{StaticResource RibbonDefaultCommandPressedColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultCommandBorderBrush" Color="{StaticResource RibbonDefaultCommandBorderColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultCommandDisabledTextBrush" Color="{StaticResource RibbonDefaultCommandDisabledTextColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultMenuSurfaceBrush" Color="{StaticResource RibbonDefaultMenuSurfaceColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultPopupBorderBrush" Color="{StaticResource RibbonDefaultPopupBorderColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultGroupSeparatorBrush" Color="{StaticResource RibbonDefaultGroupSeparatorColor}" />
+  <SolidColorBrush x:Key="RibbonIconOverlayBadgeBackgroundBrush" Color="{StaticResource RibbonIconOverlayBadgeBackgroundColor}" />
+  <SolidColorBrush x:Key="RibbonIconOverlayBadgeBorderBrush" Color="{StaticResource RibbonIconOverlayBadgeBorderColor}" />
+  <SolidColorBrush x:Key="RibbonIconOverlayBadgeForegroundBrush" Color="{StaticResource RibbonIconOverlayBadgeForegroundColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabStripBackgroundBrush" Color="{StaticResource RibbonDefaultTabStripBackgroundColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderForegroundBrush" Color="{StaticResource RibbonDefaultTabHeaderForegroundColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderForegroundDisabledBrush" Color="{StaticResource RibbonDefaultTabHeaderForegroundDisabledColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBackgroundBrush" Color="{StaticResource RibbonDefaultTabHeaderBackgroundColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBackgroundPointerOverBrush" Color="{StaticResource RibbonDefaultTabHeaderBackgroundPointerOverColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBackgroundSelectedBrush" Color="{StaticResource RibbonDefaultTabHeaderBackgroundSelectedColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBackgroundPressedBrush" Color="{StaticResource RibbonDefaultTabHeaderBackgroundPressedColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBorderBrush" Color="{StaticResource RibbonDefaultTabHeaderBorderColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBorderPointerOverBrush" Color="{StaticResource RibbonDefaultTabHeaderBorderPointerOverColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabHeaderBorderSelectedBrush" Color="{StaticResource RibbonDefaultTabHeaderBorderSelectedColor}" />
+  <SolidColorBrush x:Key="RibbonDefaultTabSelectedPipeBrush" Color="{StaticResource RibbonDefaultTabSelectedPipeColor}" />
+
+  <!-- Shared token overrides for the merged default theme. -->
+  <SolidColorBrush x:Key="RibbonThemeOverlayBrush" Color="#4A0D1117" />
+  <StaticResource x:Key="RibbonThemeChromeBackgroundBrush" ResourceKey="RibbonDefaultShellBrush" />
+  <StaticResource x:Key="RibbonThemeChromeBorderBrush" ResourceKey="RibbonDefaultBorderBrush" />
+  <StaticResource x:Key="RibbonThemeSurfaceBrush" ResourceKey="RibbonDefaultCommandSurfaceBrush" />
+  <StaticResource x:Key="RibbonThemeTopRowBackgroundBrush" ResourceKey="RibbonDefaultTopRowBrush" />
+  <StaticResource x:Key="RibbonThemeQuickAccessRowBackgroundBrush" ResourceKey="RibbonDefaultTopRowBrush" />
+  <StaticResource x:Key="RibbonThemeTabStripBackgroundBrush" ResourceKey="RibbonDefaultTabStripBackgroundBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderForegroundBrush" ResourceKey="RibbonDefaultTabHeaderForegroundBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderForegroundDisabledBrush" ResourceKey="RibbonDefaultTabHeaderForegroundDisabledBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBackgroundBrush" ResourceKey="RibbonDefaultTabHeaderBackgroundBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBackgroundPointerOverBrush" ResourceKey="RibbonDefaultTabHeaderBackgroundPointerOverBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBackgroundSelectedBrush" ResourceKey="RibbonDefaultTabHeaderBackgroundSelectedBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBackgroundPressedBrush" ResourceKey="RibbonDefaultTabHeaderBackgroundPressedBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBorderBrush" ResourceKey="RibbonDefaultTabHeaderBorderBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBorderPointerOverBrush" ResourceKey="RibbonDefaultTabHeaderBorderPointerOverBrush" />
+  <StaticResource x:Key="RibbonThemeTabHeaderBorderSelectedBrush" ResourceKey="RibbonDefaultTabHeaderBorderSelectedBrush" />
+  <StaticResource x:Key="RibbonThemeTabSelectedPipeBrush" ResourceKey="RibbonDefaultTabSelectedPipeBrush" />
+  <StaticResource x:Key="RibbonThemeMinimizedDropDownBackgroundBrush" ResourceKey="RibbonDefaultCommandSurfaceBrush" />
+  <StaticResource x:Key="RibbonThemeMinimizedDropDownBorderBrush" ResourceKey="RibbonDefaultAccentBrush" />
+  <StaticResource x:Key="RibbonThemeBackstagePanelBackgroundBrush" ResourceKey="RibbonDefaultCommandSurfaceBrush" />
+  <StaticResource x:Key="RibbonThemeBackstagePanelBorderBrush" ResourceKey="RibbonDefaultBorderBrush" />
+  <StaticResource x:Key="RibbonThemeAccentBrush" ResourceKey="RibbonDefaultAccentBrush" />
+  <StaticResource x:Key="RibbonThemePrimaryTextBrush" ResourceKey="RibbonDefaultTextBrush" />
+  <StaticResource x:Key="RibbonThemeMutedTextBrush" ResourceKey="RibbonDefaultMutedTextBrush" />
+  <StaticResource x:Key="RibbonThemePopupBorderBrush" ResourceKey="RibbonDefaultPopupBorderBrush" />
+  <StaticResource x:Key="RibbonThemePopupDividerBrush" ResourceKey="RibbonDefaultGroupSeparatorBrush" />
+  <StaticResource x:Key="RibbonThemeGroupSeparatorBrush" ResourceKey="RibbonDefaultGroupSeparatorBrush" />
+  <StaticResource x:Key="RibbonThemeMenuSurfaceBrush" ResourceKey="RibbonDefaultMenuSurfaceBrush" />
+  <StaticResource x:Key="RibbonThemeCommandSurfaceBrush" ResourceKey="RibbonDefaultCommandSurfaceBrush" />
+  <StaticResource x:Key="RibbonThemeCommandHoverBrush" ResourceKey="RibbonDefaultCommandHoverBrush" />
+  <StaticResource x:Key="RibbonThemeCommandPressedBrush" ResourceKey="RibbonDefaultCommandPressedBrush" />
+  <StaticResource x:Key="RibbonThemeCommandBorderBrush" ResourceKey="RibbonDefaultCommandBorderBrush" />
+  <StaticResource x:Key="RibbonThemeCommandDisabledTextBrush" ResourceKey="RibbonDefaultCommandDisabledTextBrush" />
+  <StaticResource x:Key="RibbonThemeFileTabBrush" ResourceKey="RibbonDefaultFileTabBrush" />
+  <StaticResource x:Key="RibbonThemeContextBandBrush" ResourceKey="RibbonDefaultAccentSoftBrush" />
+  <StaticResource x:Key="RibbonThemeContextBandBorderBrush" ResourceKey="RibbonDefaultAccentBrush" />
+  <StaticResource x:Key="RibbonThemeCheckedBrush" ResourceKey="RibbonDefaultCommandPressedBrush" />
+  <StaticResource x:Key="RibbonThemeHoverBrush" ResourceKey="RibbonDefaultCommandHoverBrush" />
+  <StaticResource x:Key="RibbonThemeHoverBorderBrush" ResourceKey="RibbonDefaultCommandBorderBrush" />
+
+  <Thickness x:Key="RibbonThemeTopBarMargin">0</Thickness>
+  <Thickness x:Key="RibbonThemeTopBarStartContentMargin">6,0,10,0</Thickness>
+  <Thickness x:Key="RibbonThemeTopBarEndContentMargin">8,0,6,0</Thickness>
+  <Thickness x:Key="RibbonThemeTopBarCenterContentMargin">8,0</Thickness>
+  <Thickness x:Key="RibbonThemeContextualBandMargin">4,2,4,0</Thickness>
+  <Thickness x:Key="RibbonThemeQuickAccessRowMargin">0</Thickness>
+  <Thickness x:Key="RibbonThemeHeaderStartContentMargin">6,0,10,0</Thickness>
+  <Thickness x:Key="RibbonThemeHeaderEndContentMargin">8,0,6,0</Thickness>
+  <Thickness x:Key="RibbonThemeBackstageButtonMargin">2,0,8,0</Thickness>
+  <Thickness x:Key="RibbonThemeMinimizedDropDownMargin">4,36,4,4</Thickness>
+  <Thickness x:Key="RibbonThemeBottomQuickAccessRowMargin">0</Thickness>
+  <Thickness x:Key="RibbonThemeBackstagePanelBorderThickness">0,0,1,0</Thickness>
+  <Thickness x:Key="RibbonThemeBackstageContentMargin">0</Thickness>
+  <Thickness x:Key="RibbonThemeBackstagePanelMargin">0</Thickness>
+  <Thickness x:Key="RibbonThemeTabItemPadding">12,5,12,4</Thickness>
+  <Thickness x:Key="RibbonThemeTabItemMargin">0,1,0,0</Thickness>
+  <Thickness x:Key="RibbonThemeTabItemsPresenterMargin">6,0,6,0</Thickness>
+  <Thickness x:Key="RibbonThemeTabSelectedPipeDefaultMargin">12,0,12,1</Thickness>
+
+  <x:Double x:Key="RibbonThemeTabItemMinHeight">34</x:Double>
+  <x:Double x:Key="RibbonThemeTabSelectedPipeHorizontalThickness">2.5</x:Double>
+  <x:Double x:Key="RibbonThemeTabSelectedPipeVerticalThickness">2</x:Double>
+  <x:Double x:Key="RibbonThemeBackstagePanelWidth">700</x:Double>
+  <x:Double x:Key="RibbonThemeBackstageNavigationPaneWidth">350</x:Double>
+
+  <CornerRadius x:Key="RibbonThemeBackstagePanelCornerRadius">0,0,8,8</CornerRadius>
+</ResourceDictionary>

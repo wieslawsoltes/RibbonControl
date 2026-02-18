@@ -78,6 +78,24 @@
   <SolidColorBrush x:Key="RibbonThemeMinimizedDropDownBorderBrush" Color="{StaticResource RibbonGenericBorderOuterColor}" />
   <SolidColorBrush x:Key="RibbonThemeBackstagePanelBackgroundBrush" Color="{StaticResource RibbonGenericSurfaceColor}" />
   <SolidColorBrush x:Key="RibbonThemeBackstagePanelBorderBrush" Color="{StaticResource RibbonGenericBorderOuterColor}" />
+  <SolidColorBrush x:Key="RibbonThemeAccentBrush" Color="{StaticResource RibbonGenericAccentColor}" />
+  <SolidColorBrush x:Key="RibbonThemePrimaryTextBrush" Color="{StaticResource RibbonGenericTextColor}" />
+  <SolidColorBrush x:Key="RibbonThemeMutedTextBrush" Color="#B2000000" />
+  <SolidColorBrush x:Key="RibbonThemePopupBorderBrush" Color="{StaticResource RibbonGenericPopupBorderColor}" />
+  <SolidColorBrush x:Key="RibbonThemePopupDividerBrush" Color="{StaticResource RibbonGenericPopupDividerColor}" />
+  <SolidColorBrush x:Key="RibbonThemeGroupSeparatorBrush" Color="{StaticResource RibbonGenericPopupDividerColor}" />
+  <SolidColorBrush x:Key="RibbonThemeMenuSurfaceBrush" Color="{StaticResource RibbonGenericSurfaceColor}" />
+  <SolidColorBrush x:Key="RibbonThemeCommandSurfaceBrush" Color="{StaticResource RibbonGenericSurfaceColor}" />
+  <SolidColorBrush x:Key="RibbonThemeCommandHoverBrush" Color="{StaticResource RibbonGenericHoverColor}" />
+  <SolidColorBrush x:Key="RibbonThemeCommandPressedBrush" Color="{StaticResource RibbonGenericCheckedColor}" />
+  <SolidColorBrush x:Key="RibbonThemeCommandBorderBrush" Color="{StaticResource RibbonGenericHoverBorderColor}" />
+  <SolidColorBrush x:Key="RibbonThemeCommandDisabledTextBrush" Color="#8F8F8F" />
+  <SolidColorBrush x:Key="RibbonThemeFileTabBrush" Color="{StaticResource RibbonGenericAccentColor}" />
+  <SolidColorBrush x:Key="RibbonThemeContextBandBrush" Color="{StaticResource RibbonGenericContextBandColor}" />
+  <SolidColorBrush x:Key="RibbonThemeContextBandBorderBrush" Color="{StaticResource RibbonGenericContextBandBorderColor}" />
+  <SolidColorBrush x:Key="RibbonThemeCheckedBrush" Color="{StaticResource RibbonGenericCheckedColor}" />
+  <SolidColorBrush x:Key="RibbonThemeHoverBrush" Color="{StaticResource RibbonGenericHoverColor}" />
+  <SolidColorBrush x:Key="RibbonThemeHoverBorderBrush" Color="{StaticResource RibbonGenericHoverBorderColor}" />
 
   <Thickness x:Key="RibbonThemeTopBarMargin">4,2,4,0</Thickness>
   <Thickness x:Key="RibbonThemeTopBarStartContentMargin">2,0,8,0</Thickness>
