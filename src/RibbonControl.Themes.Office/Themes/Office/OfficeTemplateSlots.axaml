@@ -1,9 +1,0 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <StaticResource x:Key="RibbonThemeQuickAccessItemTemplate" ResourceKey="OfficeRibbonQuickAccessItemTemplate" />
-  <StaticResource x:Key="RibbonThemeContextGroupTemplate" ResourceKey="OfficeRibbonContextGroupTemplate" />
-  <StaticResource x:Key="RibbonThemeBackstageNavigationItemTemplate" ResourceKey="OfficeRibbonBackstageNavigationItemTemplate" />
-  <StaticResource x:Key="RibbonThemeTabHeaderTemplate" ResourceKey="OfficeRibbonTabHeaderTemplate" />
-  <StaticResource x:Key="RibbonThemeTabContentTemplate" ResourceKey="OfficeRibbonTabContentTemplate" />
-  <StaticResource x:Key="RibbonThemeCollapsedTabContentTemplate" ResourceKey="OfficeRibbonCollapsedTabContentTemplate" />
-</ResourceDictionary>

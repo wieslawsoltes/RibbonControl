@@ -13,58 +13,58 @@ using RibbonControl.Core.Models;
 
 namespace RibbonControl.Headless.Tests;
 
-public class OfficeThemeRefactorHeadlessTests
+public class GenericThemeCompatibilityHeadlessTests
 {
     [AvaloniaFact]
-    public void OfficeTheme_LegacyControlThemeKeys_AreAvailable()
+    public void GenericTheme_ControlThemeKeys_AreAvailable()
     {
-        EnsureOfficeThemeLoaded();
+        EnsureCoreThemeLoaded();
 
         var resources = Application.Current;
         Assert.NotNull(resources);
 
-        Assert.True(resources!.TryFindResource("OfficeRibbonTheme", out var ribbonThemeValue));
+        Assert.True(resources!.TryFindResource(typeof(Ribbon), out var ribbonThemeValue));
         var ribbonTheme = Assert.IsType<ControlTheme>(ribbonThemeValue);
         Assert.Equal(typeof(Ribbon), ribbonTheme.TargetType);
 
-        Assert.True(resources.TryFindResource("OfficeRibbonTabControlTheme", out var tabControlThemeValue));
+        Assert.True(resources.TryFindResource("RibbonTabControlTheme", out var tabControlThemeValue));
         var tabControlTheme = Assert.IsType<ControlTheme>(tabControlThemeValue);
         Assert.Equal(typeof(TabControl), tabControlTheme.TargetType);
 
-        Assert.True(resources.TryFindResource("OfficeRibbonTabItemTheme", out var tabItemThemeValue));
+        Assert.True(resources.TryFindResource("RibbonTabItemTheme", out var tabItemThemeValue));
         var tabItemTheme = Assert.IsType<ControlTheme>(tabItemThemeValue);
         Assert.Equal(typeof(TabItem), tabItemTheme.TargetType);
 
-        Assert.True(resources.TryFindResource("OfficeRibbonQuickAccessToolBarTheme", out var quickAccessThemeValue));
+        Assert.True(resources.TryFindResource(typeof(RibbonQuickAccessToolBar), out var quickAccessThemeValue));
         var quickAccessTheme = Assert.IsType<ControlTheme>(quickAccessThemeValue);
         Assert.Equal(typeof(RibbonQuickAccessToolBar), quickAccessTheme.TargetType);
 
-        Assert.True(resources.TryFindResource("OfficeRibbonContextualTabBandTheme", out var contextBandThemeValue));
+        Assert.True(resources.TryFindResource(typeof(RibbonContextualTabBand), out var contextBandThemeValue));
         var contextBandTheme = Assert.IsType<ControlTheme>(contextBandThemeValue);
         Assert.Equal(typeof(RibbonContextualTabBand), contextBandTheme.TargetType);
     }
 
     [AvaloniaFact]
-    public void OfficeTheme_TemplateSlots_ResolveToOfficeTemplates()
+    public void GenericTheme_TemplateSlots_ResolveToActiveTemplates()
     {
-        EnsureOfficeThemeLoaded();
+        EnsureCoreThemeLoaded();
 
         var resources = Application.Current;
         Assert.NotNull(resources);
 
-        Assert.True(resources!.TryFindResource("OfficeRibbonCollapsedTabContentTemplate", out var officeCollapsedTemplate));
+        Assert.True(resources!.TryFindResource("RibbonCollapsedTabContentTemplate", out var collapsedTemplate));
         Assert.True(resources.TryFindResource("RibbonThemeCollapsedTabContentTemplate", out var slotCollapsedTemplate));
-        Assert.Same(officeCollapsedTemplate, slotCollapsedTemplate);
+        Assert.Same(collapsedTemplate, slotCollapsedTemplate);
 
-        Assert.True(resources.TryFindResource("OfficeRibbonTabHeaderTemplate", out var officeTabHeaderTemplate));
+        Assert.True(resources.TryFindResource("RibbonTabHeaderTemplate", out var tabHeaderTemplate));
         Assert.True(resources.TryFindResource("RibbonThemeTabHeaderTemplate", out var slotTabHeaderTemplate));
-        Assert.Same(officeTabHeaderTemplate, slotTabHeaderTemplate);
+        Assert.Same(tabHeaderTemplate, slotTabHeaderTemplate);
     }
 
     [AvaloniaFact]
-    public void OfficeTheme_AppliesTokenizedRibbonHostMargins()
+    public void GenericTheme_AppliesTokenizedRibbonHostMargins()
     {
-        EnsureOfficeThemeLoaded();
+        EnsureCoreThemeLoaded();
 
         var ribbon = new Ribbon
         {
@@ -128,14 +128,14 @@ public class OfficeThemeRefactorHeadlessTests
         Assert.Equal(new Thickness(8, 0, 6, 0), headerEndHost.Margin);
     }
 
-    private static void EnsureOfficeThemeLoaded()
+    private static void EnsureCoreThemeLoaded()
     {
         if (Application.Current is null)
         {
             return;
         }
 
-        var uri = new Uri("avares://RibbonControl.Themes.Office/Themes/OfficeTheme.axaml");
+        var uri = new Uri("avares://RibbonControl.Core/Themes/Generic.axaml");
         var alreadyLoaded = Application.Current.Styles
             .OfType<StyleInclude>()
             .Any(x => x.Source == uri);
