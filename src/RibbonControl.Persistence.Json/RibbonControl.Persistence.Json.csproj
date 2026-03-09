@@ -4,6 +4,7 @@
     <RootNamespace>RibbonControl.Persistence.Json</RootNamespace>
     <AssemblyName>RibbonControl.Persistence.Json</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsPackable>true</IsPackable>
     <PackageId>RibbonControl.Persistence.Json</PackageId>
     <Description>JSON persistence and migration support for RibbonControl runtime state.</Description>
   </PropertyGroup>

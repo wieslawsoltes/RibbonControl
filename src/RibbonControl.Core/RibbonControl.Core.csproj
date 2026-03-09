@@ -4,6 +4,7 @@
     <RootNamespace>RibbonControl.Core</RootNamespace>
     <AssemblyName>RibbonControl.Core</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IsPackable>true</IsPackable>
     <PackageId>RibbonControl.Core</PackageId>
     <Description>XAML-first, MVVM-first, hybrid-ready Ribbon control for Avalonia.</Description>
   </PropertyGroup>
