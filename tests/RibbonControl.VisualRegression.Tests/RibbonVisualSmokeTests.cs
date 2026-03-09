@@ -45,7 +45,7 @@ public class RibbonVisualSmokeTests
 
         var snapshot = BuildSnapshot(ribbon);
         var baselinePath = FindBaselinePath("static-ribbon.snapshot");
-        var baseline = File.ReadAllText(baselinePath).Trim();
+        var baseline = NormalizeLineEndings(File.ReadAllText(baselinePath)).Trim();
 
         Assert.Equal(baseline, snapshot);
     }
@@ -90,5 +90,10 @@ public class RibbonVisualSmokeTests
         }
 
         throw new FileNotFoundException($"Baseline file '{fileName}' was not found.");
+    }
+
+    private static string NormalizeLineEndings(string value)
+    {
+        return value.Replace("\r\n", "\n").Replace('\r', '\n');
     }
 }
