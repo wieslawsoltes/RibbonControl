@@ -1,0 +1,4 @@
+xaml:
+  - {path: readme.md, title: "XAML Usage"}
+  - {path: theme-usage-and-resources.md, title: "Theme Usage and Resources"}
+  - {path: icon-and-content-customization.md, title: "Icons and Content Customization"}

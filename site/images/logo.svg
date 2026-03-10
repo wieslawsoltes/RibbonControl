@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">RibbonControl Logo</title>
+  <desc id="desc">A stylized ribbon-inspired letter R.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#154a8c" />
+      <stop offset="100%" stop-color="#37a6c8" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7c65f" />
+      <stop offset="100%" stop-color="#f08a4b" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="52" fill="url(#bg)" />
+  <path d="M66 54h68c36 0 58 20 58 51 0 24-13 41-35 48l39 49h-43l-32-41H100v41H66V54Zm34 31v45h31c17 0 27-8 27-22 0-15-10-23-27-23h-31Z" fill="#f7fbff" />
+  <path d="M149 140c31 2 53 16 53 33 0 17-21 31-53 33 18-8 29-18 29-33 0-14-11-25-29-33Z" fill="url(#accent)" />
+</svg>

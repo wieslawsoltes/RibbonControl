@@ -1,0 +1,8 @@
+home:
+  - {path: readme.md, title: "Home", self: true}
+  - {path: articles/readme.md, title: "Docs", folder: true}
+  - {path: api/readme.md, title: "API", folder: true}
+
+home2:
+  - {url: "https://github.com/wieslawsoltes/RibbonControl", title: "GitHub", link_class: btn btn-info}
+  - {url: "https://www.nuget.org/packages/RibbonControl.Core", title: "NuGet", link_class: btn btn-outline-info}

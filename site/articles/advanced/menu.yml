@@ -1,0 +1,3 @@
+advanced:
+  - {path: readme.md, title: "Advanced"}
+  - {path: testing-and-release.md, title: "Testing and Release"}
