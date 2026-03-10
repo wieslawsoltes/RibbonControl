@@ -11,6 +11,8 @@ Important files:
 - `site/config.scriban`
 - `site/menu.yml`
 - `site/articles/**`
+- `site/.lunet/includes/_builtins/bundle.sbn-html`
+- `site/.lunet/layouts/_default.api-dotnet*.sbn-md`
 - `.config/dotnet-tools.json`
 - `build-docs.sh` / `build-docs.ps1`
 - `serve-docs.sh` / `serve-docs.ps1`
@@ -31,6 +33,8 @@ dotnet tool restore
 ./build-docs.ps1
 ./serve-docs.ps1
 ```
+
+The build scripts start from a clean `site/.lunet/build` directory so template and API-layout overrides are always reflected in local output.
 
 CI behavior:
 
