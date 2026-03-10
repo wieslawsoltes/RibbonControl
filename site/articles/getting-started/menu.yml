@@ -1,0 +1,6 @@
+getting-started:
+  - {path: readme.md, title: "Getting Started"}
+  - {path: overview.md, title: "Overview"}
+  - {path: installation.md, title: "Installation"}
+  - {path: quickstart-xaml.md, title: "Quickstart: XAML"}
+  - {path: quickstart-mvvm.md, title: "Quickstart: MVVM"}

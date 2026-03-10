@@ -3,6 +3,7 @@
 Avalonia ribbon toolkit for desktop applications, with XAML-first composition, MVVM-friendly state flow, and optional JSON persistence for user customization state.
 
 [![CI](https://github.com/wieslawsoltes/RibbonControl/actions/workflows/ci.yml/badge.svg)](https://github.com/wieslawsoltes/RibbonControl/actions/workflows/ci.yml)
+[![Docs](https://img.shields.io/badge/docs-lunet-0b7285.svg)](https://wieslawsoltes.github.io/RibbonControl/)
 [![RibbonControl.Core](https://img.shields.io/nuget/v/RibbonControl.Core.svg)](https://www.nuget.org/packages/RibbonControl.Core)
 [![RibbonControl.Persistence.Json](https://img.shields.io/nuget/v/RibbonControl.Persistence.Json.svg)](https://www.nuget.org/packages/RibbonControl.Persistence.Json)
 [![.NET](https://img.shields.io/badge/.NET-8%20%7C%2010-512BD4)](https://dotnet.microsoft.com/)
@@ -15,6 +16,10 @@ Avalonia ribbon toolkit for desktop applications, with XAML-first composition, M
 |---------|-------|-------------|
 | **RibbonControl.Core** | [![NuGet](https://img.shields.io/nuget/v/RibbonControl.Core.svg)](https://www.nuget.org/packages/RibbonControl.Core) | Core Avalonia ribbon controls, themes, models, view models, automation peers, merge policies, and command/state services |
 | **RibbonControl.Persistence.Json** | [![NuGet](https://img.shields.io/nuget/v/RibbonControl.Persistence.Json.svg)](https://www.nuget.org/packages/RibbonControl.Persistence.Json) | JSON-backed `IRibbonStateStore` implementation with schema versioning and migration hooks |
+
+## Documentation
+
+Full project documentation is published with Lunet at [wieslawsoltes.github.io/RibbonControl](https://wieslawsoltes.github.io/RibbonControl/).
 
 ## Features
 

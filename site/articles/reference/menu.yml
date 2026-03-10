@@ -1,0 +1,5 @@
+reference:
+  - {path: readme.md, title: "Reference"}
+  - {path: package-overview.md, title: "Package Overview"}
+  - {path: docs-pipeline.md, title: "Docs Pipeline"}
+  - {path: license.md, title: "License"}

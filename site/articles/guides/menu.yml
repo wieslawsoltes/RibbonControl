@@ -1,0 +1,5 @@
+guides:
+  - {path: readme.md, title: "Guides"}
+  - {path: backstage-topbar-and-qat.md, title: "Backstage, Top Bar, and QAT"}
+  - {path: adaptive-layout.md, title: "Adaptive Layout"}
+  - {path: samples.md, title: "Samples"}
