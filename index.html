@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html data-lunet-theme-mode="system" data-lunet-theme-storage-key="lunet-theme" data-lunet-css-prefix="lunet" lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="lunet 1.0.10.0">
+    <script>(function(){const root=document.documentElement;const key=root.getAttribute("data-lunet-theme-storage-key")||"lunet-theme";const fallback=root.getAttribute("data-lunet-theme-mode")||"system";let stored=null;try{stored=localStorage.getItem(key);}catch(_){stored=null;}const mode=(stored==="light"||stored==="dark"||stored==="system")?stored:fallback;const prefersDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;const resolved=mode==="system"?(prefersDark?"dark":"light"):mode;root.setAttribute("data-lunet-theme-mode",mode);root.setAttribute("data-bs-theme",resolved);}());</script>
+    <link rel='icon' href='/RibbonControl/favicon.ico' sizes='32x32'>
+    <title>RibbonControl for Avalonia | RibbonControl for Avalonia</title>
+    <link rel="stylesheet" href="/RibbonControl/css/lite.css">
+    <script src="/RibbonControl/js/lite-defer.js" defer></script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@wieslawsoltes">
+<meta name="twitter:title" content="RibbonControl for Avalonia | RibbonControl for Avalonia">
+<meta name="twitter:description" content="Avalonia Control Library RibbonControl for Avalonia RibbonControl provides a modern ribbon surface for Avalonia applications with XAML-authored layouts, data-driven MVVM composition, adaptive layout behavior, and optional JSON persistence for user customization state. Start Getting Started Explore Samples Browse API Start Here Getting Started Overview Choose between XAML-first, MVVM-first, and hybrid composition models. Installation Install the packages, wire the theme resources, and configure the ribbon namespace. Quickstart: XAML...">
+<meta name="twitter:image" content="https://wieslawsoltes.github.io/RibbonControl/images/logo.svg">
+<meta name="twitter:image:alt" content="RibbonControl for Avalonia | RibbonControl for Avalonia">
+<meta property="og:title" content="RibbonControl for Avalonia | RibbonControl for Avalonia">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wieslawsoltes.github.io/RibbonControl">
+<meta property="og:description" content="Avalonia Control Library RibbonControl for Avalonia RibbonControl provides a modern ribbon surface for Avalonia applications with XAML-authored layouts, data-driven MVVM composition, adaptive layout behavior, and optional JSON persistence for user customization state. Start Getting Started Explore Samples Browse API Start Here Getting Started Overview Choose between XAML-first, MVVM-first, and hybrid composition models. Installation Install the packages, wire the theme resources, and configure the ribbon namespace. Quickstart: XAML...">
+<meta property="og:image" content="https://wieslawsoltes.github.io/RibbonControl/images/logo.svg">
+<meta property="og:image:alt" content="RibbonControl for Avalonia | RibbonControl for Avalonia">
+  </head>
+  <body>
+
+    <div id="lunet" class="container">
+      <nav class="navbar navbar-expand-md ">
+        <a class="navbar-brand" href="/RibbonControl/">
+          <img class="lunet-logo" src="/RibbonControl/images/logo.svg" alt="RibbonControl for Avalonia" width="96" height="96">
+          <span class="visually-hidden">Home</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse justify-content-between">
+<ol id='nav-id-home-0' class='navbar-nav nav-level0 show '>
+  <li id='nav-item-home-1' class='nav-item  active'>
+    <span class='nav-item-row'><a href='/RibbonControl/' class='nav-link  '>Home</a></span>  </li>
+  <li id='nav-item-home-2' class='nav-item '>
+    <span class='nav-item-row'><a href='/RibbonControl/articles/' class='nav-link  '>Docs</a></span>  </li>
+  <li id='nav-item-home-3' class='nav-item '>
+    <span class='nav-item-row'><a href='/RibbonControl/api/' class='nav-link  '>API</a></span>  </li>
+</ol>
+          <ol class="navbar-nav flex-grow-1" style="padding-right: 0.5rem;">
+            <li class="nav-item w-100">
+                <div class="lunet-search dropdown w-100">
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input id="search-input" type="search" class="form-control" placeholder="Search... (Alt+s)" aria-label="Search" aria-controls="search-results" data-bs-toggle="dropdown" data-bs-auto-close="outside" data-search-empty-message="Enter words to search..." data-search-no-results-message="No results found.">
+                    <ul id="search-results" class="dropdown-menu w-100 p-0" style="max-height: 50vh;" role="listbox" aria-labelledby="search-input"></ul>
+                  </div>
+                </div>
+            </li>
+          </ol>
+          <div class="d-flex align-items-center gap-2 flex-shrink-0 navbar-right">
+            <div class="dropdown">
+              <button
+                id="theme-mode-toggle"
+                class="btn btn-outline-secondary btn-sm lunet-theme-toggle dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="Theme">
+                <i class="bi bi-circle-half" data-lunet-theme-toggle-icon aria-hidden="true"></i>
+                <span
+                  data-lunet-theme-toggle-label
+                  data-theme-system-label="System"
+                  data-theme-light-label="Light"
+                  data-theme-dark-label="Dark">Theme</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-mode-toggle">
+                <li><button class="dropdown-item" type="button" data-lunet-theme-choice="system"><i class="bi bi-circle-half me-2"></i>System</button></li>
+                <li><button class="dropdown-item" type="button" data-lunet-theme-choice="light"><i class="bi bi-sun-fill me-2"></i>Light</button></li>
+                <li><button class="dropdown-item" type="button" data-lunet-theme-choice="dark"><i class="bi bi-moon-stars-fill me-2"></i>Dark</button></li>
+              </ul>
+            </div>
+<ol id='nav-id-home2-0' class='navbar-nav nav-level0 show flex-shrink-0'>
+  <li id='nav-item-home2-1' class='nav-item '>
+    <span class='nav-item-row'><a href='https://github.com/wieslawsoltes/RibbonControl' class='nav-link  btn btn-info'>GitHub</a></span>  </li>
+  <li id='nav-item-home2-2' class='nav-item '>
+    <span class='nav-item-row'><a href='https://www.nuget.org/packages/RibbonControl.Core' class='nav-link  btn btn-outline-info'>NuGet</a></span>  </li>
+</ol>
+          </div>
+        </div>
+      </nav>
+      <div class="lunet lunet-home">
+        <section data-prismjs-copy="" data-prismjs-copy-success="" data-prismjs-copy-timeout="1200" data-copy-tooltip="Copy to Clipboard." data-copy-tooltip-success="Copied!" data-copy-tooltip-error="Failed to copy!">
+
+<div class="container">
+<!-- lunet:summarize -->
+<div class="ribbon-hero">
+  <div class="ribbon-hero-eyebrow">Avalonia Control Library</div>
+  <h1>RibbonControl for Avalonia</h1>
+  <p class="lead"><strong>RibbonControl</strong> provides a modern ribbon surface for Avalonia applications with XAML-authored layouts, data-driven MVVM composition, adaptive layout behavior, and optional JSON persistence for user customization state.</p>
+  <div class="ribbon-hero-actions">
+    <a class="btn btn-primary btn-lg" href="articles/getting-started/overview"><span>Start Getting Started</span></a>
+    <a class="btn btn-outline-secondary btn-lg" href="articles/guides/samples"><span>Explore Samples</span></a>
+    <a class="btn btn-outline-secondary btn-lg" href="api"><span>Browse API</span></a>
+  </div>
+</div>
+<h2 id="start-here">Start Here</h2>
+<div class="ribbon-card-grid">
+  <a class="ribbon-card" href="articles/getting-started/overview">
+    <span class="ribbon-card-title">Getting Started Overview</span>
+    <p>Choose between XAML-first, MVVM-first, and hybrid composition models.</p>
+  </a>
+  <a class="ribbon-card" href="articles/getting-started/installation">
+    <span class="ribbon-card-title">Installation</span>
+    <p>Install the packages, wire the theme resources, and configure the ribbon namespace.</p>
+  </a>
+  <a class="ribbon-card" href="articles/getting-started/quickstart-xaml">
+    <span class="ribbon-card-title">Quickstart: XAML</span>
+    <p>Author a ribbon directly in XAML with tabs, groups, items, and backstage content.</p>
+  </a>
+  <a class="ribbon-card" href="articles/getting-started/quickstart-mvvm">
+    <span class="ribbon-card-title">Quickstart: MVVM</span>
+    <p>Drive the ribbon from view-model state, command catalogs, and runtime persistence.</p>
+  </a>
+</div>
+<h2 id="documentation-sections">Documentation Sections</h2>
+<div class="ribbon-card-grid ribbon-card-grid--wide">
+  <a class="ribbon-card" href="articles/concepts/readme">
+    <span class="ribbon-card-title">Concepts</span>
+    <p>Understand the control graph, merged runtime model, and state/customization pipeline.</p>
+  </a>
+  <a class="ribbon-card" href="articles/guides/readme">
+    <span class="ribbon-card-title">Guides</span>
+    <p>Scenario-driven walkthroughs for backstage, quick access toolbar, adaptive layout, and samples.</p>
+  </a>
+  <a class="ribbon-card" href="articles/xaml/readme">
+    <span class="ribbon-card-title">XAML Usage</span>
+    <p>Theme inclusion, XML namespace setup, resources, icons, and content slots.</p>
+  </a>
+  <a class="ribbon-card" href="articles/advanced/readme">
+    <span class="ribbon-card-title">Advanced</span>
+    <p>Testing strategy, release packaging, visual regression coverage, and shipping guidance.</p>
+  </a>
+  <a class="ribbon-card" href="articles/reference/readme">
+    <span class="ribbon-card-title">Reference</span>
+    <p>Packages, docs pipeline details, licensing, and project layout references.</p>
+  </a>
+  <a class="ribbon-card" href="api">
+    <span class="ribbon-card-title">API Reference</span>
+    <p>Generated .NET API documentation for the core ribbon and persistence packages.</p>
+  </a>
+</div>
+<h2 id="repository">Repository</h2>
+<ul>
+<li>Source code and issues: <a href="https://github.com/wieslawsoltes/RibbonControl">github.com/wieslawsoltes/RibbonControl</a></li>
+<li>Primary NuGet package: <a href="https://www.nuget.org/packages/RibbonControl.Core">RibbonControl.Core</a></li>
+<li>Persistence package: <a href="https://www.nuget.org/packages/RibbonControl.Persistence.Json">RibbonControl.Persistence.Json</a></li>
+</ul>
+
+</div>
+        </section>
+        <footer>
+          <hr>
+          <p>Copyright &copy; 2026, Wieslaw Soltes aka <a href="https://github.com/wieslawsoltes">wieslawsoltes</a> - Content licensed under the Creative Commons <a href="http://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a> | Site generated by <a href="https://github.com/lunet-io/lunet">lunet</a> hosted on <a href="https://pages.github.com/">GitHub Pages</a></p>
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>
