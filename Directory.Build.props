@@ -10,6 +10,7 @@
     <AvaloniaVersion>11.3.11</AvaloniaVersion>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix>alpha.1</VersionSuffix>
     <Authors>Wiesław Šoltés</Authors>
     <Company>Wiesław Šoltés</Company>
     <RepositoryUrl>https://github.com/wieslawsoltes/RibbonControl</RepositoryUrl>
