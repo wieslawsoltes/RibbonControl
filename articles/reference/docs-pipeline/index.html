@@ -12,13 +12,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@wieslawsoltes">
 <meta name="twitter:title" content="Docs Pipeline | RibbonControl for Avalonia">
-<meta name="twitter:description" content="Docs Pipeline RibbonControl uses Lunet for the static docs site and generated .NET API reference. Important files: site/config.scriban site/menu.yml site/articles/** .config/dotnet-tools.json build-docs.sh / build-docs.ps1 serve-docs.sh / serve-docs.ps1 .github/workflows/docs.yml Local commands: dotnet tool restore ./build-docs.sh ./serve-docs.sh PowerShell equivalents: dotnet tool restore ./build-docs.ps1 ./serve-docs.ps1 CI behavior: the main CI workflow builds the docs site to validate structure and API generation,...">
+<meta name="twitter:description" content="Docs Pipeline RibbonControl uses Lunet for the static docs site and generated .NET API reference. Important files: site/config.scriban site/menu.yml site/articles/** site/.lunet/includes/_builtins/bundle.sbn-html site/.lunet/layouts/_default.api-dotnet*.sbn-md .config/dotnet-tools.json build-docs.sh / build-docs.ps1 serve-docs.sh / serve-docs.ps1 .github/workflows/docs.yml Local commands: dotnet tool restore ./build-docs.sh ./serve-docs.sh...">
 <meta name="twitter:image" content="https://wieslawsoltes.github.io/RibbonControl/images/logo.svg">
 <meta name="twitter:image:alt" content="Docs Pipeline | RibbonControl for Avalonia">
 <meta property="og:title" content="Docs Pipeline | RibbonControl for Avalonia">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wieslawsoltes.github.io/RibbonControl">
-<meta property="og:description" content="Docs Pipeline RibbonControl uses Lunet for the static docs site and generated .NET API reference. Important files: site/config.scriban site/menu.yml site/articles/** .config/dotnet-tools.json build-docs.sh / build-docs.ps1 serve-docs.sh / serve-docs.ps1 .github/workflows/docs.yml Local commands: dotnet tool restore ./build-docs.sh ./serve-docs.sh PowerShell equivalents: dotnet tool restore ./build-docs.ps1 ./serve-docs.ps1 CI behavior: the main CI workflow builds the docs site to validate structure and API generation,...">
+<meta property="og:description" content="Docs Pipeline RibbonControl uses Lunet for the static docs site and generated .NET API reference. Important files: site/config.scriban site/menu.yml site/articles/** site/.lunet/includes/_builtins/bundle.sbn-html site/.lunet/layouts/_default.api-dotnet*.sbn-md .config/dotnet-tools.json build-docs.sh / build-docs.ps1 serve-docs.sh / serve-docs.ps1 .github/workflows/docs.yml Local commands: dotnet tool restore ./build-docs.sh ./serve-docs.sh...">
 <meta property="og:image" content="https://wieslawsoltes.github.io/RibbonControl/images/logo.svg">
 <meta property="og:image:alt" content="Docs Pipeline | RibbonControl for Avalonia">
   </head>
@@ -162,6 +162,8 @@
 <li><code>site/config.scriban</code></li>
 <li><code>site/menu.yml</code></li>
 <li><code>site/articles/**</code></li>
+<li><code>site/.lunet/includes/_builtins/bundle.sbn-html</code></li>
+<li><code>site/.lunet/layouts/_default.api-dotnet*.sbn-md</code></li>
 <li><code>.config/dotnet-tools.json</code></li>
 <li><code>build-docs.sh</code> / <code>build-docs.ps1</code></li>
 <li><code>serve-docs.sh</code> / <code>serve-docs.ps1</code></li>
@@ -177,6 +179,7 @@
 ./build-docs.ps1
 ./serve-docs.ps1
 </code></pre>
+<p>The build scripts start from a clean <code>site/.lunet/build</code> directory so template and API-layout overrides are always reflected in local output.</p>
 <p>CI behavior:</p>
 <ul>
 <li>the main CI workflow builds the docs site to validate structure and API generation,</li>

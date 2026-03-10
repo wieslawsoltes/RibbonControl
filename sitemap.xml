@@ -1,55 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference/license</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference/package-overview</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/advanced</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/getting-started/installation</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference/docs-pipeline</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
     <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/concepts</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/getting-started</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/getting-started/quickstart-xaml</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/xaml/icon-and-content-customization</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/xaml</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/xaml/theme-usage-and-resources</loc>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
@@ -57,27 +9,27 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/guides</loc>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/xaml</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference/docs-pipeline</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/guides/samples</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/xaml/theme-usage-and-resources</loc>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
     <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/guides/backstage-topbar-and-qat</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/advanced/testing-and-release</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/concepts/runtime-state-and-persistence</loc>
-    <lastmod>2026-03-10</lastmod>
-  </url>
-  <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/concepts/control-model</loc>
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
@@ -89,7 +41,55 @@
     <lastmod>2026-03-10</lastmod>
   </url>
   <url>
-    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/guides/samples</loc>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/getting-started/installation</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/advanced</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/guides</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/getting-started</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference/license</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/concepts/runtime-state-and-persistence</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/concepts/control-model</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/advanced/testing-and-release</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/reference/package-overview</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/getting-started/quickstart-xaml</loc>
+    <lastmod>2026-03-10</lastmod>
+  </url>
+  <url>
+    <loc>https://wieslawsoltes.github.io/RibbonControl/RibbonControl/articles/xaml/icon-and-content-customization</loc>
     <lastmod>2026-03-10</lastmod>
   </url>
 </urlset>
