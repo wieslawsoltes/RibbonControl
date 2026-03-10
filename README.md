@@ -193,6 +193,7 @@ dotnet pack src/RibbonControl.Persistence.Json/RibbonControl.Persistence.Json.cs
 The GitHub Actions setup includes:
 
 - `CI`: matrix build and test on macOS, Linux, and Windows, plus NuGet package artifact generation.
+- `Docs`: Lunet build and GitHub Pages deployment from the default branch.
 - `Release`: tag-driven package build, NuGet.org publish, symbol package upload, and GitHub release creation.
 
 Create a tag such as `v1.0.0` to publish a versioned release through the release workflow.
